@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark p-2 bg-black">
+  <div class="container">
+    <a class="navbar-brand" href="/">SICAAL</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">Servicios</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        {{#if user}}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Procesos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/notes">Solicitudes y publicaciones</a>
+              <a class="dropdown-item" href="/notes/add">Crear Publicación</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/auth/logout">Desconectar</a>
+            </ul>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/signin">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/signup">Registrar</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>
