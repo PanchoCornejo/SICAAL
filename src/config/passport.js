@@ -13,13 +13,13 @@ passport.use(
       const user = await User.findOne({ email: email });
 
       if (!user) {
-        return done(null, false, { message: "Not User found." });
+        return done(null, false, { message: "Usuario no encontrado." });
       }
 
       // Match Password's User
       const isMatch = await user.matchPassword(password);
       if (!isMatch)
-        return done(null, false, { message: "Incorrect Password." });
+        return done(null, false, { message: "Contraseña Incorrecta." });
       
       return done(null, user);
     }
