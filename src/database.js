@@ -1,18 +1,29 @@
-import mongoose from "mongoose";
-import { MONGODB_URI } from "./config.js";
+const mysql = require('mysql');
+const { promisify }= require('util');
 
-try {
-  const db = await mongoose.connect(MONGODB_URI);
-  console.log("Connected to ", db.connection.name);
-} catch (error) {
-  console.error(error);
-}
-
-mongoose.connection.on("connected", () => {
-  console.log("Mongoose is connected");
+const pool = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'kiwix',
+  password: 'kiwix',
+  database: 'db_links'
 });
 
-mongoose.connection.on("disconnected", () => {
-  console.log("Mongoose is disconnected");
+pool.connect(function(err) {
+  if (err) {
+    console.error('Error al Conectar a la Base de datos: ' + err.stack);
+    return;
+  }
+  console.log('Conectado con la ID ' + pool.threadId);
 });
+
+
+// Promisify Pool Querys
+pool.query = promisify(pool.query);
+
+module.exports = pool;
+
+
+ 
+
+ 
 

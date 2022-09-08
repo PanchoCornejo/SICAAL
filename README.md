@@ -1,56 +1,11 @@
-# Notes App NodeMongo
-
-This is a basic Web application to manage simple Notes on the web using Javascript Technologies like Nodejs, Mongodb, and other related technologies. Tecnically this is a Multi-Page Application using Handlebars as template engine.
-
-This app can do:
-
-- CRUD Operations: create/read/update/delete Notes
-- Allows a user to do login and save his personal notes
-
-
+# Notes App with Nodejs and Mysql
+![](docs/screenshot2.png)
 ![](docs/screenshot.png)
 
-### Installation
+## File Structure
+- database, it the folder with all the sql queries, you can use to recreate the database for this application
+- src, it's all the code for the Backend and Frontend Application
+- docs
 
-```sh
-git clone https://github.com/FaztTech/nodejs-notes-app
-cd nodejs-notes-app
-npm i
-npm run dev # run in development mode
-npm start # run in production mode
-```
-
-> You need to have Mongodb installed Locally or stablish a MONGODB_URI environment variable in order to connect to any mongodb instance (using Mongodb Atlas for example)
-
-### Environment Variables
-
-This app needs the following environment Variables
-
-- `MONGODB_URI` this is the Mongodb URI string
-- `PORT` the server http port for the application
-- `NODE_ENV` node environment
-
-### docker-compose
-
-The most easy way to install the entire project is using docker-compose:
-
-```shell
-git clone https://github.com/FaztTech/nodejs-notes-app
-cd nodejs-notes-app
-docker-compose up
-```
-
-### Default User
-
-when the app is lauched, this will create an Admin user with the following credentials:
-
-- email: `admin@localhost`
-- password: `adminpassword`
-
-### Tutorial
-
-This app was created with educational purposes, so you can found the tutorials in the following links:
-
-- [Version 2](https://www.youtube.com/playlist?list=PLo5lAe9kQrwqUEXK7oQbzv63KsdODzuAy), new tutorial made in 2020
-  and these are old tutorials about this app
-- [Version 1.0.0](https://youtu.be/-bI0diefasA)
+## Tutorial
+- [Youtube Tutorial](https://youtu.be/qJ5R9WTW0_E)

@@ -1,44 +1,27 @@
-<div class="row">
-  <div class="col-md-4 mx-auto">
-    <div class="card mt-5 bg-black text-white rounded">
-      <div class="card-header text-center pt-5">
-        <h1 class="h4 text-white">
-          Portal SICAAL
-        </h1>
-      </div>
-      <img
-        class="rounded-circle mx-auto d-block logo m-4"
-        src="/img/logo.png"
-        alt="Logo"
-      />
-      <div class="card-body">
-        <form action="/auth/signin" method="POST">
-          <div class="mb-3">
-            <label for="email">Email:</label>
-            <input
-              type="email"
-              class="form-control bg-dark text-white"
-              name="email"
-              placeholder="Email"
-              autofocus
-            />
-          </div>
-          <div class="mb-3">
-            <label for="passswore">Password:</label>
-            <input
-              type="password"
-              class="form-control bg-dark text-white"
-              name="password"
-              placeholder="Password"
-            />
-          </div>
-          <button class="btn btn-success btn-block">
-            Iniciar Secion
-          </button>
-        </form>
-      </div>
+<div class="container p-4">
+  <div class="row">
 
-      <p class="text-center">No tienes cuenta? <a href="/auth/signup" class="text-info">Registro</a></p>
+    <div class="col-md-4 mx-auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <h3>SignIn</h3>
+        </div>
+        <img src="/img/logo.png" alt="Logo Fazt" class="card-img-top mx-auto m-2 rounded-circle w-50">
+        <div class="card-body">
+          <form action="/signin" method="POST">
+            <div class="form-group">
+              <input type="text" name="username" placeholder="Username" class="form-control" autofocus>
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" placeholder="Password" class="form-control">
+            </div>
+            <button class="btn btn-primary btn-block">
+              SingIn
+            </button>
+          </form>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
