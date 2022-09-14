@@ -30,10 +30,12 @@ passport.use('local.signup', new LocalStrategy({
 }, async (req, username, password, done) => {
 
   const { fullname } = req.body;
+  const { rol } = req.body;
   let newUser = {
     fullname,
     username,
-    password
+    password,
+    rol
   };
   newUser.password = await helpers.encryptPassword(password);
   // Saving in the Database

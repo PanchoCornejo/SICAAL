@@ -5,7 +5,7 @@ const pool = mysql.createConnection({
   host     : 'localhost',
   user     : 'kiwix',
   password: 'kiwix',
-  database: 'db_links'
+  database: 'sicaal_db'
 });
 
 pool.connect(function(err) {

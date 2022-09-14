@@ -3,15 +3,15 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 const passport = require('passport');
-const { isLoggedIn } = require('../lib/auth');
+const { isLoggedIn, isNotLoggedin , isAdmin , isProveedor } = require('../lib/auth');
 
 // SIGNUP
-router.get('/signup', (req, res) => {
+router.get('/signup', isAdmin, (req, res) => {
   res.render('auth/signup');
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-  successRedirect: '/profile',
+  successRedirect: '/',
   failureRedirect: '/signup',
   failureFlash: true
 }));
@@ -24,7 +24,7 @@ router.get('/signin', (req, res) => {
 router.post('/signin', (req, res, next) => {
   
   passport.authenticate('local.signin', {
-    successRedirect: '/profile',
+    successRedirect: '/',
     failureRedirect: '/signin',
     failureFlash: true
   })(req, res, next);
