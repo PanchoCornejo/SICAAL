@@ -5,6 +5,18 @@ const { body, validationResult } = require('express-validator');
 const passport = require('passport');
 const { isLoggedIn, isNotLoggedin , isAdmin , isProveedor } = require('../lib/auth');
 
+// RegistroClientes
+router.get('/registroclientes', (req, res) => {
+  res.render('auth/registroclientes');
+});
+
+router.post('/registroclientes', passport.authenticate('local.signup', {
+  successRedirect: '/',
+  failureRedirect: '/registroclientes',
+  failureFlash: true
+}));
+
+
 // SIGNUP
 router.get('/signup', isAdmin, (req, res) => {
   res.render('auth/signup');
@@ -22,7 +34,6 @@ router.get('/signin', (req, res) => {
 });
 
 router.post('/signin', (req, res, next) => {
-  
   passport.authenticate('local.signin', {
     successRedirect: '/',
     failureRedirect: '/signin',
@@ -41,7 +52,13 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
+  if (req.user.rol == 'Admin'){
+    res.redirect('panelA/perfilA');
+  }
+  else if (req.user.rol == 'Proveedor'){
+    res.redirect('panelP/perfilP');
+  }
+  res.redirect('Cliente/Panel');
 });
 
 module.exports = router;

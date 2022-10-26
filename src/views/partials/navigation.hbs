@@ -48,8 +48,22 @@
         <li class="nav-item">
           <a class="nav-link" href="/signin">Iniciar Sesion</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/signup">Registrarse</a>
+        <li class="nav-item dropdown">
+          <a 
+          class="nav-link dropdown-toggle" 
+          href="#" 
+          id="navbarDropdown" 
+          role="button" 
+          data-toggle="dropdown"
+          aria-haspopup="true" 
+          aria-expanded="false">
+          Registrate!
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/registroclientes">Como Cliente</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/ProvForm">Como Proveedor</a>
+          </ul>
         </li>
         {{/if}}
       </ul>

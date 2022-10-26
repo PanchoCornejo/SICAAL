@@ -33,5 +33,16 @@ module.exports = {
             return res.redirect('/profile');
         }
         return res.redirect('/signin');
-    }
+    },
+    // si esta Autenticado y es Cliente
+    isClient (req, res, next) {
+        console.log(req.user)
+        if (req.isAuthenticated()) {
+            if (req.user.rol == 'Cliente'){
+                return next();
+            }
+            return res.redirect('/profile');
+        }
+        return res.redirect('/PanelCliente');
+    },
 };

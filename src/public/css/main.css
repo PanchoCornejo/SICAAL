@@ -7,7 +7,7 @@ body {
 }
 
 .bg-black {
-  background: #449319;
+  background: #331993  !important;
 }
 
 .nav-scroller {
@@ -61,3 +61,46 @@ body {
 }
 
 
+/* Configuracion de Nav Izquierda x kiwix*/
+
+.sidenav {
+  height: 100%;
+  width: 220px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(137, 51, 51);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+
+.main {
+  margin-left: 260px; /* hay que dejarlo del mismo largo del Nav izquierdo para colocar la infomacion (toma un margen) */
+  font-size: 28px; /* Aumenta la letra */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.dropdown { 
+  position: absolute;
+  bottom: 0.0;
+  margin: 20px; /* hago que se levante el Mi cuenta con la imagen */
+}

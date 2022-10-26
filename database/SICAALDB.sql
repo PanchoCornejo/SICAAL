@@ -9,7 +9,7 @@ CREATE TABLE users (
   username VARCHAR(16) NOT NULL,
   password VARCHAR(60) NOT NULL,
   fullname VARCHAR(100) NOT NULL,
-  rol VARCHAR(20) NOT NULL
+  rol VARCHAR(20) DEFAULT 'Cliente' NOT NULL
 );
 
 ALTER TABLE users
