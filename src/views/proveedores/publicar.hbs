@@ -6,7 +6,7 @@
         <div class="card text-center">
             <div class="card-body">
                 <a>Publicar Servicios</a>
-                <form class="row g-3 novalidate" novalidate>
+                <form class="row g-3 novalidate was-validated"  novalidate>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre del Servicio</label>
                         <input type="text" class="form-control" id="nombre" placeholder="Construccion de Casas" required>
@@ -100,27 +100,40 @@
                             Que region opera?
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <label for="inputState" class="form-label">State</label>
-                        <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
+                    <div class="col-md-2">
+                        <label for="inputCity" class="form-label">Ciudades</label>
+                        <select class="form-select" aria-label="Default select example" required>
+                            <option value="Santiago">Santiago</option>
+                            <option value="Melipilla">Melipilla</option>
+                            <option value="Talagante">Talagante</option>
+                            <option value="Maria Pinto">Maria Pinto</option>
+                            <option value="Isla de Maipo">Isla de Maipo</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Que ciudad opera?
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inputState" class="form-label">Estado del Servicio</label>
+                        <select id="inputState" class="form-select" required>
+                        <option value="Disponible">Disponible</option>
+                        <option value="En mantenimiento">En mantenimiento</option>
+                        <option value="Ocupada">Ocupada</option>
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="inputZip" class="form-label">Zip</label>
-                        <input type="text" class="form-control" id="inputZip">
+                        <label for="inputZip" class="form-label">Categoria</label>
+                        <input type="text" class="form-control" id="inputZip" required>
                     </div>
                     <div class="col-12">
-                        <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                            Check me out
-                        </label>
+                        <label for="exampleFormControlTextarea1" class="form-label">Describa su servicio</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                        <div class="invalid-feedback">
+                            Cuentanos sobre tu servicio..
                         </div>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        <button type="submit" class="btn btn-primary">Crear Servicio</button>
                     </div>
                 </form>
             </div>
