@@ -55,4 +55,31 @@ router.post('/editar', isProveedor ,  async (req, res) => {
     res.redirect('/panelP/perfilP');
 });
 
+//Donde el proveedor puede rellenar sus datos
+
+// Donde el administrador llena los datos del proveedor
+router.get('/CrearDatos', (req, res) => {
+    res.render('proveedores/CrearDatos');
+});
+
+router.post('/CrearDatos', async (req, res) => {
+    const id = req.user.id;
+    const { fono, razon_social, rut, giro, direccion, ubicacion , anos_servicio, proyectos_ejecutados, description} = req.body;
+    const DatosP = {
+        fono,
+        razon_social,
+        rut,
+        giro,
+        direccion,
+        ubicacion,
+        anos_servicio,
+        proyectos_ejecutados,
+        description,
+        user_id: id
+    };
+    await pool.query('INSERT INTO proveedor set ?', [DatosP]);
+    req.flash('Correcto!', 'Datos Creados Correctamente');
+    res.redirect('/panelP/perfilP');
+});
+
 module.exports = router;

@@ -31,4 +31,30 @@ router.get('/servicios', isAdmin,(req, res) => {
 });
 
 
+// Donde el administrador llena los datos del proveedor
+router.get('/CrearDatos', (req, res) => {
+    res.render('admins/CrearDatos');
+});
+
+router.post('/CrearDatos', async (req, res) => {
+    const user_id = 3;
+    const { fono, razon_social, rut, giro, direccion, ubicacion , anos_servicio, proyectos_ejecutados, description} = req.body;
+    const DatosP = {
+        fono,
+        razon_social,
+        rut,
+        giro,
+        direccion,
+        ubicacion,
+        anos_servicio,
+        proyectos_ejecutados,
+        description,
+        user_id: user_id
+    };
+    await pool.query('INSERT INTO proveedor set ?', [DatosP]);
+    req.flash('Correcto!', 'Datos Creados Correctamente');
+    res.redirect('/panelA/servicios');
+});
+
+
 module.exports = router;

@@ -23,7 +23,7 @@ router.get('/signup', isAdmin, (req, res) => {
 });
 
 router.post('/signup', passport.authenticate('local.signup', {
-  successRedirect: '/',
+  successRedirect: '/panelA/CrearDatos',
   failureRedirect: '/signup',
   failureFlash: true
 }));

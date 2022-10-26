@@ -1,0 +1,85 @@
+{{>navigation2}}
+{{>message}} 
+
+
+<div class="main">
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-body">
+                <a>Rellenar datos</a>
+                <form action="/CrearDatos" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+                    <div class="col-md-3">
+                        <label for="fono" class="form-label">Fono</label>
+                        <input type="text" class="form-control" id="fono" name="fono" placeholder="Numero de Contacto +56944455666" required>
+                        <div class="invalid-feedback">
+                            Dinos tu contacto!
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label for="razon_social" class="form-label">Razon Social</label>
+                        <input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Como es el nombre de la empresa?" required>
+                        <div class="invalid-feedback">
+                            Proporciona tu razon social
+                        </div>
+                    </div>
+                    
+                
+                    <div class="col-3">
+                        <label for="rut" class="form-label">Rut</label>
+                        <input type="text" class="form-control" id="rut"  name="rut" placeholder="12.458.456-3" required>
+                        <div class="invalid-feedback">
+                            rut de la empresa?
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="giro" class="form-label">Giro</label>
+                        <input type="text" class="form-control" id="giro" name="giro" placeholder="Ej: Planta procesadorade semillas" required>
+                        <div class="invalid-feedback">
+                            Cual es el giro?
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="direccion" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ej: Av.Matta 456 , Santiago Centro" required>
+                        <div class="invalid-feedback">
+                            Danos tu direccion
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="ubicacion" class="form-label">Ubicacion</label>
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ej: Stgo Centro" required>
+                        <div class="invalid-feedback">
+                            Donde se ubican?
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="anos_servicio" class="form-label">Años de Servicio</label>
+                        <input type="text" class="form-control" id="anos_servicio" name="anos_servicio" placeholder="Ej: 8" required>
+                        <div class="invalid-feedback">
+                            Cuantos Años de servicio tienen?
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="proyectos_ejecutados" class="form-label">Proyectos Ejecutados</label>
+                        <input type="text" class="form-control" id="proyectos_ejecutados" name="proyectos_ejecutados" placeholder="Cantidad Ej: 25" required>
+                        <div class="invalid-feedback">
+                            Cantidad de Proyectos ejecutados?
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="description" class="form-label">Describa su Empresa</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                        <div class="invalid-feedback">
+                            Cuentanos sobre tu Empresa..
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar Datos</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
