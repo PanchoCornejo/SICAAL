@@ -1,2 +1,19 @@
 {{>navigation2}}
 {{>message}} 
+
+<div class="main">
+    <h1>Mi Perfil</h1>
+    <div class="container">
+        {{#each datos}}
+
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No tenemos datos de tu Empresa.</p>
+                <i class="fa-regular fa-face-frown"></i>
+                <a href="/panelP/editar">Añadelos!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
