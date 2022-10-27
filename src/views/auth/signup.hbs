@@ -1,36 +1,85 @@
-<div class="container p-4">
-  <div class="row">
-    <div class="col-md-4 mx-auto">
-      <div class="card text-center">
-        <div class="card-header">
-          <h4>Registro de Proveedores</h4>
-        </div>
-        <div class="card-body">
-          <form action="/signup" method="POST">
-            <div class="form-group">
-              <input type="type" name="fullname" placeholder="Nombre de Empresa" class="form-control" autofocus>
+<!--====== SIGNIN ONE PART START ======-->
+<section class="signin-area signin-one">
+  <div class="container">
+    <div class="row justify-content-center">
+
+
+      <div class="col-lg-5">
+
+
+
+        <form action="/signup" method="POST">
+
+          <div class="signin-form form-style-two rounded-buttons">
+
+            <div class="text-center">
+              <p class="h1">Registro de Proveedores</p>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9PqmAO57lYcWDY6eiLYMaG1k9cIXPbkEQOw&usqp=CAU"
+                class="rounded" alt="...">
             </div>
-            <div class="form-group">
-              <input type="text" name="username" placeholder="Nombre de Usuario" class="form-control">
+
+            <div class="row">
+
+              <div class="col-md-12">
+                <div class="form-input">
+
+                  <div class="input-items default">
+                    <input type="type" name="fullname" placeholder="Nombre de Empresa" autofocus>
+                    <i class="lni lni-user"></i>
+                  </div>
+                </div>
+                <!-- form input -->
+              </div>
+              <div class="col-md-12">
+                <div class="form-input">
+
+                  <div class="input-items default">
+                    <input type="text" name="username" placeholder="Nombre de Usuario">
+                    <i class="lni lni-key"></i>
+                  </div>
+                </div>
+                <!-- form input -->
+              </div>
+
+            
+                <div class="mt-2">
+                        <label for="rol">Seleccione Rol:</label>
+                        <select id="rol" name="rol" class="form-select">
+                          <option value="Proveedor">Proveedores</option>
+                          <option value="Admin">Administrador</option>
+                        </select>
+                      </div>
+
+              <div class="col-md-12">
+                <div class="form-input">
+
+                  <div class="input-items default">
+                    <input type="password" name="password" placeholder="Contraseña">
+                    <i class="lni lni-key"></i>
+                  </div>
+                </div>
+                <!-- form input -->
+              </div>
+              
+              <div class="col-md-6">
+                <div class="form-input rounded-buttons">
+                  <button class="btn primary-btn rounded-full" type="submit">
+                    Registrar Usuario
+                  </button>
+                </div>
+                <!-- form input -->
+              </div>
+
+
             </div>
-            <div class="form-group">
-              <label for="rol">Seleccione Rol:</label>
-              <select id="rol" name="rol">
-                <option value="Proveedor">Proveedores</option>
-                <option value="Admin">Administrador</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <input type="password" name="password" placeholder="Contraseña" class="form-control">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-success btn-block">
-                Registrar Usuario
-              </button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <!-- signin form -->
+        </form>
       </div>
     </div>
+    <!-- row -->
   </div>
-</div>
+  <!-- container -->
+</section>
+<!--====== SIGNIN ONE PART ENDS ======-->
