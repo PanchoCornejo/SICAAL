@@ -105,4 +105,8 @@ body {
   margin: 20px; /* hago que se levante el Mi cuenta con la imagen */
 }
 
-
+.das {
+  text-align: left !important;
+  font-size: large;
+  width: 99%;
+}  

@@ -8,7 +8,7 @@
                 <a>Publicar Servicios</a>
                 <form class="row g-3 novalidate was-validated"  novalidate>
                     <div class="col-md-6">
-                        <label for="nombre" class="form-label">Nombre del Servicio</label>
+                        <label for="nombre" class="form-label das">Nombre del Servicio</label>
                         <input type="text" class="form-control" id="nombre" placeholder="Construccion de Casas" required>
                         <div class="invalid-feedback">
                             Danos un nombre!
@@ -16,15 +16,15 @@
                     </div>
                     
                     <div class="col-md-6">
-                        <label for="input" class="form-label">Marca de la Maquinaria</label>
+                        <label for="input" class="form-label das">Marca de la Maquinaria</label>
                         <input type="text" class="form-control" id="inputPassword4" placeholder="Caterpillar" required>
                         <div class="invalid-feedback">
                             Proporciona el nombre de la marca..
                         </div>
                     </div>
                     
-                    <div class="col-3">
-                        <label for="input" class="form-label">Año de la Maquinaria</label>
+                    <div class="col-2">
+                        <label for="input" class="form-label das">Año máquina</label>
                         <select class="form-select" aria-label="Default select example" required>
                             <option value="2022">2022</option>
                             <option value="2021">2021</option>
@@ -64,22 +64,22 @@
                             dinos de que año es
                         </div>
                     </div>
-                    <div class="col-3">
-                        <label for="inputAddress2" class="form-label">Modelo</label>
+                    <div class="col-4">
+                        <label for="inputAddress2" class="form-label das">Modelo</label>
                         <input type="text" class="form-control" id="inputAddress2" placeholder="Compactadores" required>
                         <div class="invalid-feedback">
                             Que modelo es?
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <label for="inputCity" class="form-label">Horometro</label>
+                        <label for="inputCity" class="form-label das">Horometro</label>
                         <input type="text" class="form-control" id="inputCity" placeholder="En Horas ej: '3525'" required>
                         <div class="invalid-feedback">
                             Cuantas horas de uso?
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <label for="inputCity" class="form-label">Operador</label>
+                        <label for="inputCity" class="form-label das">Operador</label>
                         <select class="form-select" aria-label="Default select example" required>
                             <option value="No">No</option>
                             <option value="Si">Si</option>
@@ -88,8 +88,8 @@
                             Tienen operador?
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <label for="inputCity" class="form-label">Region</label>
+                    <div class="col-md-3">
+                        <label for="inputCity" class="form-label das">Región</label>
                         <select class="form-select" aria-label="Default select example" required>
                             <option value="Ohiggins">Ohiggins</option>
                             <option value="Metropolitana">Metropolitana</option>
@@ -97,24 +97,24 @@
                             <option value="Maule">Maule</option>
                         </select>
                         <div class="invalid-feedback">
-                            Que region opera?
+                            ¿En qué región opera?
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <label for="inputCity" class="form-label">Ciudades</label>
+                    <div class="col-md-3">
+                        <label for="inputCity" class="form-label das">Ciudades</label>
                         <select class="form-select" aria-label="Default select example" required>
                             <option value="Santiago">Santiago</option>
                             <option value="Melipilla">Melipilla</option>
                             <option value="Talagante">Talagante</option>
-                            <option value="Maria Pinto">Maria Pinto</option>
+                            <option value="Maria Pinto">María Pinto</option>
                             <option value="Isla de Maipo">Isla de Maipo</option>
                         </select>
                         <div class="invalid-feedback">
-                            Que ciudad opera?
+                            ¿En qué ciudad opera?
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="inputState" class="form-label">Estado del Servicio</label>
+                        <label for="inputState" class="form-label das">Estado del Servicio</label>
                         <select id="inputState" class="form-select" required>
                         <option value="Disponible">Disponible</option>
                         <option value="En mantenimiento">En mantenimiento</option>
@@ -122,15 +122,31 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <label for="inputZip" class="form-label">Categoria</label>
+                        <label for="inputZip" class="form-label das">Categoría</label>
                         <input type="text" class="form-control" id="inputZip" required>
                     </div>
                     <div class="col-12">
-                        <label for="exampleFormControlTextarea1" class="form-label">Describa su servicio</label>
+                        <label for="exampleFormControlTextarea1" class="form-label das">Describa su servicio</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
                         <div class="invalid-feedback">
-                            Cuentanos sobre tu servicio..
+                            Cuéntanos sobre tu servicio...
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileSm" class="form-label das">Dominio de la máquina</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                    
+                        <label for="formFileSm" class="form-label das">Revisión técnica</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                    
+                        <label for="formFileSm" class="form-label das">Permiso de circulación</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                    
+                        <label for="formFileSm" class="form-label das">Seguro</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                    
+                        <label for="formFileSm" class="form-label das">Documentación del operador (si aplica)</label>
+                        <input class="form-control form-control-sm" id="formFileSm" type="file">
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Crear Servicio</button>
