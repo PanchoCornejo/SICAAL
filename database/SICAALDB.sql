@@ -79,6 +79,11 @@ CREATE TABLE servicios (
   estado VARCHAR(50) NOT NULL,
   categoria VARCHAR(50) NOT NULL,
   description TEXT,
+  dominio_de_la_maquina VARCHAR(100),
+  revision_tecnica VARCHAR(100),
+  permiso_de_circulacion VARCHAR(100),
+  seguro VARCHAR(100),
+  documentación_operador VARCHAR(100),
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_userS FOREIGN KEY(user_id) REFERENCES users(id),
   CONSTRAINT fk_proveedor FOREIGN KEY(proveedor_id) REFERENCES proveedor(id)
@@ -126,3 +131,7 @@ DESCRIBE rol;
 DESCRIBE valoraciones;
 DESCRIBE servicios;
 DESCRIBE solicitudes;
+
+-- Proveedor de prueba
+insert INTO proveedor (user_id, fono, razon_social, rut, giro, direccion, ubicacion, anos_servicio, proyectos_ejecutados, description) VALUES (4,'+5693333', 'RAZONSOCIAL', 111111111, 'GIRO', 'DIRECCION', 'UBICACION?', 11, 400, 'DKSLFJKDSJFKLDSJFKLSDJFKDSJKL' );
+ 

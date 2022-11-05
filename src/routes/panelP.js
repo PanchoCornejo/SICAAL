@@ -4,6 +4,8 @@ const router = express.Router();
 const pool = require('../database');
 const { isProveedor } = require('../lib/auth');
 
+const uploadFile = require('../lib/multer')
+
 
 // Donde puede el Proveedor: publicar una solicitud de su servicio.
 router.get('/publicar',isProveedor ,(req, res) => {
@@ -64,7 +66,7 @@ router.get('/CrearDatos', (req, res) => {
 
 router.post('/CrearDatos', async (req, res) => {
     const id = req.user.id;
-    const { fono, razon_social, rut, giro, direccion, ubicacion , anos_servicio, proyectos_ejecutados, description} = req.body;
+    const { fono, razon_social, rut, giro, direccion, ubicacion , anos, proyectos_ejecutados, description} = req.body;
     const DatosP = {
         fono,
         razon_social,
@@ -72,7 +74,7 @@ router.post('/CrearDatos', async (req, res) => {
         giro,
         direccion,
         ubicacion,
-        anos_servicio,
+        anos,
         proyectos_ejecutados,
         description,
         user_id: id
@@ -80,6 +82,87 @@ router.post('/CrearDatos', async (req, res) => {
     await pool.query('INSERT INTO proveedor set ?', [DatosP]);
     req.flash('Correcto!', 'Datos Creados Correctamente');
     res.redirect('/panelP/perfilP');
+});
+
+
+router.post('/publicar', uploadFile(), async function(req, res, next){
+    // console.log(req.user.proveedor_id);
+    // console.log(req.body);
+
+    let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
+    const user_id = req.user.id;
+    const proveedor_id = result[0].id;
+    const { nombre, marca, anio, modelo, horometro_str, operador, region, ciudades, estado, categoria, description} = req.body;
+    const ano = parseInt(anio);
+    console.log(ano);
+    const horometro = parseInt(horometro_str);
+    await console.log(req.body);
+
+    let DatosP = {
+        user_id,
+        proveedor_id,
+        nombre,
+        marca,
+        ano,
+        modelo,
+        horometro,
+        operador,
+        region,
+        ciudades,
+        estado,
+        categoria,
+        description
+    };
+
+    // const datosP = await sus(req, datosP);
+
+    if (req.files.domMaq) {
+        
+        DatosP.dominio_de_la_maquina = req.files.domMaq[0].path;
+        
+    } else {
+        DatosP.dominio_de_la_maquina = 'null';  
+    }
+    if (req.files.revTec) {
+        
+        DatosP.revision_tecnica = req.files.revTec[0].path;
+        
+    } else {
+        DatosP.revision_tecnica = 'null';   
+    }
+
+    if (req.files.perCir) {
+        
+        DatosP.permiso_de_circulacion = req.files.perCir[0].path;
+        
+    } else {
+        DatosP.permiso_de_circulacion = 'null';
+    }
+
+    if (req.files.seg) {
+        
+        DatosP.seguro = req.files.seg[0].path;
+        
+    } else {
+        DatosP.seguro = 'null';
+    }
+
+    if (req.files.docOpe) {
+        
+        DatosP.documentacion_operador = req.files.docOpe[0].path;
+        
+    } else {
+        DatosP.documentacion_operador = 'null';
+    }
+
+
+    await pool.query('INSERT INTO servicios set ?', [DatosP]);
+    // req.flash('Correcto!', 'Datos Creados Correctamente');
+    // res.redirect('/panelP/perfilP');
+
+
+    res.send('over');
+    // console.log(uploadFile(req.user.id));
 });
 
 module.exports = router;

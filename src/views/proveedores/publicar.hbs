@@ -6,10 +6,10 @@
         <div class="card text-center">
             <div class="card-body">
                 <a>Publicar Servicios</a>
-                <form class="row g-3 novalidate was-validated"  novalidate>
+                <form class="row g-3 novalidate was-validated" action="" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="col-md-6">
                         <label for="nombre" class="form-label das">Nombre del Servicio</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Construccion de Casas" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Construccion de Casas" required>
                         <div class="invalid-feedback">
                             Danos un nombre!
                         </div>
@@ -17,7 +17,7 @@
                     
                     <div class="col-md-6">
                         <label for="input" class="form-label das">Marca de la Maquinaria</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="Caterpillar" required>
+                        <input type="text" class="form-control" id="inputPassword4" name="marca" placeholder="Caterpillar" required>
                         <div class="invalid-feedback">
                             Proporciona el nombre de la marca..
                         </div>
@@ -25,7 +25,7 @@
                     
                     <div class="col-2">
                         <label for="input" class="form-label das">Año máquina</label>
-                        <select class="form-select" aria-label="Default select example" required>
+                        <select class="form-select" name="anio" aria-label="Default select example" required>
                             <option value="2022">2022</option>
                             <option value="2021">2021</option>
                             <option value="2020">2020</option>
@@ -66,21 +66,21 @@
                     </div>
                     <div class="col-4">
                         <label for="inputAddress2" class="form-label das">Modelo</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Compactadores" required>
+                        <input type="text" class="form-control" name="modelo" id="inputAddress2" placeholder="Compactadores" required>
                         <div class="invalid-feedback">
                             Que modelo es?
                         </div>
                     </div>
                     <div class="col-md-2">
                         <label for="inputCity" class="form-label das">Horometro</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="En Horas ej: '3525'" required>
+                        <input type="text" class="form-control" name="horometro_str" id="inputCity" placeholder="En Horas ej: '3525'" required>
                         <div class="invalid-feedback">
                             Cuantas horas de uso?
                         </div>
                     </div>
                     <div class="col-md-2">
                         <label for="inputCity" class="form-label das">Operador</label>
-                        <select class="form-select" aria-label="Default select example" required>
+                        <select class="form-select" name="operador" aria-label="Default select example" required>
                             <option value="No">No</option>
                             <option value="Si">Si</option>
                         </select>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="inputCity" class="form-label das">Región</label>
-                        <select class="form-select" aria-label="Default select example" required>
+                        <select class="form-select" name="region" aria-label="Default select example" required>
                             <option value="Ohiggins">Ohiggins</option>
                             <option value="Metropolitana">Metropolitana</option>
                             <option value="Valparaiso">Valparaiso</option>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="inputCity" class="form-label das">Ciudades</label>
-                        <select class="form-select" aria-label="Default select example" required>
+                        <select class="form-select" name="ciudades"  aria-label="Default select example" required>
                             <option value="Santiago">Santiago</option>
                             <option value="Melipilla">Melipilla</option>
                             <option value="Talagante">Talagante</option>
@@ -115,7 +115,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="inputState" class="form-label das">Estado del Servicio</label>
-                        <select id="inputState" class="form-select" required>
+                        <select id="inputState" name="estado" class="form-select" required>
                         <option value="Disponible">Disponible</option>
                         <option value="En mantenimiento">En mantenimiento</option>
                         <option value="Ocupada">Ocupada</option>
@@ -123,30 +123,30 @@
                     </div>
                     <div class="col-md-2">
                         <label for="inputZip" class="form-label das">Categoría</label>
-                        <input type="text" class="form-control" id="inputZip" required>
+                        <input type="text" class="form-control" name="categoria" id="inputZip" required>
                     </div>
                     <div class="col-12">
                         <label for="exampleFormControlTextarea1" class="form-label das">Describa su servicio</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required></textarea>
                         <div class="invalid-feedback">
                             Cuéntanos sobre tu servicio...
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label das">Dominio de la máquina</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="domMaq" name="domMaq" type="file">
                     
                         <label for="formFileSm" class="form-label das">Revisión técnica</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="revTec" name="revTec" type="file">
                     
                         <label for="formFileSm" class="form-label das">Permiso de circulación</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="perCir" name="perCir" type="file">
                     
                         <label for="formFileSm" class="form-label das">Seguro</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="seg" name="seg"type="file">
                     
                         <label for="formFileSm" class="form-label das">Documentación del operador (si aplica)</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="docOpe" name="docOpe" type="file">
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">Crear Servicio</button>
