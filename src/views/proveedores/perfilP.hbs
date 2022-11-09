@@ -1,19 +1,38 @@
 {{>navigation2}}
-{{>message}} 
+{{>message}}
 
 <div class="main">
     <h1>Mi Perfil</h1>
-    <div class="container">
-        {{#each datos}}
+    {{#if datos}}
 
-        {{else}}
-        <div class="col-md-4 mx-auto">
-            <div class="card card-body text-center">
-                <p>No tenemos datos de tu Empresa.</p>
-                <i class="fa-regular fa-face-frown"></i>
-                <a href="/panelP/publicar">Añadelos!</a>
-            </div>
+
+    <div class="card" style="width: 50rem;">
+        <img src="https://cdn-icons-png.flaticon.com/512/711/711769.png" style="height: 300px; width: 300px;" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Razón Social: {{datos.razon_social}}</h5>
+            <p class="card-text">Giro: {{datos.giro}} </p>
+            <p class="card-text">Rut: {{datos.rut}}</p>
+            <p class="card-text">Fono: {{datos.fono}}</p>
+            <p class="card-text">Direccion: {{datos.direccion }}</p>
+            <p class="card-text">Años servicio: {{datos.anos_servicio}}</p>
+            <p class="card-text">Proyectos ejecutados: {{datos.proyectos_ejecutados}}</p>
+            <p class="card-text">Descripción: {{datos.descripcion }}</p>
+            
+            <a href="" class="btn btn-primary">Editar (Luego arreglo esto)</a>
         </div>
-        {{/each}}
     </div>
+
+
+    {{else}}
+    <div class="container"></div>
+    <div class="col-md-4 mx-auto">
+        <div class="card card-body text-center">
+            <p>No tenemos datos de tu Empresa.</p>
+            <i class="fa-regular fa-face-frown"></i>
+            <a href="/panelP/CrearDatos">Añadelos!</a>
+        </div>
+    </div>
+
+    {{/if}}
+</div>
 </div>

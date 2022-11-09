@@ -1,0 +1,6 @@
+Cambiar tipo int a varchar en el rut de la empresa en la bdd
+
+en panelP -> misservicios arreglar el render, ya que cuando obtenemos los servicios puede que haya mas que uno
+y aqui solamente pasamos el servicio en el indice 0. la idea es que sea desde [0, 1, .., Nservicio]
+
+Cuando subamos un servicio, hay que solicitar foto de la maquinariaa!!

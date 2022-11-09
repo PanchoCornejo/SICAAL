@@ -37,7 +37,8 @@ router.get('/CrearDatos', (req, res) => {
 });
 
 router.post('/CrearDatos', async (req, res) => {
-    const user_id = 3;
+    const id = req.user.id;
+    console.log(req.body)
     const { fono, razon_social, rut, giro, direccion, ubicacion , anos_servicio, proyectos_ejecutados, description} = req.body;
     const DatosP = {
         fono,
@@ -51,6 +52,7 @@ router.post('/CrearDatos', async (req, res) => {
         description,
         user_id: user_id
     };
+    //console.log(DatosP)
     await pool.query('INSERT INTO proveedor set ?', [DatosP]);
     req.flash('Correcto!', 'Datos Creados Correctamente');
     res.redirect('/panelA/servicios');

@@ -7,7 +7,7 @@
         <div class="card text-center">
             <div class="card-body">
                 <a>Rellenar datos</a>
-                <form action="/CrearDatos" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+                <form action="CrearDatos" method="POST" class="row g-3 novalidate was-validated"  novalidate>
                     <div class="col-md-3">
                         <label for="fono" class="form-label">Fono</label>
                         <input type="text" class="form-control" id="fono" name="fono" placeholder="Numero de Contacto +56944455666" required>
@@ -27,9 +27,9 @@
                 
                     <div class="col-3">
                         <label for="rut" class="form-label">Rut</label>
-                        <input type="text" class="form-control" id="rut"  name="rut" placeholder="12.458.456-3" required>
+                        <input type="number" class="form-control" id="rut"  name="rut" placeholder="12.458.456-3" required>
                         <div class="invalid-feedback">
-                            rut de la empresa?
+                            rut de la empresa (Sin guion y con digito verificador)
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -56,16 +56,16 @@
                     </div>
                     <div class="col-md-3">
                         <label for="anos_servicio" class="form-label">Años de Servicio</label>
-                        <input type="text" class="form-control" id="anos_servicio" name="anos_servicio" placeholder="Ej: 8" required>
+                        <input type="number" class="form-control" id="anos_servicio" name="anos_servicio" placeholder="Ej: 8" required>
                         <div class="invalid-feedback">
-                            Cuantos Años de servicio tienen?
+                            Cuantos Años de servicio tienen? [0 - 100 Años]
                         </div>
                     </div>
                     <div class="col-md-3">
                         <label for="proyectos_ejecutados" class="form-label">Proyectos Ejecutados</label>
-                        <input type="text" class="form-control" id="proyectos_ejecutados" name="proyectos_ejecutados" placeholder="Cantidad Ej: 25" required>
+                        <input type="number" class="form-control" id="proyectos_ejecutados" name="proyectos_ejecutados" placeholder="Cantidad Ej: 25" required>
                         <div class="invalid-feedback">
-                            Cantidad de Proyectos ejecutados?
+                            Cantidad de Proyectos ejecutados? [0 - 10000]
                         </div>
                     </div>
                     <div class="col-12">

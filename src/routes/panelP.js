@@ -13,13 +13,21 @@ router.get('/publicar',isProveedor ,(req, res) => {
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
-router.get('/misservicios',isProveedor ,(req, res) => {
-    res.render('proveedores/misservicios');
+router.get('/misservicios',isProveedor ,async(req, res) => {
+    console.log("---- aca miservicios")
+    const id = req.user.id;
+    const datos = await pool.query('SELECT * FROM servicios WHERE user_id = ?', [id]);
+    //console.log(datos[0])
+
+    //Ojo con esto... Leer el txt que dejé
+    console.log(datos[0])
+    res.render('proveedores/misservicios',{datos : datos[0]});
 });
 
 // Donde puede el Proveedor: mirar su perfil.
 router.get('/perfilP',isProveedor, async (req, res) => {
 
+    console.log("-------------------")
     console.log("Te dare los datos: " + req.user.id)
     const id = req.user.id;
     console.log("la id es: " +id)
@@ -65,8 +73,12 @@ router.get('/CrearDatos', (req, res) => {
 });
 
 router.post('/CrearDatos', async (req, res) => {
+    
+    console.log("Queda aca???")
+    console.log(req.body)
     const id = req.user.id;
-    const { fono, razon_social, rut, giro, direccion, ubicacion , anos, proyectos_ejecutados, description} = req.body;
+    
+    const { fono, razon_social, rut, giro, direccion, ubicacion , anos_servicio, proyectos_ejecutados, description} = req.body;
     const DatosP = {
         fono,
         razon_social,
@@ -74,7 +86,7 @@ router.post('/CrearDatos', async (req, res) => {
         giro,
         direccion,
         ubicacion,
-        anos,
+        anos_servicio,
         proyectos_ejecutados,
         description,
         user_id: id
@@ -87,17 +99,15 @@ router.post('/CrearDatos', async (req, res) => {
 
 router.post('/publicar', uploadFile(), async function(req, res, next){
     // console.log(req.user.proveedor_id);
-    // console.log(req.body);
+    console.log("----aca-----")
 
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
     const user_id = req.user.id;
     const proveedor_id = result[0].id;
-    const { nombre, marca, anio, modelo, horometro_str, operador, region, ciudades, estado, categoria, description} = req.body;
-    const ano = parseInt(anio);
-    console.log(ano);
-    const horometro = parseInt(horometro_str);
-    await console.log(req.body);
-
+    
+    const { nombre, marca,ano, modelo,horometro, operador, region, ciudades, estado, categoria, description} = req.body;
+    
+    
     let DatosP = {
         user_id,
         proveedor_id,
@@ -113,56 +123,12 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         categoria,
         description
     };
-
-    // const datosP = await sus(req, datosP);
-
-    if (req.files.domMaq) {
-        
-        DatosP.dominio_de_la_maquina = req.files.domMaq[0].path;
-        
-    } else {
-        DatosP.dominio_de_la_maquina = 'null';  
-    }
-    if (req.files.revTec) {
-        
-        DatosP.revision_tecnica = req.files.revTec[0].path;
-        
-    } else {
-        DatosP.revision_tecnica = 'null';   
-    }
-
-    if (req.files.perCir) {
-        
-        DatosP.permiso_de_circulacion = req.files.perCir[0].path;
-        
-    } else {
-        DatosP.permiso_de_circulacion = 'null';
-    }
-
-    if (req.files.seg) {
-        
-        DatosP.seguro = req.files.seg[0].path;
-        
-    } else {
-        DatosP.seguro = 'null';
-    }
-
-    if (req.files.docOpe) {
-        
-        DatosP.documentacion_operador = req.files.docOpe[0].path;
-        
-    } else {
-        DatosP.documentacion_operador = 'null';
-    }
-
+    console.log("datos ",DatosP)
 
     await pool.query('INSERT INTO servicios set ?', [DatosP]);
-    // req.flash('Correcto!', 'Datos Creados Correctamente');
-    // res.redirect('/panelP/perfilP');
+    res.redirect('/panelP/misservicios');
+    
 
-
-    res.send('over');
-    // console.log(uploadFile(req.user.id));
 });
 
 module.exports = router;
