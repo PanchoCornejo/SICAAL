@@ -13,15 +13,14 @@ router.get('/publicar',isProveedor ,(req, res) => {
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
-router.get('/misservicios',isProveedor ,async(req, res) => {
-    console.log("---- aca miservicios")
+router.get('/misservicios', isProveedor, async (req, res) => {
     const id = req.user.id;
-    const datos = await pool.query('SELECT * FROM servicios WHERE user_id = ?', [id]);
-    //console.log(datos[0])
-
-    //Ojo con esto... Leer el txt que dejé
-    console.log(datos[0])
-    res.render('proveedores/misservicios',{datos : datos});
+    let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [id]);
+    const proveedor_id = result[0].id;
+    // console.log(id);
+    const servicios = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ?', [proveedor_id]);
+    // console.log(servicios);
+    res.render('proveedores/misservicios', {servicios});
 });
 
 // Donde puede el Proveedor: mirar su perfil.
