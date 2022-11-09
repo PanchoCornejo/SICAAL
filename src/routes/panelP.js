@@ -21,7 +21,7 @@ router.get('/misservicios',isProveedor ,async(req, res) => {
 
     //Ojo con esto... Leer el txt que dejé
     console.log(datos[0])
-    res.render('proveedores/misservicios',{datos : datos[0]});
+    res.render('proveedores/misservicios',{datos : datos});
 });
 
 // Donde puede el Proveedor: mirar su perfil.

@@ -5,23 +5,26 @@
 <div class="main">
     <h2>Servicios</h2>
     {{#if datos}}
-    <div class="card mb-3">
+    
+    {{#each datos}}
+        <div class="card mb-3">
         <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
         <div class="card-body">
-            <h5 class="card-title">Nombre: {{datos.nombre }}</h5>
-            <p class="card-text">Marca: {{datos.marca}}</p>
-            <p class="card-text">Año: {{datos.ano}}</p>
-            <p class="card-text">Modelo: {{datos.modelo}}</p>
-            <p class="card-text">Horometro: {{datos.horometro}}</p>
-            <p class="card-text">Operador: {{datos.operador}}</p>
-            <p class="card-text">Región: {{datos.region}}</p>
-            <p class="card-text">Ciudades: {{datos.ciudades}}</p>
-            <p class="card-text">Estado: {{datos.estado}}</p>
-            <p class="card-text">Categoría: {{datos.categoria}}</p>
-            <p class="card-text">Descripción: {{datos.description}}</p>
+            <h5 class="card-title">Nombre: {{nombre }}</h5>
+            <p class="card-text">Marca: {{marca}}</p>
+            <p class="card-text">Año: {{ano}}</p>
+            <p class="card-text">Modelo: {{modelo}}</p>
+            <p class="card-text">Horometro: {{horometro}}</p>
+            <p class="card-text">Operador: {{operador}}</p>
+            <p class="card-text">Región: {{region}}</p>
+            <p class="card-text">Ciudades: {{ciudades}}</p>
+            <p class="card-text">Estado: {{estado}}</p>
+            <p class="card-text">Categoría: {{categoria}}</p>
+            <p class="card-text">Descripción: {{description}}</p>
             
         </div>
     </div>
+    {{/each}}
 
     {{else}}
     <h1>No tienes servicios disponibles</h1>

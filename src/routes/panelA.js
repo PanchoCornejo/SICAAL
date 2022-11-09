@@ -21,8 +21,11 @@ router.get('/servicios', isAdmin,(req, res) => {
 });
 
  // Donde puede el Administrador: Donde puede visitar la lista de proveedores y ver sus datos. 
- router.get('/proveedores', isAdmin,(req, res) => {
-    res.render('admins/proveedores');
+ router.get('/proveedores', isAdmin,async(req, res) => {
+    console.log("tamos aca")
+    const datos = await pool.query('SELECT * FROM proveedor');
+    console.log(datos)
+    res.render('admins/proveedores',{ datos : datos });
 });
 
  // Donde puede el Administrador: puede revisar su perfil. 

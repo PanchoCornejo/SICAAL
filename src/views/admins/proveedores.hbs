@@ -1,2 +1,34 @@
 {{>navigation1}}
-{{>message}} 
+{{>message}}
+
+<div class="main">
+    {{#if datos}}
+    <h1>Lista proveedores</h1>
+
+    {{#each datos}}
+    
+    
+    <div class="card mb-3" style="max-width: 40em;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img style="height: 10em;" src="https://cdn-icons-png.flaticon.com/512/993/993891.png" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Razón Social: {{razon_social}}</h5>
+                    <p class="card-text">Rut: {{rut}}</p>
+                    <p class="card-text">Ubicación: {{ubicacion}}</p>
+                    <p class="card-text">Fono:{{fono}}</p>
+                    
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+
+    {{else}}
+    <h1>No hay datos</h1>
+    {{/if}}
+</div>
