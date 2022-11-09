@@ -103,10 +103,12 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
     const user_id = req.user.id;
     const proveedor_id = result[0].id;
-    
-    const { nombre, marca,ano, modelo,horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-    
-    
+    const { nombre, marca, anio, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
+//     const ano = parseInt(anio);
+    // console.log(ano);
+//     const horometro = parseInt(horometro_str);
+    // await console.log(req.body);
+
     let DatosP = {
         user_id,
         proveedor_id,
@@ -122,10 +124,81 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         categoria,
         description
     };
-    console.log("datos ",DatosP)
 
-    await pool.query('INSERT INTO servicios set ?', [DatosP]);
-    res.redirect('/panelP/misservicios');
+    if (req.files.domMaq) {
+        
+        DatosP.dominio_de_la_maquina = req.files.domMaq[0].path;
+        let oldPath = req.files.domMaq[0].destination;
+        
+    } else {
+        DatosP.dominio_de_la_maquina = 'null';  
+    }
+    if (req.files.revTec) {
+        
+        DatosP.revision_tecnica = req.files.revTec[0].path;
+        let oldPath = req.files.revTec[0].destination;
+    } else {
+        DatosP.revision_tecnica = 'null';   
+    }
+
+    if (req.files.perCir) {
+        
+        DatosP.permiso_de_circulacion = req.files.perCir[0].path;
+        let oldPath = req.files.perCir[0].destination;
+    } else {
+        DatosP.permiso_de_circulacion = 'null';
+    }
+
+    if (req.files.seg) {
+        
+        DatosP.seguro = req.files.seg[0].path;
+        let oldPath = req.files.seg[0].destination;
+        
+    } else {
+        DatosP.seguro = 'null';
+    }
+
+    if (req.files.docOpe) {
+        
+        DatosP.documentacion_operador = req.files.docOpe[0].path;
+        let oldPath = req.files.seg[0].destination;
+        
+    } else {
+        DatosP.documentacion_operador = 'null';
+    }
+
+    const uploadQuery = await pool.query('INSERT INTO servicios set ?', [DatosP]);
+
+    req.flash('¡Correcto!', 'Servicio creado correctamente.');
+    res.redirect('/panelP/perfilP');
+    
+    
+//     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
+//     const user_id = req.user.id;
+//     const proveedor_id = result[0].id;
+    
+//     const { nombre, marca,ano, modelo,horometro, operador, region, ciudades, estado, categoria, description} = req.body;
+    
+    
+//     let DatosP = {
+//         user_id,
+//         proveedor_id,
+//         nombre,
+//         marca,
+//         ano,
+//         modelo,
+//         horometro,
+//         operador,
+//         region,
+//         ciudades,
+//         estado,
+//         categoria,
+//         description
+//     };
+//     console.log("datos ",DatosP)
+
+//     await pool.query('INSERT INTO servicios set ?', [DatosP]);
+//     res.redirect('/panelP/misservicios');
     
 
 });
