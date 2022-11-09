@@ -18,9 +18,9 @@ router.get('/misservicios', isProveedor, async (req, res) => {
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [id]);
     const proveedor_id = result[0].id;
     // console.log(id);
-    const servicios = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ?', [proveedor_id]);
+    const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ?', [proveedor_id]);
     // console.log(servicios);
-    res.render('proveedores/misservicios', {servicios});
+    res.render('proveedores/misservicios', {datos});
 });
 
 // Donde puede el Proveedor: mirar su perfil.
@@ -103,11 +103,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
     const user_id = req.user.id;
     const proveedor_id = result[0].id;
-    const { nombre, marca, anio, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-//     const ano = parseInt(anio);
-    // console.log(ano);
-//     const horometro = parseInt(horometro_str);
-    // await console.log(req.body);
+    const { nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
 
     let DatosP = {
         user_id,
@@ -124,6 +120,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         categoria,
         description
     };
+    console.log(DatosP);
 
     if (req.files.domMaq) {
         
