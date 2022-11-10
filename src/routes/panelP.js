@@ -125,7 +125,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     if (req.files.domMaq) {
         
         DatosP.dominio_de_la_maquina = req.files.domMaq[0].path;
-        let oldPath = req.files.domMaq[0].destination;
+
         
     } else {
         DatosP.dominio_de_la_maquina = 'null';  
@@ -133,7 +133,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     if (req.files.revTec) {
         
         DatosP.revision_tecnica = req.files.revTec[0].path;
-        let oldPath = req.files.revTec[0].destination;
+
     } else {
         DatosP.revision_tecnica = 'null';   
     }
@@ -141,7 +141,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     if (req.files.perCir) {
         
         DatosP.permiso_de_circulacion = req.files.perCir[0].path;
-        let oldPath = req.files.perCir[0].destination;
+
     } else {
         DatosP.permiso_de_circulacion = 'null';
     }
@@ -149,7 +149,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     if (req.files.seg) {
         
         DatosP.seguro = req.files.seg[0].path;
-        let oldPath = req.files.seg[0].destination;
+
         
     } else {
         DatosP.seguro = 'null';
@@ -158,7 +158,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     if (req.files.docOpe) {
         
         DatosP.documentacion_operador = req.files.docOpe[0].path;
-        let oldPath = req.files.seg[0].destination;
+
         
     } else {
         DatosP.documentacion_operador = 'null';
