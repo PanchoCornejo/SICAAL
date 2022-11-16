@@ -1,0 +1,25 @@
+{{>navigation2}}
+{{>message}} 
+
+<div class="main">
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-body">
+                <a>Rellenar datos</a>
+                <form action="editarA" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+                    <div class="col-md-12">
+                        <label for="fullname" class="form-label">Cambia de nombre</label>
+                        <input type="text" value="{{nombree.fullname}}" class="form-control" id="fullname" name="fullname" placeholder="Indicanos tu nombre" required>
+                        <div class="invalid-feedback">
+                            Dinos tu nombre!
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar Datos</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

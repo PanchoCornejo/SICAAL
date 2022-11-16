@@ -1,0 +1,38 @@
+{{>navigation1}}
+{{>message}} 
+
+
+<div class="main">
+    <div class="container my-5">
+        <div class="card text-center">
+            <div class="card-body">
+                <a>Restaurar Contraseñas</a>
+                <form action="restaurar" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+                    <div class="col-md-3">
+                        <label for="username" class="form-label das">Cuenta</label>
+                        <select class="form-select" name="username" aria-label="Default select example" required>
+                            {{#each cuentas}}
+                            <option value="{{username}}">{{username}}</option>
+                            {{/each}}
+                            
+                        </select>
+                        <div class="invalid-feedback">
+                            ¿que cuenta es?
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="contraseña" class="form-label">Ingrese nueva contraseña</label>
+                        <input type="text" class="form-control" id="contraseña" name="contraseña" placeholder="ej: SICAAL123" required>
+                        <div class="invalid-feedback">
+                            Proporciona la nueva contraseña
+                        </div>
+                    </div>
+                    
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar Datos</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

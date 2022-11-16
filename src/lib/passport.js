@@ -4,6 +4,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database');
 const helpers = require('./helpers');
 
+console.log("estamo en la matrix")
+
 passport.use('local.signin', new LocalStrategy({
   usernameField: 'username',
   passwordField: 'password',
@@ -44,6 +46,28 @@ passport.use('local.signup', new LocalStrategy({
   return done(null, newUser);
 }));
 
+passport.use('local.change', new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password',
+  passReqToCallback: true
+}, async (req, username, password, done) => {
+
+  const { fullname } = req.body;
+  const { rol } = req.body;
+  let newchange = {
+    fullname,
+    username,
+    password,
+    rol
+  };
+  newchange.password = await helpers.encryptPassword(password);
+  // UPDATING in the Database
+  const result = await pool.query('UPDATE users set password = ? WHERE username = ?', [newchange.password, newchange.username]);
+  newchange.id = result.insertId;
+  return done(null, newchange);
+}));
+
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -52,4 +76,3 @@ passport.deserializeUser(async (id, done) => {
   const rows = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
   done(null, rows[0]);
 });
-

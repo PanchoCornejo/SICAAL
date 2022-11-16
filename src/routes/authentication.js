@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
+const helpers = require('../lib/helpers');
 
+const pool = require('../database');
 const passport = require('passport');
 const { isLoggedIn, isNotLoggedin , isAdmin , isProveedor } = require('../lib/auth');
 
@@ -16,6 +18,34 @@ router.post('/registroclientes', passport.authenticate('local.signup', {
   failureFlash: true
 }));
 
+// Donde puede el Administrador: recuperar contrseñas para los proveedores 
+router.get('/restaurar', isAdmin, async(req, res) => {
+  const cuentas = await pool.query('SELECT username FROM users');
+  console.log(cuentas[2].username);
+  res.render('admins/restaurar', { cuentas : cuentas });
+});
+
+router.post('/restaurar', passport.authenticate('local.change', {
+  successRedirect: '/',
+  failureRedirect: '/restaurar',
+  failureFlash: true
+}));
+
+
+/*
+router.post('/restaurar', isAdmin ,  async (req, res) => {
+  console.log("hola intentaremos cambiar la contraseña:");
+  const id = req.user.id;
+  const { username, contraseña } = req.body;
+  console.log(contraseña);
+  PASS = await helpers.encryptPassword(contraseña[1]);
+  console.log("nueva contraseña: "+ PASS);
+  await pool.query('UPDATE users set password = ? WHERE username = ?', [PASS, username]);
+  req.flash('Logrado', 'Contrseña Actualizada Correctamente');
+  res.redirect('/panelA/perfilA');
+});
+
+*/
 
 // SIGNUP
 router.get('/signup', isAdmin, (req, res) => {

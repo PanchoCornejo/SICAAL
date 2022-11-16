@@ -11,9 +11,26 @@ router.get('/solicitudes',isAdmin ,(req, res) => {
 });
 
 // Donde puede el Administrador: recuperar contrseñas para los proveedores 
-router.get('/restaurarcontraseña', isAdmin,(req, res) => {
-    res.render('admins/restaurarcontraseña');
-});
+//router.get('/restaurar', isAdmin, async(req, res) => {
+//    const cuentas = await pool.query('SELECT username FROM users');
+//    console.log(cuentas[1].username);
+//    res.render('admins/restaurar', { cuentas : cuentas });
+//});
+
+//router.post('/restaurar', isAdmin ,  async (req, res) => {
+//    const id = req.user.id;
+//    const { fullname, constraseña } = req.body;
+//    const newPass = {
+//        fullname,
+//        constraseña,
+//        user_id: id
+//    };
+//    newPass.constraseña = await helpers.encryptPassword(constraseña);
+//    console.log("nueva contraseña: "+ newPass.constraseña);
+    //await pool.query('UPDATE users set fullname = ? WHERE id = ?', [newName.fullname, id]);
+//    req.flash('Logrado', 'Nombre Actualizado correctamente');
+//    res.redirect('/panelA/perfilA');
+//});
 
  // Donde puede el Administrador: Borrar Publicaciones y editarlas. 
 router.get('/servicios', isAdmin,(req, res) => {
@@ -29,10 +46,32 @@ router.get('/servicios', isAdmin,(req, res) => {
 });
 
  // Donde puede el Administrador: puede revisar su perfil. 
- router.get('/perfilA', isAdmin,(req, res) => {
-    res.render('admins/perfilA');
+ router.get('/perfilA', isAdmin, async (req, res) => {
+    const idd = req.user.id;
+    const nombree = await pool.query('SELECT fullname FROM users WHERE id = ?', [idd]);
+    res.render('admins/perfilA', {nombree: nombree[0]} );
 });
 
+ // Donde puede el Administrador: puede editar su perfil. 
+ router.get('/editar', isAdmin, async (req, res) => {
+    const idd = req.user.id;
+    const nombree = await pool.query('SELECT fullname FROM users WHERE id = ?', [idd]);
+    res.render('admins/editar', {nombree: nombree[0]} );
+});
+
+
+router.post('/editarA', isAdmin ,  async (req, res) => {
+    const id = req.user.id;
+    const { fullname } = req.body;
+    const newName = {
+        fullname,
+        user_id: id
+    };
+    console.log(newName.fullname);
+    await pool.query('UPDATE users set fullname = ? WHERE id = ?', [newName.fullname, id]);
+    req.flash('Logrado', 'Nombre Actualizado correctamente');
+    res.redirect('/panelA/perfilA');
+});
 
 // Donde el administrador llena los datos del proveedor
 router.get('/CrearDatos', (req, res) => {

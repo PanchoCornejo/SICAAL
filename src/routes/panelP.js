@@ -46,20 +46,29 @@ router.get('/perfilP',isProveedor, async (req, res) => {
 router.get('/editar',isProveedor,  async (req, res) => {
     const id = req.user.id;
     console.log(id)
-    const provee = await pool.query('SELECT * FROM proveedor WHERE id = ?', [id]);
+    const provee = await pool.query('SELECT * FROM proveedor WHERE user_id = ?', [id]);
     console.log(provee[0]);
     res.render('proveedores/editarP', {provee: provee[0]});
 });
 
 router.post('/editar', isProveedor ,  async (req, res) => {
     const id = req.user.id;
-    const { title, description, url} = req.body; 
+    const { fono, razon_social, rut, giro, direccion, ubicacion , anos_servicio, proyectos_ejecutados, description} = req.body;
     const newProvee = {
-        title,
+        fono,
+        razon_social,
+        rut,
+        giro,
+        direccion,
+        ubicacion,
+        anos_servicio,
+        proyectos_ejecutados,
         description,
-        url
+        user_id: id
     };
-    await pool.query('UPDATE proveedor set ? WHERE id = ?', [newProvee, id]);
+    console.log("descripciondelo que hago:");
+    console.log(newProvee.rut);
+    await pool.query('UPDATE proveedor set rut = ? , fono = ?, razon_social = ?, giro = ?, direccion = ?, ubicacion = ?, anos_servicio = ?, proyectos_ejecutados = ?, description = ? WHERE user_id = ?', [newProvee.rut,newProvee.fono,newProvee.razon_social,newProvee.giro,newProvee.direccion,newProvee.ubicacion,newProvee.anos_servicio,newProvee.proyectos_ejecutados,newProvee.description, id]);
     req.flash('Logrado', 'Datos de proveedor Actualizados correctamente');
     res.redirect('/panelP/perfilP');
 });
