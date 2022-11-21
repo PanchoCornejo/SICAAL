@@ -54,13 +54,14 @@
                             Tienen operador?
                         </div>
                     </div>
+
+                    
                     <div class="col-md-3">
                         <label for="inputCity" class="form-label das">Región</label>
-                        <select class="form-select" name="region" aria-label="Default select example" required>
-                            <option value="Ohiggins">Ohiggins</option>
-                            <option value="Metropolitana">Metropolitana</option>
-                            <option value="Valparaiso">Valparaiso</option>
-                            <option value="Maule">Maule</option>
+                        <select class="form-select" name="region" id="regiones" aria-label="Default select example" onchange="ciudad(this.id, 'ciudades')" required>
+                            {{#each regiones}}
+                            <option value="{{name}}">{{name}}</option>
+                            {{/each}}
                         </select>
                         <div class="invalid-feedback">
                             ¿En qué región opera?
@@ -68,12 +69,10 @@
                     </div>
                     <div class="col-md-3">
                         <label for="inputCity" class="form-label das">Ciudades</label>
-                        <select class="form-select" name="ciudades"  aria-label="Default select example" required>
-                            <option value="Santiago">Santiago</option>
-                            <option value="Melipilla">Melipilla</option>
-                            <option value="Talagante">Talagante</option>
-                            <option value="Maria Pinto">María Pinto</option>
-                            <option value="Isla de Maipo">Isla de Maipo</option>
+                        <select class="form-select" name="ciudades"  id="ciudades" aria-label="Default select example" required>
+                            {{#each ciudades}}
+                            <option value="{{name}}">{{name}}</option>
+                            {{/each}}
                         </select>
                         <div class="invalid-feedback">
                             ¿En qué ciudad opera?
@@ -122,3 +121,5 @@
         </div>
     </div>
 </div>
+
+

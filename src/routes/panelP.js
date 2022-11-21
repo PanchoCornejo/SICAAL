@@ -8,8 +8,11 @@ const uploadFile = require('../lib/multer')
 
 
 // Donde puede el Proveedor: publicar una solicitud de su servicio.
-router.get('/publicar',isProveedor ,(req, res) => {
-    res.render('proveedores/publicar');
+router.get('/publicar',isProveedor , async(req, res) => {
+
+    const regiones = await pool.query('SELECT name FROM regions;');
+    const ciudades = await pool.query('SELECT name FROM cities;');
+    res.render('proveedores/publicar', {regiones, ciudades});
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
