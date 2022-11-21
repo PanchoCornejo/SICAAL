@@ -135,7 +135,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     console.log(DatosP);
 
     if (req.files.domMaq) {
-        
+
         DatosP.dominio_de_la_maquina = req.files.domMaq[0].path;
 
         
