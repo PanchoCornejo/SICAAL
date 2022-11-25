@@ -126,8 +126,6 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         modelo,
         horometro,
         operador,
-        region,
-        ciudades,
         estado,
         categoria,
         description
