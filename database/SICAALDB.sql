@@ -83,7 +83,7 @@ CREATE TABLE servicios (
   revision_tecnica VARCHAR(100),
   permiso_de_circulacion VARCHAR(100),
   seguro VARCHAR(100),
-  documentación_operador VARCHAR(100),
+  documentacion_operador VARCHAR(100),
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_userS FOREIGN KEY(user_id) REFERENCES users(id),
   CONSTRAINT fk_proveedor FOREIGN KEY(proveedor_id) REFERENCES proveedor(id)
