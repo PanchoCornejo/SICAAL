@@ -60,6 +60,6 @@ app.use('/Cliente', require('./routes/Clientes'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Starting
-app.listen(app.get('port'), () => {
+app.listen(app.get('port'),'0.0.0.0', () => {
   console.log('Server is in port', app.get('port'));
 });

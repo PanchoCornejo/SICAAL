@@ -1,2 +1,48 @@
 {{>navigation1}}
 {{>message}} 
+
+{{>navigation1}}
+{{>message}} 
+
+<div class="main">
+    
+    {{#if datos}}
+    <h2>Solicitudes Aprobadas</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    {{#each datos}}
+   <div class="col">
+    <div class="card h-100">
+      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
+      <div class="card-body">
+        <h5 class="card-title">Nombre: {{nombre }}</h5>
+            <p class="card-text">Marca: {{marca}}</p>
+            <p class="card-text">Año: {{ano}}</p>
+            <p class="card-text">Modelo: {{modelo}}</p>
+            <p class="card-text">Horometro: {{horometro}}</p>
+            <p class="card-text">Operador: {{operador}}</p>
+            <p class="card-text">Región: {{region}}</p>
+            <p class="card-text">Ciudades: {{ciudades}}</p>
+            <p class="card-text">Estado: {{estado}}</p>
+            <p class="card-text">Categoría: {{categoria}}</p>
+            <p class="card-text">Descripción: {{description}}</p>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+            
+            <div class="col">
+             <button class="btn btn-danger">Dar de baja</button>
+            </div>
+            
+
+            </div>
+      </div>
+    </div>
+  </div>
+  
+    {{/each}}
+    </div>
+    {{else}}
+    <h1>No hay servicios aprobados por algun administrador</h1>
+    {{/if}}
+
+</div>
