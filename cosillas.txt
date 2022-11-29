@@ -13,3 +13,5 @@ mucho mas rapida
 
 en estado_publicacion podemos tener > pendiente, aprobado y algun otro estado que es cuando
 un proveedor da de baja un servicio
+
+aers
