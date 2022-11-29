@@ -128,7 +128,7 @@ DESCRIBE servicios;
   `id_country` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_country`)
-)
+);
 
 -- Insertamos a Chile dentro de la tabla. El ID es autoincremental entonces no hace falta especificarlo en el insert.
 
@@ -553,3 +553,4 @@ CREATE TABLE `CServicio` (
   CONSTRAINT `FK_CServicio_region` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id_region`),
   CONSTRAINT `FK_CServicio_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `cities` (`id_city`)
 );
+

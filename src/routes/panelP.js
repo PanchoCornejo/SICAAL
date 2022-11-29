@@ -123,8 +123,8 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
 
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
     const user_id = req.user.id;
-    console.log("La cosa es:"+result[0]);
-    const proveedor_id = result[0];
+    console.log("La cosa es:"+result[0].id);
+    const proveedor_id = result[0].id;
     const { nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
     
     //Por defecto viene en pendiente, para que no se publique de una

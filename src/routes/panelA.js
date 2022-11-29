@@ -133,5 +133,41 @@ router.post('/CrearDatos', async (req, res) => {
     res.redirect('/panelA/servicios');
 });
 
+// Donde los Administradores pueden asignar los servicios a sus clientes.
+
+
+router.get('/Orden', isAdmin, async (req, res) => {
+    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+    const idd = req.user.id;
+    const nombree = await pool.query('SELECT fullname FROM users WHERE id = ?', [idd]);
+    res.render('admins/Orden', {nombree: nombree[0], datos : datos} );
+});
+
+
+
+// Asignador 
+
+router.get('/Asignar/:id', isAdmin, async (req, res) => {
+    const { id } = req.params;
+    console.log("Estas pasando por aqui")
+    const Cli = "Cliente"
+    const Personas = await pool.query('SELECT username FROM users WHERE users.rol = ?', [Cli]);
+    const Servicio = await pool.query('SELECT * FROM servicios WHERE id=?', [id])
+    res.render('admins/Asignar', {Personas, Servicio});
+});
+
+router.post('/Asignar/:id', isAdmin, async (req, res) => {
+    const { id } = req.params;
+    const { ID , nombre, estado, cliente} = req.body; 
+    const Opcion = {
+        ID,
+        nombre,
+        estado,
+        cliente
+    };
+    await pool.query('', [newLink, id]);
+    req.flash('success', 'Link Updated Successfully');
+    res.redirect('/links');
+});
 
 module.exports = router;
