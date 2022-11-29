@@ -8,26 +8,36 @@ function uploadFile() {
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-
-            const path1 = path.join(__dirname, '../../storage/' + req.user.id);
-
+            const path1 = path.join(__dirname, '../../storage/temp/' + req.user.id);
             fs.mkdirSync(path1, { recursive: true });
-
-
             cb(null, path1);
         },
         filename: function (req, file, cb) {
             // console.log('multer');
             if (file.fieldname === 'domMaq') {
-                cb(null, file.fieldname);    
+                const ext = file.originalname.split('.').pop();
+                const name_ext = file.fieldname + '.' + ext;
+                cb(null, name_ext);    
             }else if(file.fieldname === 'revTec'){
-                cb(null, file.fieldname);
+                const ext = file.originalname.split('.').pop();
+                const name_ext = file.fieldname + '.' + ext;
+                cb(null, name_ext);
             }else if(file.fieldname === 'perCir'){
-                cb(null, file.fieldname);
+                const ext = file.originalname.split('.').pop();
+                const name_ext = file.fieldname + '.' + ext;
+                cb(null, name_ext);
             }else if(file.fieldname === 'seg'){
-                cb(null, file.fieldname);
+                const ext = file.originalname.split('.').pop();
+                const name_ext = file.fieldname + '.' + ext;
+                cb(null, name_ext);
             }else if(file.fieldname === 'docOpe'){
-                cb(null, file.fieldname);
+                const ext = file.originalname.split('.').pop();
+                const name_ext = file.fieldname + '.' + ext;
+                cb(null, name_ext);
+            }else if(file.fieldname === 'fot'){
+                const ext = file.originalname.split('.').pop();
+                const name_ext = file.fieldname + '.' + ext;
+                cb(null, name_ext);
             }
             
         }
@@ -54,6 +64,10 @@ function uploadFile() {
             },
             {
                 name:'docOpe',
+                maxCount:1
+            },
+            {
+                name:'fot',
                 maxCount:1
             }
         ]

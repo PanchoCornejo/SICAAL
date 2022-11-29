@@ -141,86 +141,156 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         estado,
         categoria,
         description,
-        estado_publicacion
+        estado_publicacion,
+        dominio_de_la_maquina:'',
+        revision_tecnica:'',
+        permiso_de_circulacion:'',
+        seguro:'',
+        documentacion_operador:'',
+        foto:''
+
     };
     console.log(DatosP);
+    const uploadQuery = await pool.query('INSERT INTO servicios set ?', [DatosP]);
+
+    const servicio_id = uploadQuery.insertId;
+
+    const paths = {};
 
     if (req.files.domMaq) {
 
-        DatosP.dominio_de_la_maquina = req.files.domMaq[0].path;
+        const oldPath = req.files.domMaq[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.domMaq[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.dominio_de_la_maquina = newPathN;
 
         
     } else {
-        DatosP.dominio_de_la_maquina = 'null';  
+        paths.dominio_de_la_maquina = 'null';  
     }
     if (req.files.revTec) {
-        
-        DatosP.revision_tecnica = req.files.revTec[0].path;
+        const oldPath = req.files.revTec[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.revTec[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.revision_tecnica = newPathN;
 
     } else {
-        DatosP.revision_tecnica = 'null';   
+        paths.revision_tecnica = 'null';   
     }
 
     if (req.files.perCir) {
         
-        DatosP.permiso_de_circulacion = req.files.perCir[0].path;
+        const oldPath = req.files.perCir[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.perCir[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.permiso_de_circulacion = newPathN;
 
     } else {
-        DatosP.permiso_de_circulacion = 'null';
+        paths.permiso_de_circulacion = 'null';
     }
 
     if (req.files.seg) {
         
-        DatosP.seguro = req.files.seg[0].path;
+        const oldPath = req.files.seg[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.seg[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.seguro = newPathN;
 
         
     } else {
-        DatosP.seguro = 'null';
+        paths.seguro = 'null';
     }
 
     if (req.files.docOpe) {
         
-        DatosP.documentacion_operador = req.files.docOpe[0].path;
+        const oldPath = req.files.docOpe[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.docOpe[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.documentacion_operador = newPathN;
 
         
     } else {
-        DatosP.documentacion_operador = 'null';
+        paths.documentacion_operador = 'null';
     }
 
-    const uploadQuery = await pool.query('INSERT INTO servicios set ?', [DatosP]);
+    if (req.files.fot) {
+        
+        const oldPath = req.files.fot[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.fot[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.foto = newPathN;
+
+        
+    } else {
+        paths.foto = 'null';
+    }
+
+    await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
+
+    //console.log(paths);
 
     req.flash('¡Correcto!', 'Servicio creado correctamente.');
     res.redirect('/panelP/perfilP');
-    
-    
-//     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
-//     const user_id = req.user.id;
-//     const proveedor_id = result[0].id;
-    
-//     const { nombre, marca,ano, modelo,horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-    
-    
-//     let DatosP = {
-//         user_id,
-//         proveedor_id,
-//         nombre,
-//         marca,
-//         ano,
-//         modelo,
-//         horometro,
-//         operador,
-//         region,
-//         ciudades,
-//         estado,
-//         categoria,
-//         description
-//     };
-//     console.log("datos ",DatosP)
-
-//     await pool.query('INSERT INTO servicios set ?', [DatosP]);
-//     res.redirect('/panelP/misservicios');
-    
-
 });
 
 router.get('/testeando',(req,res)=>{

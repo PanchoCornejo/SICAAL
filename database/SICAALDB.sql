@@ -82,6 +82,7 @@ CREATE TABLE servicios (
   permiso_de_circulacion VARCHAR(100),
   seguro VARCHAR(100),
   documentacion_operador VARCHAR(100),
+  foto VARCHAR(100),
   estado_publicacion VARCHAR(10),
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_userS FOREIGN KEY(user_id) REFERENCES users(id),
