@@ -551,3 +551,20 @@ VALUES
 	("Isla de Maipo","7","1"),
 	("Padre Hurtado","7","1"),
 	("Peñaflor","7","1");
+
+CREATE TABLE `CServicio` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_servicio` int(10) unsigned NOT NULL,
+  `id_ciudad` int(10) unsigned NOT NULL,
+  `id_region` int(10) unsigned NOT NULL,
+  `id_country` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_CServicio_servicio` (`id_servicio`),
+  KEY `FK_CServicio_ciudad` (`id_ciudad`),
+  KEY `FK_CServicio_region` (`id_region`),
+  KEY `FK_CServicio_countries` (`id_country`),
+  CONSTRAINT `FK_CServicio_countries` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id_country`),
+  CONSTRAINT `FK_CServicio_region` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id_region`),
+  CONSTRAINT `FK_CServicio_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `cities` (`id_city`),
+  CONSTRAINT `FK_CServicio_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicios` (`id`)
+) ;
