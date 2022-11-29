@@ -2,137 +2,231 @@
 {{>message}} 
 
 <div class="main">
-    <div class="container">
-        <div class="card text-center">
-            <div class="card-body">
-                <a>Publicar Servicios</a>
-                <form class="row g-3 novalidate was-validated" action="./publicar" method="POST" enctype="multipart/form-data" novalidate>
-                    <div class="col-md-6">
-                        <label for="nombre" class="form-label das">Nombre del Servicio</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Construccion de Casas" required>
-                        <div class="invalid-feedback">
-                            Danos un nombre!
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <label for="input" class="form-label das">Marca de la Maquinaria</label>
-                        <input type="text" class="form-control" id="marca" name="marca" placeholder="Caterpillar" required>
-                        <div class="invalid-feedback">
-                            Proporciona el nombre de la marca..
-                        </div>
-                    </div>
-                    
-                    <div class="col-2">
-                        <label for="input" class="form-label das">Año máquina</label>
-                        <input type="number" class="form-control" id="ano" name="ano" placeholder="2011" required>
-                        <div class="invalid-feedback">
-                            dinos de que año es
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <label for="inputAddress2" class="form-label das">Modelo</label>
-                        <input type="text" class="form-control" name="modelo" id="inputAddress2" placeholder="Compactadores" required>
-                        <div class="invalid-feedback">
-                            Que modelo es?
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="inputCity" class="form-label das">Horometro</label>
-                        <input type="text" class="form-control" id="horometro" name="horometro" id="inputCity" placeholder="En Horas ej: '3525'" required>
-                        <div class="invalid-feedback">
-                            Cuantas horas de uso?
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="inputCity" class="form-label das">Operador</label>
-                        <select class="form-select" name="operador" aria-label="Default select example" required>
-                            <option value="No">No</option>
-                            <option value="Si">Si</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Tienen operador?
-                        </div>
-                    </div>
+    <!--====== CONTACT ONE PART START ======-->
+<section class="contact-area">
+   <div class="container">
 
-                    
-                    <div class="col-md-3">
-                        <label for="inputCity" class="form-label das">Región</label>
-                        <select class="form-select" name="region" id="regiones" aria-label="Default select example" onchange="ciudad(this.id, 'ciudades')" required>
-                            {{#each regiones}}
-                            <option value="{{name}}">{{name}}</option>
-                            {{/each}}
-                        </select>
-                        <div class="invalid-feedback">
-                            ¿En qué región opera?
+      <div class="contact-form form-style-four mt-15" >
+            <p class="h1">Publicar Solicitud</p>
+               <form action="./publicar" method="POST" enctype="multipart/form-data">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Nombre del servicio</label>
+                           <div class="input-items default">
+                              <i class="lni lni-user"></i>
+                              <input type="text" id="nombre" name="nombre" placeholder="Construccion de Casas" required/>
+                           </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inputCity" class="form-label das">Ciudades</label>
-                        <select class="form-select" name="ciudades"  id="ciudades" aria-label="Default select example" required>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Marca de la Maquinaria</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="text" id="marca" name="marca" placeholder="Caterpillar" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Modelo</label>
+                           <div class="input-items default">
+                              <i class="lni lni-bubble"></i>
+                              <input type="text"name="modelo" id="inputAddress2" placeholder="Compactadores" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Año máquina</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="number" id="ano" name="ano" placeholder="2011" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Horometro</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="number" id="horometro" name="horometro" placeholder="En Horas ej: '3525'" required/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Operador</label>
+                           <div class="input-items default">
+                              
+                              <select class="form-select" name="operador" required>
+                                    <option value="No">No</option>
+                                    <option value="Si">Si</option>
+                                </select>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Región</label>
+                           <div class="input-items default">
+                              
+                              <select class="form-select" name="region" id="regiones" aria-label="Default select example" onchange="ciudad(this.id, 'ciudades')" required>
+                                    {{#each regiones}}
+                                    <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                      <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Ciudades</label>
+                           <div class="input-items default">
+                              
+                              <select class="form-select" name="ciudades"  id="ciudades" aria-label="Default select example" required>
                             {{#each ciudades}}
                             <option value="{{name}}">{{name}}</option>
                             {{/each}}
                         </select>
-                        <div class="invalid-feedback">
-                            ¿En qué ciudad opera?
+                           </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inputState" class="form-label das">Estado del Servicio</label>
-                        <select id="inputState" name="estado" class="form-select" required>
-                        <option value="Disponible">Disponible</option>
-                        <option value="En mantenimiento">En mantenimiento</option>
-                        <option value="Ocupada">Ocupada</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="inputZip" class="form-label das">Categoría</label>
-                        <input type="text" class="form-control" name="categoria" id="inputZip" required>
-                    </div>
-                    <div class="col-12">
-                        <label for="exampleFormControlTextarea1" class="form-label das">Describa su servicio</label>
-                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" required></textarea>
-                        <div class="invalid-feedback">
-                            Cuéntanos sobre tu servicio...
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Estado del Servicio</label>
+                           <div class="input-items default">
+                              <select id="inputState" name="estado" class="form-select" required>
+                                <option value="Disponible">Disponible</option>
+                                <option value="En mantenimiento">En mantenimiento</option>
+                                <option value="Ocupada">Ocupada</option>
+                                </select>
+                           </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileSm" class="form-label das">Dominio de la máquina</label>
-                        <input class="form-control form-control-sm" id="domMaq" name="domMaq" type="file">
-                    
-                        <label for="formFileSm" class="form-label das">Revisión técnica</label>
-                        <input class="form-control form-control-sm" id="revTec" name="revTec" type="file">
-                    
-                        <label for="formFileSm" class="form-label das">Permiso de circulación</label>
-                        <input class="form-control form-control-sm" id="perCir" name="perCir" type="file">
-                    
-                        <label for="formFileSm" class="form-label das">Seguro</label>
-                        <input class="form-control form-control-sm" id="seg" name="seg"type="file">
-                    
-                        <label for="formFileSm" class="form-label das">Documentación del operador (si aplica)</label>
-                        <input class="form-control form-control-sm" id="docOpe" name="docOpe" type="file">
-                    </div>
-                    <div>
-                        <select id="test">
-                            <option value="1">American Black Bear</option>
-                            <option value="2">Asiatic Black Bear</option>
-                            <option value="3">Brown Bear</option>
-                            <option value="4">Giant Panda</option>
-                            <option value="5">Sloth Bear</option>
-                            <option value="6">Sun Bear</option>
-                            <option value="7">Polar Bear</option>
-                            <option value="8">Spectacled Bear</option>
-                        </select>
-                    </div>
-    
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Categoría</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="text" placeholder="Retroexcavadora" name="categoria" id="inputZip" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <label>Describa su servicio</label>
+                           <div class="input-items default">
+                              <i class="lni lni-pencil-alt"></i>
+                              <textarea
+                                    name="description"
+                                 placeholder="Cuentanos sobre el servicio"
+                                 ></textarea>
+                           </div>
+                        </div>                         
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Dominio de la máquina</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="domMaq" name="domMaq" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
 
 
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Crear Servicio</button>
-                    </div>
-                </form>
+                    <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Revisión técnica</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="revTec" name="revTec" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Permiso de circulación</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="perCir" name="perCir" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Seguro</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="seg" name="seg"type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Documentación del operador (si aplica)</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="docOpe" name="docOpe" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                    
+
+
+                     <div class="col-md-12">
+                        <div class="single-form mt-15">
+                           <div class="input-form rounded-buttons">
+                              <button
+                                 class="btn primary-btn rounded-full"
+                                 type="submit"
+                                 >
+                              Publicar Solicitud
+                              </button>
+                           </div>
+                        </div>
+                        <!-- single form -->
+                     </div>
+                  </div>
+                  <!-- row -->
+               </form>
             </div>
-        </div>
-    </div>
+      <!-- row -->
+   </div>
+   <!-- container -->
+</section>
+<!--====== CONTACT ONE PART ENDS ======-->
 </div>

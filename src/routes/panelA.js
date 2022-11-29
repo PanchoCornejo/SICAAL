@@ -6,9 +6,38 @@ const { isAdmin } = require('../lib/auth');
 
 
 // Donde puede el Administrador: puede revisar las solicitudes de publicacion , las cuales aceptara o rechazara.
-router.get('/solicitudes',isAdmin ,(req, res) => {
-    res.render('admins/solicitudes');
+router.get('/solicitudes',isAdmin , async(req, res) => {
+
+    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'pendiente'");
+
+    res.render('admins/solicitudes', { datos : datos });
 });
+
+
+router.post('/aprobar', async(req,res) => {
+    console.log("aca?????aa")
+    //const obj = Object.assign({},req.body)
+    //const obj = JSON.parse(JSON.stringify(req.body))
+    const {id} = req.body;
+
+    const update = await pool.query(`update servicios set estado_publicacion = 'aprobado' where id = ${id};  `);
+
+    console.log(id)
+    res.send({res:"aprobado", id : id})
+})
+
+router.post('/rechazar', async(req,res) => {
+    console.log("Rechazar")
+    //const obj = Object.assign({},req.body)
+    //const obj = JSON.parse(JSON.stringify(req.body))
+    const {id} = req.body;
+
+    const update = await pool.query(`update servicios set estado_publicacion = 'rechazado' where id = ${id};  `);
+
+    //console.log(id)
+    res.send({res:"rechazado", id : id})
+})
+
 
 // Donde puede el Administrador: recuperar contrseñas para los proveedores 
 //router.get('/restaurar', isAdmin, async(req, res) => {
@@ -33,8 +62,12 @@ router.get('/solicitudes',isAdmin ,(req, res) => {
 //});
 
  // Donde puede el Administrador: Borrar Publicaciones y editarlas. 
-router.get('/servicios', isAdmin,(req, res) => {
-    res.render('admins/servicios');
+router.get('/servicios', isAdmin,async (req, res) => {
+
+    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+
+    res.render('admins/servicios', { datos : datos });
+    
 });
 
  // Donde puede el Administrador: Donde puede visitar la lista de proveedores y ver sus datos. 
