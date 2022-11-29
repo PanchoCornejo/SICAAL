@@ -4,3 +4,12 @@ en panelP -> misservicios arreglar el render, ya que cuando obtenemos los servic
 y aqui solamente pasamos el servicio en el indice 0. la idea es que sea desde [0, 1, .., Nservicio]
 
 Cuando subamos un servicio, hay que solicitar foto de la maquinariaa!!
+
+
+
+La tabla servicios fue modificada, se anadio la columna de estado_publicacion, en la cual
+permitira saber si esta aprobada o no una solicitud, para poder filtrar de una manera
+mucho mas rapida
+
+en estado_publicacion podemos tener > pendiente, aprobado y algun otro estado que es cuando
+un proveedor da de baja un servicio

@@ -31,7 +31,7 @@ CREATE TABLE proveedor (
   user_id INT(11),
   fono VARCHAR(25) NOT NULL,
   razon_social VARCHAR(50) NOT NULL,
-  rut INT(11) NOT NULL,
+  rut VARCHAR(15) NOT NULL,
   giro VARCHAR(50) NOT NULL,
   direccion VARCHAR(100) NOT NULL,
   ubicacion VARCHAR(100),
@@ -74,8 +74,6 @@ CREATE TABLE servicios (
   modelo VARCHAR(50) NOT NULL,
   horometro VARCHAR(100) NOT NULL,
   operador VARCHAR(5) NOT NULL,
-  region VARCHAR(50) NOT NULL,
-  ciudades VARCHAR(255) NOT NULL,
   estado VARCHAR(50) NOT NULL,
   categoria VARCHAR(50) NOT NULL,
   description TEXT,
@@ -84,6 +82,7 @@ CREATE TABLE servicios (
   permiso_de_circulacion VARCHAR(100),
   seguro VARCHAR(100),
   documentacion_operador VARCHAR(100),
+  estado_publicacion VARCHAR(10),
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_userS FOREIGN KEY(user_id) REFERENCES users(id),
   CONSTRAINT fk_proveedor FOREIGN KEY(proveedor_id) REFERENCES proveedor(id)
@@ -111,29 +110,15 @@ ALTER TABLE valoraciones
 ALTER TABLE valoraciones
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
 
--- Tabla de Solicitudes
-CREATE TABLE solicitudes (
-  id INT(11) NOT NULL,
-  servicio_id INT(11),
-  estado VARCHAR(50) NOT NULL,
-  created_at timestamp NOT NULL DEFAULT current_timestamp,
-  CONSTRAINT fk_servicioS FOREIGN KEY(servicio_id) REFERENCES servicios(id)
-);
 
-ALTER TABLE solicitudes
-  ADD PRIMARY KEY (id);
-
-ALTER TABLE solicitudes
-  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
 
 DESCRIBE proveedor;
 DESCRIBE rol;
 DESCRIBE valoraciones;
 DESCRIBE servicios;
-DESCRIBE solicitudes;
 
 -- Proveedor de prueba
-insert INTO proveedor (user_id, fono, razon_social, rut, giro, direccion, ubicacion, anos_servicio, proyectos_ejecutados, description) VALUES (4,'+5693333', 'RAZONSOCIAL', 111111111, 'GIRO', 'DIRECCION', 'UBICACION?', 11, 400, 'DKSLFJKDSJFKLDSJFKLSDJFKDSJKL' );
+-- insert INTO proveedor (user_id, fono, razon_social, rut, giro, direccion, ubicacion, anos_servicio, proyectos_ejecutados, description) VALUES (4,'+5693333', 'RAZONSOCIAL', 111111111, 'GIRO', 'DIRECCION', 'UBICACION?', 11, 400, 'DKSLFJKDSJFKLDSJFKLSDJFKDSJKL' );
  
 
 
@@ -551,3 +536,20 @@ VALUES
 	("Isla de Maipo","7","1"),
 	("Padre Hurtado","7","1"),
 	("Peñaflor","7","1");
+	
+CREATE TABLE `CServicio` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_servicio` int(10) unsigned NOT NULL,
+  `id_ciudad` int(10) unsigned NOT NULL,
+  `id_region` int(10) unsigned NOT NULL,
+  `id_country` int(10) unsigned NOT NULL,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_CServicio_servicio` (`id_servicio`),
+  KEY `FK_CServicio_ciudad` (`id_ciudad`),
+  KEY `FK_CServicio_region` (`id_region`),
+  KEY `FK_CServicio_countries` (`id_country`),
+  CONSTRAINT `FK_CServicio_countries` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id_country`),
+  CONSTRAINT `FK_CServicio_region` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id_region`),
+  CONSTRAINT `FK_CServicio_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `cities` (`id_city`)
+);

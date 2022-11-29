@@ -17,13 +17,20 @@ router.get('/publicar',isProveedor , async(req, res) => {
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
 router.get('/misservicios', isProveedor, async (req, res) => {
+
     const id = req.user.id;
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [id]);
-    const proveedor_id = result[0].id;
-    // console.log(id);
-    const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ?', [proveedor_id]);
-    // console.log(servicios);
-    res.render('proveedores/misservicios', {datos});
+    if (result.length != 0){
+        const proveedor_id = result[0].id;
+        console.log("esta aca?")
+        // console.log(id);
+        const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ?', [proveedor_id]);
+        // console.log(servicios);
+        res.render('proveedores/misservicios', {datos});
+    }else{
+        res.render('proveedores/misservicios',{});
+    }
+    
 });
 
 // Donde puede el Proveedor: mirar su perfil.
@@ -83,6 +90,7 @@ router.get('/CrearDatos', (req, res) => {
     res.render('proveedores/CrearDatos');
 });
 
+
 router.post('/CrearDatos', async (req, res) => {
     
     console.log("Queda aca???")
@@ -100,7 +108,8 @@ router.post('/CrearDatos', async (req, res) => {
         anos_servicio,
         proyectos_ejecutados,
         description,
-        user_id: id
+        user_id: id,
+        
     };
     await pool.query('INSERT INTO proveedor set ?', [DatosP]);
     req.flash('Correcto!', 'Datos Creados Correctamente');
@@ -116,7 +125,9 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     const user_id = req.user.id;
     const proveedor_id = result[0].id;
     const { nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-
+    
+    //Por defecto viene en pendiente, para que no se publique de una
+    const estado_publicacion = 'pendiente';
     let DatosP = {
         user_id,
         proveedor_id,
@@ -128,7 +139,8 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         operador,
         estado,
         categoria,
-        description
+        description,
+        estado_publicacion
     };
     console.log(DatosP);
 
@@ -209,5 +221,10 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     
 
 });
+
+router.get('/testeando',(req,res)=>{
+    console.log(__dirname + '/../../storage/5/domMaq')
+    res.send("url testeando")
+})
 
 module.exports = router;
