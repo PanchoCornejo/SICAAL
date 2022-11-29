@@ -551,6 +551,5 @@ CREATE TABLE `CServicio` (
   KEY `FK_CServicio_countries` (`id_country`),
   CONSTRAINT `FK_CServicio_countries` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id_country`),
   CONSTRAINT `FK_CServicio_region` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id_region`),
-  CONSTRAINT `FK_CServicio_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `cities` (`id_city`),
-  CONSTRAINT `FK_CServicio_servicio` FOREIGN KEY (`id_servicio`) REFERENCES `servicios` (`id`)
-) ;
+  CONSTRAINT `FK_CServicio_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `cities` (`id_city`)
+);
