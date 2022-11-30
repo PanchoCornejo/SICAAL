@@ -555,3 +555,21 @@ CREATE TABLE `CServicio` (
   CONSTRAINT `FK_CServicio_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `cities` (`id_city`)
 );
 
+
+CREATE TABLE Orden (
+  id INT(11) NOT NULL,
+  user_id INT(11) NOT NULL,
+  servicio_id INT(11) NOT NULL,
+  valoracion_id INT(11),
+  description TEXT,
+  created_at timestamp NOT NULL DEFAULT current_timestamp,
+  CONSTRAINT fk_userO FOREIGN KEY(user_id) REFERENCES users(id),
+  CONSTRAINT fk_servicioO FOREIGN KEY(servicio_id) REFERENCES servicios(id),
+  CONSTRAINT fk_valoracionO FOREIGN KEY(valoracion_id) REFERENCES valoraciones(id)
+);
+
+ALTER TABLE Orden
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE Orden
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 

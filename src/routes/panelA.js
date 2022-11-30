@@ -158,16 +158,22 @@ router.get('/Asignar/:id', isAdmin, async (req, res) => {
 
 router.post('/Asignar/:id', isAdmin, async (req, res) => {
     const { id } = req.params;
-    const { ID , nombre, estado, cliente} = req.body; 
+    const { ID , nombre, estado, cliente, description} = req.body;
+    const user_id = await pool.query('SELECT id FROM users WHERE username = ?', [nombre])
+    console.log("La id de Servicio es:  "+id);
+    console.log("el nombre de usuario:  "+nombre);
+    console.log("La descripcion:  "+description);
     const Opcion = {
+        user_id,
         ID,
-        nombre,
-        estado,
-        cliente
+        description
     };
-    await pool.query('', [newLink, id]);
-    req.flash('success', 'Link Updated Successfully');
-    res.redirect('/links');
+    console.log();
+    console.log(Opcion.ID);
+    console.log(Opcion.description);
+    await pool.query('INSERT INTO Orden set user_id = ? , servicio_id = ?, description = ?', [Opcion.user_id,Opcion.ID,Opcion.description]);
+    req.flash('success', 'Orden Generada Correctamente');
+    res.redirect('/panelA/perfilA');
 });
 
 module.exports = router;
