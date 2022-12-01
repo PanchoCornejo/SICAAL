@@ -1,0 +1,31 @@
+                    <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Región</label>
+                           <div class="input-items default">
+                              
+                              <select class="form-select" name="region" id="regiones" aria-label="Default select example" onchange="ciudad(this.id, 'ciudades')" required>
+                                    {{#each regiones}}
+                                    <option value="{{name}}">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Ciudades</label>
+                           <div class="input-items default">
+                              
+                              <select class="form-select" name="ciudades"  id="ciudades" aria-label="Default select example" required>
+                            {{#each ciudades}}
+                            <option value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>

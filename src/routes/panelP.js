@@ -11,8 +11,24 @@ const uploadFile = require('../lib/multer')
 router.get('/publicar',isProveedor , async(req, res) => {
 
     const regiones = await pool.query('SELECT name FROM regions;');
-    const ciudades = await pool.query('SELECT name FROM cities;');
-    res.render('proveedores/publicar', {regiones, ciudades});
+    const arica = await pool.query('SELECT name FROM cities WHERE id_region="1"');
+    const tarapaca = await pool.query('SELECT name FROM cities WHERE id_region="2"');
+    const antofagasta = await pool.query('SELECT name FROM cities WHERE id_region="3"');
+    const atacama = await pool.query('SELECT name FROM cities WHERE id_region="4"');
+    const coquimbo = await pool.query('SELECT name FROM cities WHERE id_region="5"');
+    const valparaiso = await pool.query('SELECT name FROM cities WHERE id_region="6"');
+    const metropolitana = await pool.query('SELECT name FROM cities WHERE id_region="7"');
+    const bernardo = await pool.query('SELECT name FROM cities WHERE id_region="8"');
+    const maule = await pool.query('SELECT name FROM cities WHERE id_region="9"');
+    const ñuble = await pool.query('SELECT name FROM cities WHERE id_region="10"');
+    const biobio = await pool.query('SELECT name FROM cities WHERE id_region="11"');
+    const araucania = await pool.query('SELECT name FROM cities WHERE id_region="12"');
+    const rios = await pool.query('SELECT name FROM cities WHERE id_region="13"');
+    const lagos = await pool.query('SELECT name FROM cities WHERE id_region="14"');
+    const carlos = await pool.query('SELECT name FROM cities WHERE id_region="15"');
+    const antartica = await pool.query('SELECT name FROM cities WHERE id_region="16"');
+    
+    res.render('proveedores/publicar', {regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
@@ -117,6 +133,70 @@ router.post('/CrearDatos', async (req, res) => {
 });
 
 
+/*
+router.post('/publicar2', async (req, res) => {
+    
+    console.log("Estamos viendo que ciudades mostramos")
+    console.log(req.body)
+    const { region } = req.body;
+    for (let i = 0; i < 16; i++) {
+        if(region[i]== 'Región de Arica y Parinacota'){
+            const arica = await pool.query('SELECT name FROM cities WHERE id_region="1"');
+        }
+        if(region[i]== 'Región de Tarapacá'){
+            const tarapaca = await pool.query('SELECT name FROM cities WHERE id_region="2"');
+        }
+        if(region[i]== 'Región de Antofagasta'){
+            const antofagasta = await pool.query('SELECT name FROM cities WHERE id_region="3"');
+        }
+        if(region[i]== 'Región de Atacama'){
+            const atacama = await pool.query('SELECT name FROM cities WHERE id_region="4"');
+        }
+        if(region[i]== 'Región de Coquimbo'){
+            const coquimbo = await pool.query('SELECT name FROM cities WHERE id_region="5"');
+        }
+        if(region[i]== 'Región de Valparaíso'){
+            const valparaiso = await pool.query('SELECT name FROM cities WHERE id_region="6"');
+        }
+        if(region[i]== 'Región Metropolitana de Santiago'){
+            const metropolitana = await pool.query('SELECT name FROM cities WHERE id_region="7"');
+        }
+        if(region[i]== "Región del Libertador General Bernardo O'Higgins"){
+            const bernardo = await pool.query('SELECT name FROM cities WHERE id_region="8"');
+        }
+        if(region[i]== 'Región del Maule'){
+            const maule = await pool.query('SELECT name FROM cities WHERE id_region="9"');
+        }
+        if(region[i]== 'Región de Ñuble'){
+            const ñuble = await pool.query('SELECT name FROM cities WHERE id_region="10"');
+        }
+        if(region[i]== 'Región del Biobío'){
+            const biobio = await pool.query('SELECT name FROM cities WHERE id_region="11"');
+        }
+        if(region[i]== 'Región de La Araucanía'){
+            const araucania = await pool.query('SELECT name FROM cities WHERE id_region="12"');
+        }
+        if(region[i]== 'Región de Los Ríos'){
+            const rios = await pool.query('SELECT name FROM cities WHERE id_region="13"');
+        }
+        if(region[i]== 'Región de Los Lagos'){
+            const lagos = await pool.query('SELECT name FROM cities WHERE id_region="14"');
+        }
+        if(region[i]== 'Región Aysén del General Carlos Ibáñez del Campo'){
+            const carlos = await pool.query('SELECT name FROM cities WHERE id_region="15"');
+        }
+        if(region[i]== 'Región de Magallanes y de la Antártica Chilena'){
+            const antartica = await pool.query('SELECT name FROM cities WHERE id_region="16"');
+        }
+        ;
+        
+      }
+      const regiones = await pool.query('SELECT name FROM regions;')
+      res.render('proveedores/publicar', {regiones, arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
+});
+
+*/
+
 router.post('/publicar', uploadFile(), async function(req, res, next){
     // console.log(req.user.proveedor_id);
     console.log("----aca-----")
@@ -126,7 +206,10 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     console.log("La cosa es:"+result[0].id);
     const proveedor_id = result[0].id;
     const { nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-    
+    console.log("Regiones en las que Opera");
+    console.log(region);
+    console.log("Ciudades que trabajamos");
+    console.log(ciudades);
     //Por defecto viene en pendiente, para que no se publique de una
     const estado_publicacion = 'pendiente';
     let DatosP = {

@@ -79,35 +79,195 @@
                         <!-- form input -->
                      </div>
 
-                     <div class="col-md-6">
+                     <div class="col-md-12">
                         <div class="form-input mt-15">
-                           <label>Región</label>
-                           <div class="input-items default">
-                              
-                              <select class="form-select" name="region" id="regiones" aria-label="Default select example" onchange="ciudad(this.id, 'ciudades')" required>
-                                    {{#each regiones}}
-                                    <option value="{{name}}">{{name}}</option>
-                                    {{/each}}
-                                </select>
-                           </div>
+                           <fieldset>      
+                              <legend>Región</legend> 
+                              {{#each regiones}}
+                              <input type="checkbox" name="region" id="{{name}}" onclick="mostrar()" value="{{name}}">  {{name}}<br>    
+                              {{/each}}      
+                              <br>      
+                           </fieldset> 
                         </div>
-                        <!-- form input -->
                      </div>
 
-                      <div class="col-md-6">
+                     <div class="col-md-12">
                         <div class="form-input mt-15">
-                           <label>Ciudades</label>
-                           <div class="input-items default">
-                              
-                              <select class="form-select" name="ciudades"  id="ciudades" aria-label="Default select example" required>
-                            {{#each ciudades}}
-                            <option value="{{name}}">{{name}}</option>
-                            {{/each}}
-                        </select>
-                           </div>
+                           <fieldset id="1" style="display:none">    
+                              <legend>Ciudades de Arica</legend> 
+                              {{#each arica}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
                         </div>
-                        <!-- form input -->
                      </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="2" style="display:none">    
+                              <legend>Ciudades de Tarapaca</legend> 
+                              {{#each tarapaca}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="3" style="display:none">    
+                              <legend>Ciudades de Antofagasta</legend> 
+                              {{#each antofagasta}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="4" style="display:none">    
+                              <legend>Ciudades de Atacama</legend> 
+                              {{#each atacama}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="5" style="display:none">    
+                              <legend>Ciudades de Coquimbo</legend> 
+                              {{#each coquimbo}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="6" style="display:none">    
+                              <legend>Ciudades de Valparaíso</legend> 
+                              {{#each valparaiso}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="7" style="display:none">    
+                              <legend>Ciudades de Metropolitana</legend> 
+                              {{#each metropolitana}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="8" style="display:none">    
+                              <legend>Ciudades de O'Higgins</legend> 
+                              {{#each bernardo}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="9" style="display:none">    
+                              <legend>Ciudades del Maule</legend> 
+                              {{#each maule}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="10" style="display:none">    
+                              <legend>Ciudades de Ñuble</legend> 
+                              {{#each ñuble}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="11" style="display:none">    
+                              <legend>Ciudades del Bio-Bio</legend> 
+                              {{#each biobio}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="12" style="display:none">    
+                              <legend>Ciudades de la Araucania</legend> 
+                              {{#each araucania}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="13" style="display:none">    
+                              <legend>Ciudades de los Rios</legend> 
+                              {{#each rios}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="14" style="display:none">    
+                              <legend>Ciudades de los Lagos</legend> 
+                              {{#each lagos}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="15" style="display:none">    
+                              <legend>Ciudades de la region General Carlos Ibañes</legend> 
+                              {{#each carlos}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset id="16" style="display:none">    
+                              <legend>Ciudades de la Antártica</legend> 
+                              {{#each antarica}}
+                              <input type="checkbox" name="ciudades" value="{{name}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     
 
                      <div class="col-md-6">
                         <div class="form-input mt-15">
@@ -239,3 +399,122 @@
 </section>
 <!--====== CONTACT ONE PART ENDS ======-->
 </div>
+
+
+
+<script>
+function mostrar() {
+  var arica = document.getElementById("Región de Arica y Parinacota");
+  var tarapaca = document.getElementById("Región de Tarapacá");
+  var antofagasta = document.getElementById("Región de Antofagasta");
+  var atacama = document.getElementById("Región de Atacama");
+  var coquimbo = document.getElementById("Región de Coquimbo");
+  var valparaiso = document.getElementById("Región de Valparaíso");
+  var metropolitana = document.getElementById("Región Metropolitana de Santiago");
+  var bernardo = document.getElementById("Región del Libertador General Bernardo O'Higgins");
+  var maule = document.getElementById("Región del Maule");
+  var ñuble = document.getElementById("Región de Ñuble");
+  var biobio = document.getElementById("Región del Biobío");
+  var araucania = document.getElementById("Región de La Araucanía");
+  var rios = document.getElementById("Región de Los Ríos");
+  var lagos = document.getElementById("Región de Los Lagos");
+  var carlos = document.getElementById("Región Aysén del General Carlos Ibáñez del Campo");
+  var antarica = document.getElementById("Región de Magallanes y de la Antártica Chilena");
+  var text = document.getElementById("1");
+  var text2 = document.getElementById("2");
+  var text3 = document.getElementById("3");
+  var text4 = document.getElementById("4");
+  var text5 = document.getElementById("5");
+  var text6 = document.getElementById("6");
+  var text7 = document.getElementById("7");
+  var text8 = document.getElementById("8");
+  var text9 = document.getElementById("9");
+  var text10 = document.getElementById("10");
+  var text11 = document.getElementById("11");
+  var text12 = document.getElementById("12");
+  var text13 = document.getElementById("13");
+  var text14 = document.getElementById("14");
+  var text15 = document.getElementById("15");
+  var text16 = document.getElementById("16");
+  if (arica.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+  if (tarapaca.checked == true){
+    text2.style.display = "block";
+  } else {
+     text2.style.display = "none";
+  }
+  if (antofagasta.checked == true){
+    text3.style.display = "block";
+  } else {
+     text3.style.display = "none";
+  }
+  if (atacama.checked == true){
+    text4.style.display = "block";
+  } else {
+     text4.style.display = "none";
+  }
+  if (coquimbo.checked == true){
+    text5.style.display = "block";
+  } else {
+     text5.style.display = "none";
+  }
+  if (valparaiso.checked == true){
+    text6.style.display = "block";
+  } else {
+     text6.style.display = "none";
+  }
+  if (metropolitana.checked == true){
+    text7.style.display = "block";
+  } else {
+     text7.style.display = "none";
+  }
+  if (bernardo.checked == true){
+    text8.style.display = "block";
+  } else {
+     text8.style.display = "none";
+  }
+  if (maule.checked == true){
+    text9.style.display = "block";
+  } else {
+     text9.style.display = "none";
+  }
+  if (ñuble.checked == true){
+    text10.style.display = "block";
+  } else {
+     text10.style.display = "none";
+  }
+  if (biobio.checked == true){
+    text11.style.display = "block";
+  } else {
+     text11.style.display = "none";
+  }
+  if (araucania.checked == true){
+    text12.style.display = "block";
+  } else {
+     text12.style.display = "none";
+  }
+  if (rios.checked == true){
+    text13.style.display = "block";
+  } else {
+     text13.style.display = "none";
+  }
+  if (lagos.checked == true){
+    text14.style.display = "block";
+  } else {
+     text14.style.display = "none";
+  }
+  if (carlos.checked == true){
+    text15.style.display = "block";
+  } else {
+     text15.style.display = "none";
+  }
+  if (antarica.checked == true){
+    text16.style.display = "block";
+  } else {
+     text16.style.display = "none";
+  }
+}
+</script>
