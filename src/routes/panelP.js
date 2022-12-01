@@ -10,23 +10,23 @@ const uploadFile = require('../lib/multer')
 // Donde puede el Proveedor: publicar una solicitud de su servicio.
 router.get('/publicar',isProveedor , async(req, res) => {
 
-    const regiones = await pool.query('SELECT name FROM regions;');
-    const arica = await pool.query('SELECT name FROM cities WHERE id_region="1"');
-    const tarapaca = await pool.query('SELECT name FROM cities WHERE id_region="2"');
-    const antofagasta = await pool.query('SELECT name FROM cities WHERE id_region="3"');
-    const atacama = await pool.query('SELECT name FROM cities WHERE id_region="4"');
-    const coquimbo = await pool.query('SELECT name FROM cities WHERE id_region="5"');
-    const valparaiso = await pool.query('SELECT name FROM cities WHERE id_region="6"');
-    const metropolitana = await pool.query('SELECT name FROM cities WHERE id_region="7"');
-    const bernardo = await pool.query('SELECT name FROM cities WHERE id_region="8"');
-    const maule = await pool.query('SELECT name FROM cities WHERE id_region="9"');
-    const ñuble = await pool.query('SELECT name FROM cities WHERE id_region="10"');
-    const biobio = await pool.query('SELECT name FROM cities WHERE id_region="11"');
-    const araucania = await pool.query('SELECT name FROM cities WHERE id_region="12"');
-    const rios = await pool.query('SELECT name FROM cities WHERE id_region="13"');
-    const lagos = await pool.query('SELECT name FROM cities WHERE id_region="14"');
-    const carlos = await pool.query('SELECT name FROM cities WHERE id_region="15"');
-    const antartica = await pool.query('SELECT name FROM cities WHERE id_region="16"');
+    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+    const arica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="1"');
+    const tarapaca = await pool.query('SELECT id_city, name FROM cities WHERE id_region="2"');
+    const antofagasta = await pool.query('SELECT id_city, name FROM cities WHERE id_region="3"');
+    const atacama = await pool.query('SELECT id_city, name FROM cities WHERE id_region="4"');
+    const coquimbo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="5"');
+    const valparaiso = await pool.query('SELECT id_city, name FROM cities WHERE id_region="6"');
+    const metropolitana = await pool.query('SELECT id_city, name FROM cities WHERE id_region="7"');
+    const bernardo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="8"');
+    const maule = await pool.query('SELECT id_city, name FROM cities WHERE id_region="9"');
+    const ñuble = await pool.query('SELECT id_city, name FROM cities WHERE id_region="10"');
+    const biobio = await pool.query('SELECT id_city, name FROM cities WHERE id_region="11"');
+    const araucania = await pool.query('SELECT id_city, name FROM cities WHERE id_region="12"');
+    const rios = await pool.query('SELECT id_city, name FROM cities WHERE id_region="13"');
+    const lagos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="14"');
+    const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
+    const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
     
     res.render('proveedores/publicar', {regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
 });
@@ -205,11 +205,13 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     const user_id = req.user.id;
     console.log("La cosa es:"+result[0].id);
     const proveedor_id = result[0].id;
+    // console.log(req.body);
     const { nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
     console.log("Regiones en las que Opera");
     console.log(region);
     console.log("Ciudades que trabajamos");
     console.log(ciudades);
+
     //Por defecto viene en pendiente, para que no se publique de una
     const estado_publicacion = 'pendiente';
     let DatosP = {
@@ -370,7 +372,22 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
 
     await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
 
-    //console.log(paths);
+
+    var id_ciudad = ciudades.map(function (x) { 
+        return parseInt(x, 10); 
+    });
+
+    const mergedArray = [];
+
+    id_ciudad.forEach((element,index )=> {
+        let tempArray = [];
+        tempArray.push(servicio_id);
+        tempArray.push(element);
+        mergedArray.push(tempArray);
+    });
+
+    await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);
+
 
     req.flash('¡Correcto!', 'Servicio creado correctamente.');
     res.redirect('/panelP/perfilP');

@@ -1,2 +1,4 @@
 node_modules
 storage
+src/keys.js
+src/database.js
