@@ -1,0 +1,40 @@
+{{>navigation3}}
+{{>message}} 
+
+<div class="main">
+    <div class="container my-5">
+        <div class="card text-center">
+            <div class="card-body">
+                <a>Evalue su servicio</a>
+                <form action="/Cliente/Evaluar" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+
+                    <div class="col-md-3">
+                        <label for="valoracion" class="form-label das">Valoracion</label>
+                        <select class="form-select" name="valoracion" aria-label="Default select example" required>
+                            <option value="5">5 Estrellas</option>
+                            <option value="4">4 Estrellas</option>
+                            <option value="3">3 Estrellas</option>
+                            <option value="2">2 Estrellas</option>
+                            <option value="1">1 Estrellas</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Danos una valoracion...
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <label for="description" class="form-label">Comentarios</label>
+                        <textarea class="form-control" value="" id="description" name="description" rows="3" ></textarea>
+                    </div>
+                    
+                    <input id="VALid" name="VALid" type="hidden" value="{{VAL.id}}">
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar Evaluacion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

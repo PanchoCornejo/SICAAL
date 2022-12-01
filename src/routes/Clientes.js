@@ -7,9 +7,60 @@ const { isClient } = require('../lib/auth');
 
 // Donde puede el cliente mira su cuenta
 router.get('/Panel',isClient ,(req, res) => {
-    res.render('Cliente/Panel');
+    res.render('Cliente/panel');
 });
 
+// Donde puede el cliente mira sus Ordenes y elige dar una valoracion
+router.get('/misordenes', isClient , async(req, res) => {
+    const id = req.user.id;
+    console.log('Estamos por aqui!!!')
+    const datos = await pool.query('SELECT * FROM orden WHERE user_id = ?', [id]);
+    const servi = await pool.query('SELECT orden.id, servicios.nombre , servicios.description FROM servicios, users , orden WHERE orden.user_id = users.id AND servicios.id = orden.servicio_id AND users.id = ?', [id]);
+    console.log(servi)
+    res.render('Cliente/misordenes', {servi});
+});
+
+
+
+// Donde puede el cliente entrega la valoracion correspondiente
+router.get('/Evaluar/:id', isClient , async(req, res) => {
+    const { id } = req.params;
+    const VAL = {
+        id
+    };
+    console.log("buscamos en la orden con ID: "+ id)
+    const tiene = await pool.query('SELECT * FROM orden WHERE id = ?', [id]);
+    console.log("Veremos si tiene evaluacion o no");
+    console.log(tiene[0].valoracion_id);
+    if (tiene[0].valoracion_id){
+        console.log("Tiene una valoracion Previa");
+        res.redirect('/Cliente/Panel');
+    }
+    else {
+        console.log('Estamos EVALUANDO!!!')
+        res.render('Cliente/Evaluar', {VAL});
+    } 
+});
+
+
+router.post('/Evaluar', isClient, async (req, res) => {
+    console.log("Estamos POST de Evaluacion")
+    const { VALid, valoracion, description} = req.body;
+    console.log(req.body);
+    const Val = {
+        VALid,
+        valoracion,
+        description
+    };
+    const servid = await pool.query('SELECT servicio_id FROM orden WHERE id = ?', [VALid]);
+    console.log(servid[0].servicio_id);
+    const evaluando = await pool.query('INSERT INTO valoraciones set servicio_id = ? , valoracion = ?, description = ?', [servid[0].servicio_id, Val.valoracion, Val.description]);
+    const valoracion_id = evaluando.insertId;
+    console.log(valoracion_id);
+    const asignada = await pool.query('UPDATE orden set valoracion_id =? WHERE id = ? ', [valoracion_id, VALid])
+    req.flash('success', 'Orden Generada Correctamente');
+    res.redirect('/panelA/perfilA');
+});
 
 
 module.exports = router;

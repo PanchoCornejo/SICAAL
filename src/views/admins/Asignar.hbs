@@ -3,104 +3,54 @@
 
 
 <div class="main">
-    <!--====== CONTACT ONE PART START ======-->
-<section class="contact-area">
-   <div class="container">
-      <div class="contact-form form-style-four mt-15" >
-            <p class="h1">Asignar Servicio a Cliente</p>
-                {{#each Servicio}}
-               <form action="./{{id}}" method="POST" enctype="multipart/form-data">
-               {{/each}}
-                  <div class="row">
-                     <div class="col-md-4">
-                        <div class="form-input mt-15">
-                           <label>Id del Servicio</label>
-                           <div class="input-items default">
-                              <i class="lni lni-user"></i>
-                              {{#each Servicio}}
-                              <input type="text" id="ID" name="ID" placeholder="{{id}}" disabled/>
-                              {{/each}}
-                           </div>
+    <div class="container my-5">
+        <div class="card text-center">
+            <div class="card-body">
+                <a>Asignar Servicio a Cliente</a>
+                <form action="/panelA/Asignar" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+                    <div class="col-md-4">
+                        <label for="ServiD" class="form-label">Id del Servicio</label>
+                        <input type="text" value="{{otronombre.id}}" class="form-control" id="ServiD" name="ServiD" placeholder="{{otronombre.id}}" required>
+                        <div class="invalid-feedback">
+                            Entrega el ID del servicio a conectar!
                         </div>
-                        <!-- form input -->
-                     </div>
-                    
+                    </div>
+
                     <div class="col-md-6">
-                        <div class="form-input mt-15">
-                           <label>Servicio</label>
-                           <div class="input-items default">
-                              <i class="lni lni-envelope"></i>
-                              {{#each Servicio}}
-                              <input type="text" id="nombre" name="nombre" placeholder="{{nombre}}" disabled />
-                              {{/each}}
-                           </div>
+                        <label for="nombre" class="form-label">Servicio</label>
+                        <input type="text" value="{{otronombre.nombre}}" class="form-control" id="nombre" name="nombre" placeholder="{{otronombre.nombre}}" required>
+                        <div class="invalid-feedback">
+                            Entrega el nombre del servicio!
                         </div>
-                        <!-- form input -->
-                     </div>
+                    </div>
 
-                     <div class="col-md-4">
-                        <div class="form-input mt-15">
-                           <label>Estado Actual del servicio</label>
-                           <div class="input-items default">
-                              <i class="lni lni-envelope"></i>
-                              {{#each Servicio}}
-                              <input type="text" id="estado" name="estado" placeholder="{{estado}}" disabled />
-                              {{/each}}
-                           </div>
+                    <div class="col-md-4">
+                        <label for="estado" class="form-label">Estado Actual del servicio</label>
+                        <input type="text" value="{{otronombre.estado}}" class="form-control" id="estado" name="estado" placeholder="{{otronombre.estado}}" required>
+                        <div class="invalid-feedback">
+                            Entrega el estado actual del servicio!
                         </div>
-                        <!-- form input -->
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-input mt-15">
-                           <label>Eliga Cliente</label>
-                           <div class="input-items default">
-                              
-                              <select class="form-select" name="cliente" id="cliente" aria-label="Default select example" required>
-                                    {{#each Personas}}
-                                    <option value="{{username}}">{{username}}</option>
-                                    {{/each}}
-                                </select>
-                           </div>
-                        </div>
-                        <!-- form input -->
-                     </div>
+                    </div>
 
-                     <div class="col-md-12">
-                        <div class="form-input mt-15">
-                           <label>Comentarios</label>
-                           <div class="input-items default">
-                              <i class="lni lni-pencil-alt"></i>
-                              <textarea
-                                    name="description"
-                                 placeholder="Comentarios sobre la Orden"
-                                 ></textarea>
-                           </div>
-                        </div>                         
-                        <!-- form input -->
-                     </div>
+                    <div class="col-md-6">
+                        <label for="cliente" class="form-label">Seleccione Cliente</label>
+                        <select id="cliente" name="cliente" class="form-select" aria-label="Disabled select example">
+                           {{#each Personas}}
+                              <option value="{{username}}">{{username}}</option>
+                           {{/each}}
+                        </select>
+                    </div>
 
-                     <div class="col-md-12">
-                        <div class="single-form mt-15">
-                           <div class="input-form rounded-buttons">
-                              <button
-                                 class="btn primary-btn rounded-full"
-                                 type="submit"
-                                 >
-                              Asignar a Servicio
-                              </button>
-                           </div>
-                        </div>
-                        <!-- single form -->
-                     </div>
-
-
-                  </div>
-                  <!-- row -->
-               </form>
+                    <div class="col-12">
+                        <label for="description" class="form-label">Comentarios</label>
+                        <textarea class="form-control" value="" id="description" name="description" rows="3" ></textarea>
+                    </div>
+                    
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar Datos</button>
+                    </div>
+                </form>
             </div>
-      <!-- row -->
-   </div>
-   <!-- container -->
-</section>
-<!--====== CONTACT ONE PART ENDS ======-->
+        </div>
+    </div>
 </div>

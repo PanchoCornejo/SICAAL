@@ -139,39 +139,39 @@ router.post('/CrearDatos', async (req, res) => {
 router.get('/Orden', isAdmin, async (req, res) => {
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
     const idd = req.user.id;
-    const nombree = await pool.query('SELECT fullname FROM users WHERE id = ?', [idd]);
-    res.render('admins/Orden', {nombree: nombree[0], datos : datos} );
+    res.render('admins/Orden', {datos : datos} );
 });
 
 
 
 // Asignador 
 
-router.get('/Asignar/:id', isAdmin, async (req, res) => {
-    const { id } = req.params;
-    console.log("Estas pasando por aqui")
-    const Cli = "Cliente"
-    const Personas = await pool.query('SELECT username FROM users WHERE users.rol = ?', [Cli]);
-    const Servicio = await pool.query('SELECT * FROM servicios WHERE id=?', [id])
-    res.render('admins/Asignar', {Personas, Servicio});
+router.get('/Asignar/:idS', isAdmin, async (req, res) => {
+    const { idS } = req.params;
+    console.log(req.params);
+    console.log("Estas pasando por aqui:   "+ idS);
+    const copia = idS;
+    console.log("copia es : " + copia);
+    const otronombre = await pool.query('SELECT * FROM servicios WHERE id = ?', [idS]);
+    const Personas = await pool.query('SELECT username FROM users WHERE users.rol = "cliente"');
+    console.log(Personas);
+    console.log(otronombre);
+    res.render('admins/Asignar', {Personas, otronombre});
 });
 
-router.post('/Asignar/:id', isAdmin, async (req, res) => {
-    const { id } = req.params;
-    const { ID , nombre, estado, cliente, description} = req.body;
-    const user_id = await pool.query('SELECT id FROM users WHERE username = ?', [nombre])
-    console.log("La id de Servicio es:  "+id);
+router.post('/Asignar', isAdmin, async (req, res) => {
+    const { ServiD , nombre, estado, cliente, description} = req.body;
+    console.log(req.body);
+    const user_id = await pool.query('SELECT id FROM users WHERE username = ?', [cliente])
     console.log("el nombre de usuario:  "+nombre);
     console.log("La descripcion:  "+description);
     const Opcion = {
         user_id,
-        ID,
+        ServiD,
         description
     };
-    console.log();
-    console.log(Opcion.ID);
-    console.log(Opcion.description);
-    await pool.query('INSERT INTO Orden set user_id = ? , servicio_id = ?, description = ?', [Opcion.user_id,Opcion.ID,Opcion.description]);
+    console.log(Opcion.ServiD);
+    await pool.query('INSERT INTO Orden set user_id = ? , servicio_id = ?, description = ?', [Opcion.user_id[0].id,Opcion.ServiD,Opcion.description]);
     req.flash('success', 'Orden Generada Correctamente');
     res.redirect('/panelA/perfilA');
 });
