@@ -6,8 +6,11 @@ const { isClient } = require('../lib/auth');
 
 
 // Donde puede el cliente mira su cuenta
-router.get('/Panel',isClient ,(req, res) => {
-    res.render('Cliente/panel');
+router.get('/Panel',isClient , async(req, res) => {
+    const id = req.user.id;
+    const datos = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+    
+    res.render('Cliente/panel', {datos});
 });
 
 // Donde puede el cliente mira sus Ordenes y elige dar una valoracion

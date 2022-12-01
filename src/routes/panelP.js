@@ -6,6 +6,9 @@ const { isProveedor } = require('../lib/auth');
 
 const uploadFile = require('../lib/multer')
 
+const path = require('path');
+const fs = require('fs');
+
 
 // Donde puede el Proveedor: publicar una solicitud de su servicio.
 router.get('/publicar',isProveedor , async(req, res) => {
@@ -396,6 +399,16 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
 router.get('/testeando',(req,res)=>{
     console.log(__dirname + '/../../storage/5/domMaq')
     res.send("url testeando")
+})
+
+router.post('/baja',async (req,res)=>{
+    //Dar de baja significa eliminar el servicio
+    const {id} = req.body
+
+    const borrar = await pool.query(`DELETE FROM servicios WHERE id = ${id}`);
+
+
+    res.send({msg : 'me diste de baja', id : id})
 })
 
 module.exports = router;

@@ -1,2 +1,72 @@
 {{>navigation3}}
 {{>message}} 
+
+<div class="main">
+    <h1>Mi Perfil</h1>
+    {{#if datos}}
+            <!--====== Start Profile One ======-->
+        <div class="profile">
+        <div class="">
+            <div class="">
+                <div class="container">
+                    <div class="profile-content">
+                    <div class="profile-card">
+                        <div class="profile-card-wrapper">
+                            <div
+                                class="card-header bg_cover"
+                                style="
+                                background-image: url(https://i.ibb.co/s9ys3d8/East-Cut-Photo-by-Pelli-Clarke-Pelli-Architects-courtesy-of-Transbay-Joint-Powers-Authority-600x248.jpg);
+                                "
+                                ></div>
+                            <!-- card-header -->
+                            <div class="card-profile">
+                                <img
+                                src="https://cdn-icons-png.flaticon.com/512/711/711769.png"
+                                alt="Profile"
+                                />
+                            </div>
+                            <!-- card-profile -->
+                            <div class="card-content text-center rounded-buttons">
+                                {{#each datos}}
+                                <h3 class="card-title">Nombre: {{fullname}}</h3>
+                                 <p class="text">Tipo de usuario: {{rol}}</p>   
+                                {{/each}}
+
+                                                            
+                                <a
+                                href="/Cliente/misordenes"
+                                class="btn primary-btn rounded-full"
+                                data-toggle="modal"
+                                data-target="#contact-modal"
+                                >
+                                Ver Ordenes
+                                </a>
+                            </div>
+                            <!-- card-content -->
+
+                            <!-- card-social -->
+                        </div>
+                        <!-- profile-card -->
+                    </div>
+                    <!-- profile-card -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!--====== End Profile One ======-->
+
+
+    {{else}}
+    <div class="container"></div>
+    <div class="col-md-4 mx-auto">
+        <div class="card card-body text-center">
+            <p>Cargnado datos. Intentelo mas tarde</p>
+            <i class="fa-regular fa-face-frown"></i>
+            
+        </div>
+    </div>
+
+    {{/if}}
+</div>
+</div>

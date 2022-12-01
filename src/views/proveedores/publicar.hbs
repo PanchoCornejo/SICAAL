@@ -79,19 +79,21 @@
                         <!-- form input -->
                      </div>
 
+                  
                      <div class="col-md-12">
                         <div class="form-input mt-15">
-                           <fieldset>      
+                           <fieldset class="form-select">      
                               <legend>Región</legend> 
                               {{#each regiones}}
-                              <input type="checkbox" name="region" id="{{name}}" onclick="mostrar()" value="{{name}}">  {{name}}<br>    
+                              <input type="checkbox" class="form-check-input" name="region" id="{{name}}" onclick="mostrar()" value="{{name}}">  {{name}}<br>
                               {{/each}}      
                               <br>      
                            </fieldset> 
                         </div>
                      </div>
+                  
 
-                     <div class="col-md-12">
+                     <div id="1" style="display:none" class="col-md-12">
                         <div class="form-input mt-15">
                            <fieldset id="1" style="display:none">    
                               <legend>Ciudades de Arica y Parinacota</legend> 
@@ -102,7 +104,7 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="2" style="display:none" >
                         <div class="form-input mt-15">
                            <fieldset id="2" style="display:none">    
                               <legend>Ciudades de Tarapacá</legend> 
@@ -113,9 +115,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="3" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="3" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Antofagasta</legend> 
                               {{#each antofagasta}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -124,9 +126,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="4" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="4" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Atacama</legend> 
                               {{#each atacama}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -135,9 +137,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="5" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="5" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Coquimbo</legend> 
                               {{#each coquimbo}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -146,9 +148,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="6" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="6" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Valparaíso</legend> 
                               {{#each valparaiso}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -157,9 +159,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="7" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="7" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Metropolitana</legend> 
                               {{#each metropolitana}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -168,9 +170,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="8" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="8" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de O'Higgins</legend> 
                               {{#each bernardo}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -179,9 +181,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="9" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="9" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades del Maule</legend> 
                               {{#each maule}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -190,9 +192,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="10" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="10" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Ñuble</legend> 
                               {{#each ñuble}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -201,7 +203,7 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="11" style="display:none" >
                         <div class="form-input mt-15">
                            <fieldset id="11" style="display:none">    
                               <legend>Ciudades del Biobío</legend> 
@@ -212,7 +214,7 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="12" style="display:none" >
                         <div class="form-input mt-15">
                            <fieldset id="12" style="display:none">    
                               <legend>Ciudades de la Araucanía</legend> 
@@ -223,7 +225,7 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="13" style="display:none" >
                         <div class="form-input mt-15">
                            <fieldset id="13" style="display:none">    
                               <legend>Ciudades de los Ríos</legend> 
@@ -234,9 +236,9 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="14" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="14" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de los Lagos</legend> 
                               {{#each lagos}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -245,7 +247,7 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="15" style="display:none" >
                         <div class="form-input mt-15">
                            <fieldset id="15" style="display:none">    
                               <legend>Ciudades de la región General Carlos Ibañes</legend> 

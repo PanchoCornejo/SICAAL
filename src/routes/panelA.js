@@ -137,10 +137,20 @@ router.post('/CrearDatos', async (req, res) => {
 
 
 router.get('/Orden', isAdmin, async (req, res) => {
+
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
     const idd = req.user.id;
     res.render('admins/Orden', {datos : datos} );
 });
+
+
+router.get('/gestionarorden', async(req,res)=>{
+    const datos = await pool.query("select * from orden")
+    
+    console.log("--- Gestionar orden", datos)
+
+    res.render('admins/gestionar', {datos});
+})
 
 
 
@@ -179,7 +189,7 @@ router.post('/Asignar', isAdmin, async (req, res) => {
         description
     };
     console.log(Opcion.ServiD);
-    await pool.query('INSERT INTO Orden set user_id = ? , servicio_id = ?, description = ?', [Opcion.user_id[0].id,Opcion.ServiD,Opcion.description]);
+    await pool.query('INSERT INTO orden set user_id = ? , servicio_id = ?, description = ?', [Opcion.user_id[0].id,Opcion.ServiD,Opcion.description]);
     req.flash('success', 'Orden Generada Correctamente');
     res.redirect('/panelA/perfilA');
 });
