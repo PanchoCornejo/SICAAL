@@ -3,8 +3,8 @@ const { promisify }= require('util');
 
 const pool = mysql.createConnection({
   host     : 'localhost',
-  user     : 'sqluser',
-  password: 'password',
+  user     : 'root',
+  password: 'root',
   database: 'sicaal_db'
 });
 

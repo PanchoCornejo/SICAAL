@@ -95,7 +95,7 @@
 
                      <div id="1" style="display:none" class="col-md-12">
                         <div class="form-input mt-15">
-                           <fieldset id="1" style="display:none">    
+                           <fieldset class="form-select" >    
                               <legend>Ciudades de Arica y Parinacota</legend> 
                               {{#each arica}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -106,7 +106,7 @@
 
                      <div class="col-md-12" id="2" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="2" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Tarapacá</legend> 
                               {{#each tarapaca}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -205,7 +205,7 @@
 
                      <div class="col-md-12" id="11" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="11" style="display:none">    
+                           <fieldset class="form-select" >    
                               <legend>Ciudades del Biobío</legend> 
                               {{#each biobio}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -216,7 +216,7 @@
 
                      <div class="col-md-12" id="12" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="12" style="display:none">    
+                           <fieldset class="form-select" >    
                               <legend>Ciudades de la Araucanía</legend> 
                               {{#each araucania}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -227,7 +227,7 @@
 
                      <div class="col-md-12" id="13" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="13" style="display:none">    
+                           <fieldset class="form-select" >    
                               <legend>Ciudades de los Ríos</legend> 
                               {{#each rios}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -249,7 +249,7 @@
 
                      <div class="col-md-12" id="15" style="display:none" >
                         <div class="form-input mt-15">
-                           <fieldset id="15" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de la región General Carlos Ibañes</legend> 
                               {{#each carlos}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
@@ -258,11 +258,11 @@
                         </div>
                      </div>
 
-                     <div class="col-md-12">
+                     <div class="col-md-12" id="16" style="display:none">
                         <div class="form-input mt-15">
-                           <fieldset id="16" style="display:none">    
+                           <fieldset class="form-select">    
                               <legend>Ciudades de Magallanes y la Antártica</legend> 
-                              {{#each antarica}}
+                              {{#each antartica}}
                               <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
                               {{/each}}     
                            </fieldset>  

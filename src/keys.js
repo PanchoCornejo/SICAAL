@@ -2,8 +2,8 @@ module.exports = {
 
     database: {
         host: 'localhost',
-        user: 'sqluser',
-        password: 'password',
+        user: 'root',
+        password: 'root',
         database: 'sicaal_db'
     }
 };
