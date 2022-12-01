@@ -10,7 +10,7 @@
                 <form action="/panelA/Asignar" method="POST" class="row g-3 novalidate was-validated"  novalidate>
                     <div class="col-md-4">
                         <label for="ServiD" class="form-label">Id del Servicio</label>
-                        <input type="text" value="{{otronombre.id}}" class="form-control" id="ServiD" name="ServiD" placeholder="{{otronombre.id}}" required>
+                        <input type="text" value="{{valores.id}}" class="form-control" id="ServiD" name="ServiD" placeholder="{{valores.id}}" >
                         <div class="invalid-feedback">
                             Entrega el ID del servicio a conectar!
                         </div>
@@ -18,7 +18,7 @@
 
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Servicio</label>
-                        <input type="text" value="{{otronombre.nombre}}" class="form-control" id="nombre" name="nombre" placeholder="{{otronombre.nombre}}" required>
+                        <input type="text" value="{{valores.nombre}}" class="form-control" id="nombre" name="nombre" placeholder="{{valores.nombre}}" >
                         <div class="invalid-feedback">
                             Entrega el nombre del servicio!
                         </div>
@@ -26,7 +26,7 @@
 
                     <div class="col-md-4">
                         <label for="estado" class="form-label">Estado Actual del servicio</label>
-                        <input type="text" value="{{otronombre.estado}}" class="form-control" id="estado" name="estado" placeholder="{{otronombre.estado}}" required>
+                        <input type="text" value="{{valores.estado}}" class="form-control" id="estado" name="estado" placeholder="{{valores.estado}}" >
                         <div class="invalid-feedback">
                             Entrega el estado actual del servicio!
                         </div>

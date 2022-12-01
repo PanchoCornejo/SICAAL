@@ -155,16 +155,24 @@ router.get('/Asignar/:idS', isAdmin, async (req, res) => {
     const otronombre = await pool.query('SELECT * FROM servicios WHERE id = ?', [idS]);
     const Personas = await pool.query('SELECT username FROM users WHERE users.rol = "cliente"');
     console.log(Personas);
-    console.log(otronombre);
-    res.render('admins/Asignar', {Personas, otronombre});
+    console.log(otronombre[0].id);
+    const valores = {
+        id : otronombre[0].id,
+        nombre : otronombre[0].nombre,
+        estado : otronombre[0].estado
+    }
+    res.render('admins/Asignar', {Personas, valores });
 });
 
 router.post('/Asignar', isAdmin, async (req, res) => {
     const { ServiD , nombre, estado, cliente, description} = req.body;
     console.log(req.body);
-    const user_id = await pool.query('SELECT id FROM users WHERE username = ?', [cliente])
+    console.log("El ID del Servicio:  "+ServiD);
     console.log("el nombre de usuario:  "+nombre);
+    console.log("el estado:  "+estado);
+    console.log("el nombre del cliente:  "+cliente);
     console.log("La descripcion:  "+description);
+    const user_id = await pool.query('SELECT id FROM users WHERE username = ?', [cliente])
     const Opcion = {
         user_id,
         ServiD,
