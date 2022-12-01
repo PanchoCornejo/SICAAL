@@ -45,21 +45,39 @@ router.get('/Evaluar/:id', isClient , async(req, res) => {
 
 router.post('/Evaluar', isClient, async (req, res) => {
     console.log("Estamos POST de Evaluacion")
-    const { VALid, valoracion, description} = req.body;
+    const { VALid, valoracion, valoracionoper ,valoracionpunt ,valoracionexp ,valoracionfallas ,valoracionestado ,description} = req.body;
     console.log(req.body);
     const Val = {
         VALid,
         valoracion,
+        valoracionoper,
+        valoracionpunt,
+        valoracionexp,
+        valoracionfallas,
+        valoracionestado,
         description
     };
     const servid = await pool.query('SELECT servicio_id FROM orden WHERE id = ?', [VALid]);
-    console.log(servid[0].servicio_id);
-    const evaluando = await pool.query('INSERT INTO valoraciones set servicio_id = ? , valoracion = ?, description = ?', [servid[0].servicio_id, Val.valoracion, Val.description]);
-    const valoracion_id = evaluando.insertId;
-    console.log(valoracion_id);
-    const asignada = await pool.query('UPDATE orden set valoracion_id =? WHERE id = ? ', [valoracion_id, VALid])
-    req.flash('success', 'Orden Generada Correctamente');
-    res.redirect('/panelA/perfilA');
+    console.log(Val.valoracionoper);
+    if (Val.valoracionoper!='0'){
+        console.log("Tiene una valoracion en operador");
+        const evaluando = await pool.query('INSERT INTO valoraciones set servicio_id = ? , valoracion = ?,  Voperador = ?, Vpuntualidad = ?, Vexperiencia = ?,Vfallas = ?, Vestadomaquina = ?, description = ?', [servid[0].servicio_id, Val.valoracion,Val.valoracionoper ,Val.valoracionpunt,Val.valoracionexp,Val.valoracionfallas,Val.valoracionestado, Val.description]);
+        const valoracion_id = evaluando.insertId;
+        console.log(valoracion_id);
+        const asignada = await pool.query('UPDATE orden set valoracion_id =? WHERE id = ? ', [valoracion_id, VALid])
+        req.flash('success', 'Orden Generada Correctamente');
+        res.redirect('/Cliente/Panel');
+    }
+    else {
+        console.log('no tiene evaluacion de operador!!!')
+        const evaluando = await pool.query('INSERT INTO valoraciones set servicio_id = ? , valoracion = ?, Vpuntualidad = ?, Vexperiencia = ?,Vfallas = ?, Vestadomaquina = ?, description = ?', [servid[0].servicio_id, Val.valoracion ,Val.valoracionpunt,Val.valoracionexp,Val.valoracionfallas,Val.valoracionestado, Val.description]);
+        const valoracion_id = evaluando.insertId;
+        console.log(valoracion_id);
+        const asignada = await pool.query('UPDATE orden set valoracion_id =? WHERE id = ? ', [valoracion_id, VALid])
+        req.flash('success', 'Orden Generada Correctamente');
+        res.redirect('/Cliente/Panel');
+    } 
+    
 });
 
 

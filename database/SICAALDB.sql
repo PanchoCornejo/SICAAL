@@ -100,6 +100,11 @@ CREATE TABLE valoraciones (
   id INT(11) NOT NULL,
   servicio_id INT(11),
   valoracion INT(5) NOT NULL,
+  Voperador INT (5),
+  Vpuntualidad INT (5) NOT NULL,
+  Vexperiencia INT (5) NOT NULL,
+  Vfallas INT (5) NOT NULL,
+  Vestadomaquina INT (5) NOT NULL,
   description TEXT,
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_servicio FOREIGN KEY(servicio_id) REFERENCES servicios(id)
