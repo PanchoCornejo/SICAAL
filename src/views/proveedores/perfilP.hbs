@@ -4,23 +4,74 @@
 <div class="main">
     <h1>Mi Perfil</h1>
     {{#if datos}}
+            <!--====== Start Profile One ======-->
+        <div class="profile">
+        <div class="">
+            <div class="">
+                <div class="container">
+                    <div class="profile-content">
+                    <div class="profile-card">
+                        <div class="profile-card-wrapper">
+                            <div
+                                class="card-header bg_cover"
+                                style="
+                                background-image: url(https://i.ibb.co/s9ys3d8/East-Cut-Photo-by-Pelli-Clarke-Pelli-Architects-courtesy-of-Transbay-Joint-Powers-Authority-600x248.jpg);
+                                "
+                                ></div>
+                            <!-- card-header -->
+                            <div class="card-profile">
+                                <img
+                                src="https://cdn-icons-png.flaticon.com/512/711/711769.png"
+                                alt="Profile"
+                                />
+                            </div>
+                            <!-- card-profile -->
+                            <div class="card-content text-center rounded-buttons">
+                                <h3 class="card-title">Razón Social: {{datos.razon_social}}</h3>
+                                <p class="text">
+                                Giro: {{datos.giro}}                       
+                                </p>
+                                <p class="text">
+                                Rut: {{datos.rut}}                         
+                                </p>
+                                <p class="text">
+                                Fono: {{datos.fono}}                          
+                                </p>
+                                <p class="text">
+                                Direccion: {{datos.direccion }}                       
+                                </p>
+                                <p class="text">
+                                Años en servicio: {{datos.anos_servicio}}                       
+                                </p>
+                                <p class="text">
+                                Proyectos ejecutados: {{datos.proyectos_ejecutados}}                     
+                                </p>
+                                <p class="text">
+                                Descripción: {{datos.description }}                       
+                                </p>
 
+                                <a
+                                href="/panelP/editar"
+                                class="btn primary-btn rounded-full"
+                                data-toggle="modal"
+                                data-target="#contact-modal"
+                                >
+                                Editar información
+                                </a>
+                            </div>
+                            <!-- card-content -->
 
-    <div class="card" style="width: 50rem;">
-        <img src="https://cdn-icons-png.flaticon.com/512/711/711769.png" style="height: 300px; width: 300px;" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Razón Social: {{datos.razon_social}}</h5>
-            <p class="card-text">Giro: {{datos.giro}} </p>
-            <p class="card-text">Rut: {{datos.rut}}</p>
-            <p class="card-text">Fono: {{datos.fono}}</p>
-            <p class="card-text">Direccion: {{datos.direccion }}</p>
-            <p class="card-text">Años servicio: {{datos.anos_servicio}}</p>
-            <p class="card-text">Proyectos ejecutados: {{datos.proyectos_ejecutados}}</p>
-            <p class="card-text">Descripción: {{datos.description }}</p>
-            
-            <a href="" class="btn btn-primary">Editar (Luego arreglo esto)</a>
+                            <!-- card-social -->
+                        </div>
+                        <!-- profile-card -->
+                    </div>
+                    <!-- profile-card -->
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        </div>
+        <!--====== End Profile One ======-->
 
 
     {{else}}
