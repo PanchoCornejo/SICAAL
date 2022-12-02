@@ -1,0 +1,43 @@
+{{>navigation1}}
+{{>message}} 
+
+
+<div class="main">
+    
+    {{#if prov}}
+    <h2>Solicitudes</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    {{#each prov}}
+   <div class="col">
+    <div class="card h-100">
+      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
+      <div class="card-body">
+        <h5 class="card-title">Empresa: {{empresanombre }}</h5>
+            
+            <p class="card-text">Nombre de Contacto: {{contactonombre}}</p>
+            <p class="card-text">Nummero de Contacto: {{numero}}</p>
+            <p class="card-text">Ubicacion: {{ubicacion}}</p>
+            <p class="card-text">Tipo: {{tipo}}</p>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+            <form action="/panelA/nuevosproveedores" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+                <div class="col">
+                    <input id="VALid" name="VALid" type="hidden" value="{{id}}">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Borrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    {{/each}}
+    </div>
+    {{else}}
+    <h1>No hay nuevos Interesados</h1>
+    {{/if}}
+
+</div>

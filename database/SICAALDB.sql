@@ -578,3 +578,20 @@ ALTER TABLE Orden
 
 ALTER TABLE Orden
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
+
+
+CREATE TABLE Sproveedor (
+  id INT(11) NOT NULL,
+  empresanombre VARCHAR(50) NOT NULL,
+  contactonombre VARCHAR(50) NOT NULL,
+  numero VARCHAR(50) NOT NULL,
+  ubicacion VARCHAR(50) NOT NULL,
+  tipo VARCHAR(50) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp
+);
+
+ALTER TABLE Sproveedor
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE Sproveedor
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 

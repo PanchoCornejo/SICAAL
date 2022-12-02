@@ -13,6 +13,21 @@ router.get('/solicitudes',isAdmin , async(req, res) => {
     res.render('admins/solicitudes', { datos : datos });
 });
 
+// Donde El Administrador puede ver los nuevos Proveedores pidiendo contactarse
+router.get('/nuevosproveedores',isAdmin , async(req, res) => {
+
+    const prov = await pool.query("SELECT * FROM Sproveedor");
+
+    res.render('admins/nuevosproveedores', { prov : prov });
+});
+
+router.post('/nuevosproveedores', isAdmin ,async(req,res) => {
+    const { VALid } = req.body;
+    const Val = { VALid };
+    await pool.query('DELETE FROM Sproveedor WHERE id = ?', [Val.VALid]);
+    console.log("Eliminado")
+    res.redirect('/panelA/perfilA');
+})
 
 router.post('/aprobar', async(req,res) => {
     console.log("aca?????aa")
