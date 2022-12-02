@@ -7,23 +7,25 @@
     
     <h2>Gestionar Ordenes</h2>
 
-    <table class="table">
+    <table class="table table-bordered text-center">
         <thead>
             <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Id servicio</th>
+            <th scope="col">Cliente</th>            
+            <th scope="col">Proveedor</th>
+            <th scope="col">Descripción</th>
             </tr>
         </thead>
         <tbody>
 
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>            
+            {{#each datos}}
+                <tr>
+                    <th scope="row">{{servicio_id}}</th>
+                    <td>{{fullname}}</td>                   
+                    <td>{{razon_social}}</td>
+                    <td>{{description}}</td>
+                </tr>       
+            {{/each}}     
             
         </tbody>
     </table>
