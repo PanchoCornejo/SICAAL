@@ -35,6 +35,77 @@ router.get('/publicar',isProveedor , async(req, res) => {
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
+router.get('/misserviciosA', isProveedor, async (req, res) => {
+    const id = req.user.id;
+    let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [id]);
+    if (result.length != 0){
+        const proveedor_id = result[0].id;
+        console.log("esta aca?")
+        // console.log(id);
+        const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ? AND estado_publicacion = "archivado"', [proveedor_id]);
+        // console.log(servicios);
+        res.render('proveedores/misserviciosA', {datos});
+    }else{
+        res.render('proveedores/misserviciosA',{});
+    }
+    
+});
+
+router.post('/misservicios', uploadFile(), async function(req, res, next){
+    // console.log(req.user.proveedor_id);
+    console.log("Post de misServicios para ir a Modificar")
+
+    let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
+    const user_id = req.user.id;
+    console.log("La cosa es:"+result[0].id);
+    const proveedor_id = result[0].id;
+    // console.log(req.body);
+    const { VALid, nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
+    console.log("Regiones en las que Opera");
+    console.log(region);
+    console.log("Ciudades que trabajamos");
+    console.log(ciudades);
+
+    //Por defecto viene en pendiente, para que no se publique de una
+    const estado_publicacion = 'pendiente';
+    let DatosP = {
+        VALid,
+        user_id,
+        proveedor_id,
+        nombre,
+        marca,
+        ano,
+        modelo,
+        horometro,
+        operador,
+        estado,
+        categoria,
+        description
+    };
+    console.log(DatosP)
+
+    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+    const arica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="1"');
+    const tarapaca = await pool.query('SELECT id_city, name FROM cities WHERE id_region="2"');
+    const antofagasta = await pool.query('SELECT id_city, name FROM cities WHERE id_region="3"');
+    const atacama = await pool.query('SELECT id_city, name FROM cities WHERE id_region="4"');
+    const coquimbo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="5"');
+    const valparaiso = await pool.query('SELECT id_city, name FROM cities WHERE id_region="6"');
+    const metropolitana = await pool.query('SELECT id_city, name FROM cities WHERE id_region="7"');
+    const bernardo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="8"');
+    const maule = await pool.query('SELECT id_city, name FROM cities WHERE id_region="9"');
+    const ñuble = await pool.query('SELECT id_city, name FROM cities WHERE id_region="10"');
+    const biobio = await pool.query('SELECT id_city, name FROM cities WHERE id_region="11"');
+    const araucania = await pool.query('SELECT id_city, name FROM cities WHERE id_region="12"');
+    const rios = await pool.query('SELECT id_city, name FROM cities WHERE id_region="13"');
+    const lagos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="14"');
+    const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
+    const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
+
+    res.render('proveedores/modificar', {DatosP , regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
+});
+
+// Donde puede el Proveedor: revisa sus publicaciones (Archivado) y las puede reactivar (a pendiente) o modificar.
 router.get('/misservicios', isProveedor, async (req, res) => {
 
     const id = req.user.id;
@@ -43,7 +114,7 @@ router.get('/misservicios', isProveedor, async (req, res) => {
         const proveedor_id = result[0].id;
         console.log("esta aca?")
         // console.log(id);
-        const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ?', [proveedor_id]);
+        const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ? AND estado_publicacion = "aprobado"  OR estado_publicacion = "pendiente" OR estado_publicacion = "rechazado"', [proveedor_id]);
         // console.log(servicios);
         res.render('proveedores/misservicios', {datos});
     }else{
@@ -396,6 +467,213 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     res.redirect('/panelP/perfilP');
 });
 
+
+
+// Post de un Servicio Modificado!!!
+
+router.post('/modificar', uploadFile(), async function(req, res, next){
+    // console.log(req.user.proveedor_id);
+    console.log("Estamos Modificando la un Servicio en la Base de Datos")
+
+    let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
+    const user_id = req.user.id;
+    console.log("La cosa es:"+result[0].id);
+    const proveedor_id = result[0].id;
+    // console.log(req.body);
+    const { VALid, nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
+    console.log("Regiones en las que Opera");
+    console.log(region);
+    console.log("Ciudades que trabajamos");
+    console.log(ciudades);
+    
+    //Por defecto viene en pendiente, para que no se publique de una
+    const estado_publicacion = 'pendiente';
+    let idd = { VALid }
+    let DatosP = {
+        user_id,
+        proveedor_id,
+        nombre,
+        marca,
+        ano,
+        modelo,
+        horometro,
+        operador,
+        estado,
+        categoria,
+        description,
+        estado_publicacion,
+        dominio_de_la_maquina:'',
+        revision_tecnica:'',
+        permiso_de_circulacion:'',
+        seguro:'',
+        documentacion_operador:'',
+        foto:''
+
+    };
+    console.log(DatosP);
+    const uploadQuery = await pool.query('UPDATE INTO servicios set ? Where id=?', [DatosP, idd.VALid]);
+
+
+    const paths = {};
+
+    if (req.files.domMaq) {
+
+        const oldPath = req.files.domMaq[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.domMaq[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.dominio_de_la_maquina = newPathN;
+
+        
+    } else {
+        paths.dominio_de_la_maquina = 'null';  
+    }
+    if (req.files.revTec) {
+        const oldPath = req.files.revTec[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.revTec[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.revision_tecnica = newPathN;
+
+    } else {
+        paths.revision_tecnica = 'null';   
+    }
+
+    if (req.files.perCir) {
+        
+        const oldPath = req.files.perCir[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.perCir[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.permiso_de_circulacion = newPathN;
+
+    } else {
+        paths.permiso_de_circulacion = 'null';
+    }
+
+    if (req.files.seg) {
+        
+        const oldPath = req.files.seg[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.seg[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.seguro = newPathN;
+
+        
+    } else {
+        paths.seguro = 'null';
+    }
+
+    if (req.files.docOpe) {
+        
+        const oldPath = req.files.docOpe[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.docOpe[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.documentacion_operador = newPathN;
+
+        
+    } else {
+        paths.documentacion_operador = 'null';
+    }
+
+    if (req.files.fot) {
+        
+        const oldPath = req.files.fot[0].path;
+
+        const newPath = path.join(__dirname, '../../storage/' + proveedor_id + '/' + servicio_id);
+
+        fs.mkdirSync(newPath, { recursive: true });
+
+        const newPathN = path.join(newPath, req.files.fot[0].filename);
+
+
+        fs.rename(oldPath, newPathN, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+        paths.foto = newPathN;
+
+        
+    } else {
+        paths.foto = 'null';
+    }
+
+    await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
+
+
+    var id_ciudad = ciudades.map(function (x) { 
+        return parseInt(x, 10); 
+    });
+
+    const mergedArray = [];
+
+    id_ciudad.forEach((element,index )=> {
+        let tempArray = [];
+        tempArray.push(idd.VALid);
+        tempArray.push(element);
+        mergedArray.push(tempArray);
+    });
+
+    await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);
+
+
+    req.flash('¡Correcto!', 'Servicio Modificado correctamente.');
+    res.redirect('/panelP/perfilP');
+});
+
+
+
+
+
+
+
+
 router.get('/testeando',(req,res)=>{
     console.log(__dirname + '/../../storage/5/domMaq')
     res.send("url testeando")
@@ -405,10 +683,11 @@ router.post('/baja',async (req,res)=>{
     //Dar de baja significa eliminar el servicio
     const {id} = req.body
 
-    const borrar = await pool.query(`DELETE FROM servicios WHERE id = ${id}`);
+    const borrar = await pool.query(`update servicios set estado_publicacion = 'archivado' where id = ${id};`);
 
 
     res.send({msg : 'me diste de baja', id : id})
 })
+
 
 module.exports = router;

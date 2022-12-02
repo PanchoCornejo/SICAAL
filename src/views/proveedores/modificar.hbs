@@ -1,0 +1,524 @@
+{{>navigation2}}
+{{>message}} 
+
+<div class="main">
+    <!--====== CONTACT ONE PART START ======-->
+<section class="contact-area">
+   <div class="container">
+
+      <div class="contact-form form-style-four mt-15" >
+            <p class="h1">Publicar Solicitud</p>
+               <form action="./modificar" method="POST" enctype="multipart/form-data">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Nombre del servicio</label>
+                           <div class="input-items default">
+                              <i class="lni lni-user"></i>
+                              <input type="text" id="nombre" name="nombre" placeholder="{{DatosP.nombre}}" required/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Marca de la Maquinaria</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="text" id="marca" name="marca" placeholder="{{DatosP.marca}}" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Modelo</label>
+                           <div class="input-items default">
+                              <i class="lni lni-bubble"></i>
+                              <input type="text"name="modelo" id="inputAddress2" placeholder="{{DatosP.modelo}}" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Año máquina</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="number" id="ano" name="ano" placeholder="{{DatosP.ano}}" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Horometro</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="number" id="horometro" name="horometro" placeholder="{{DatosP.horometro}}'" required/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Operador</label>
+                           <div class="input-items default">
+                              
+                              <select class="form-select" name="operador" required>
+                                    <option value="No">No</option>
+                                    <option value="Si">Si</option>
+                                </select>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                  
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">      
+                              <legend>Región</legend> 
+                              {{#each regiones}}
+                              <input type="checkbox" class="form-check-input" name="region" id="{{name}}" onclick="mostrar()" value="{{name}}">  {{name}}<br>
+                              {{/each}}      
+                              <br>      
+                           </fieldset> 
+                        </div>
+                     </div>
+                  
+
+                     <div id="1" style="display:none" class="col-md-12">
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select" >    
+                              <legend>Ciudades de Arica y Parinacota</legend> 
+                              {{#each arica}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="2" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Tarapacá</legend> 
+                              {{#each tarapaca}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="3" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Antofagasta</legend> 
+                              {{#each antofagasta}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="4" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Atacama</legend> 
+                              {{#each atacama}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="5" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Coquimbo</legend> 
+                              {{#each coquimbo}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="6" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Valparaíso</legend> 
+                              {{#each valparaiso}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="7" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Metropolitana</legend> 
+                              {{#each metropolitana}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="8" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de O'Higgins</legend> 
+                              {{#each bernardo}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="9" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades del Maule</legend> 
+                              {{#each maule}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="10" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Ñuble</legend> 
+                              {{#each ñuble}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="11" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select" >    
+                              <legend>Ciudades del Biobío</legend> 
+                              {{#each biobio}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="12" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select" >    
+                              <legend>Ciudades de la Araucanía</legend> 
+                              {{#each araucania}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="13" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select" >    
+                              <legend>Ciudades de los Ríos</legend> 
+                              {{#each rios}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="14" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de los Lagos</legend> 
+                              {{#each lagos}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="15" style="display:none" >
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de la región General Carlos Ibañes</legend> 
+                              {{#each carlos}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     <div class="col-md-12" id="16" style="display:none">
+                        <div class="form-input mt-15">
+                           <fieldset class="form-select">    
+                              <legend>Ciudades de Magallanes y la Antártica</legend> 
+                              {{#each antartica}}
+                              <input type="checkbox" name="ciudades" value="{{id_city}}">  {{name}}<br>    
+                              {{/each}}     
+                           </fieldset>  
+                        </div>
+                     </div>
+
+                     
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Estado del Servicio</label>
+                           <div class="input-items default">
+                              <select id="inputState" name="estado" class="form-select" required>
+                                <option value="Disponible">Disponible</option>
+                                <option value="En mantenimiento">En mantenimiento</option>
+                                <option value="Ocupada">Ocupada</option>
+                                </select>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Categoría</label>
+                           <div class="input-items default">
+                              <i class="lni lni-envelope"></i>
+                              <input type="text" placeholder="Retroexcavadora" name="{{DatosP.categoria}}" id="inputZip" required />
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-12">
+                        <div class="form-input mt-15">
+                           <label>Describa su servicio</label>
+                           <div class="input-items default">
+                              <i class="lni lni-pencil-alt"></i>
+                              <textarea
+                                    name="description"
+                                 placeholder="{{DatosP.description}}"
+                                 ></textarea>
+                           </div>
+                        </div>                         
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Dominio de la máquina</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="domMaq" name="domMaq" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Revisión técnica</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="revTec" name="revTec" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Permiso de circulación</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="perCir" name="perCir" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Seguro</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="seg" name="seg"type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Documentación del operador (si aplica)</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="docOpe" name="docOpe" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                     <div class="col-md-6">
+                        <div class="form-input mt-15">
+                           <label>Foto de la máquina</label>
+                           <div class="input-items default">
+                              <i class="lni lni-files"></i>
+                              <input id="fot" name="fot" type="file"/>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+
+                    <input id="VALid" name="VALid" type="hidden" value="{{DatosP.VALid}}">
+
+
+                     <div class="col-md-12">
+                        <div class="single-form mt-15">
+                           <div class="input-form rounded-buttons">
+                              <button
+                                 class="btn primary-btn rounded-full"
+                                 type="submit"
+                                 >
+                              Publicar Solicitud
+                              </button>
+                           </div>
+                        </div>
+                        <!-- single form -->
+                     </div>
+                  </div>
+                  <!-- row -->
+               </form>
+            </div>
+      <!-- row -->
+   </div>
+   <!-- container -->
+</section>
+<!--====== CONTACT ONE PART ENDS ======-->
+</div>
+
+
+
+<script>
+function mostrar() {
+  var arica = document.getElementById("Región de Arica y Parinacota");
+  var tarapaca = document.getElementById("Región de Tarapacá");
+  var antofagasta = document.getElementById("Región de Antofagasta");
+  var atacama = document.getElementById("Región de Atacama");
+  var coquimbo = document.getElementById("Región de Coquimbo");
+  var valparaiso = document.getElementById("Región de Valparaíso");
+  var metropolitana = document.getElementById("Región Metropolitana de Santiago");
+  var bernardo = document.getElementById("Región del Libertador General Bernardo O'Higgins");
+  var maule = document.getElementById("Región del Maule");
+  var ñuble = document.getElementById("Región de Ñuble");
+  var biobio = document.getElementById("Región del Biobío");
+  var araucania = document.getElementById("Región de La Araucanía");
+  var rios = document.getElementById("Región de Los Ríos");
+  var lagos = document.getElementById("Región de Los Lagos");
+  var carlos = document.getElementById("Región Aysén del General Carlos Ibáñez del Campo");
+  var antarica = document.getElementById("Región de Magallanes y de la Antártica Chilena");
+  var text = document.getElementById("1");
+  var text2 = document.getElementById("2");
+  var text3 = document.getElementById("3");
+  var text4 = document.getElementById("4");
+  var text5 = document.getElementById("5");
+  var text6 = document.getElementById("6");
+  var text7 = document.getElementById("7");
+  var text8 = document.getElementById("8");
+  var text9 = document.getElementById("9");
+  var text10 = document.getElementById("10");
+  var text11 = document.getElementById("11");
+  var text12 = document.getElementById("12");
+  var text13 = document.getElementById("13");
+  var text14 = document.getElementById("14");
+  var text15 = document.getElementById("15");
+  var text16 = document.getElementById("16");
+  if (arica.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+  if (tarapaca.checked == true){
+    text2.style.display = "block";
+  } else {
+     text2.style.display = "none";
+  }
+  if (antofagasta.checked == true){
+    text3.style.display = "block";
+  } else {
+     text3.style.display = "none";
+  }
+  if (atacama.checked == true){
+    text4.style.display = "block";
+  } else {
+     text4.style.display = "none";
+  }
+  if (coquimbo.checked == true){
+    text5.style.display = "block";
+  } else {
+     text5.style.display = "none";
+  }
+  if (valparaiso.checked == true){
+    text6.style.display = "block";
+  } else {
+     text6.style.display = "none";
+  }
+  if (metropolitana.checked == true){
+    text7.style.display = "block";
+  } else {
+     text7.style.display = "none";
+  }
+  if (bernardo.checked == true){
+    text8.style.display = "block";
+  } else {
+     text8.style.display = "none";
+  }
+  if (maule.checked == true){
+    text9.style.display = "block";
+  } else {
+     text9.style.display = "none";
+  }
+  if (ñuble.checked == true){
+    text10.style.display = "block";
+  } else {
+     text10.style.display = "none";
+  }
+  if (biobio.checked == true){
+    text11.style.display = "block";
+  } else {
+     text11.style.display = "none";
+  }
+  if (araucania.checked == true){
+    text12.style.display = "block";
+  } else {
+     text12.style.display = "none";
+  }
+  if (rios.checked == true){
+    text13.style.display = "block";
+  } else {
+     text13.style.display = "none";
+  }
+  if (lagos.checked == true){
+    text14.style.display = "block";
+  } else {
+     text14.style.display = "none";
+  }
+  if (carlos.checked == true){
+    text15.style.display = "block";
+  } else {
+     text15.style.display = "none";
+  }
+  if (antarica.checked == true){
+    text16.style.display = "block";
+  } else {
+     text16.style.display = "none";
+  }
+}
+</script>

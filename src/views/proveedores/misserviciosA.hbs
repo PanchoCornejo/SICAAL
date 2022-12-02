@@ -34,29 +34,9 @@
       <div class="card-footer">
         <div class="row">
             
-            <div class="col-md-6">
-             <button class="btn btn-danger"  value={{id}} onclick = 'baja(this)'>Archivar</button>
-            </div>          
-
-            <form action="/panelP/misservicios" method="POST" class="row g-3 novalidate was-validated"  novalidate>
-                <div class="col">
-                    <input id="VALid" name="VALid" type="hidden" value="{{id}}">
-                    <input id="nombre" name="nombre" type="hidden" value="{{nombre}}">
-                    <input id="marca" name="marca" type="hidden" value="{{marca}}">
-                    <input id="modelo" name="modelo" type="hidden" value="{{modelo}}">
-                    <input id="ano" name="ano" type="hidden" value="{{ano}}">
-                    <input id="horometro" name="horometro" type="hidden" value="{{horometro}}">
-                    <input id="operador" name="operador" type="hidden" value="{{operador}}">
-                    <input id="region" name="region" type="hidden" value="{{region}}">
-                    <input id="ciudades" name="ciudades" type="hidden" value="{{ciudades}}">
-                    <input id="estado" name="estado" type="hidden" value="{{estado}}">
-                    <input id="categoria" name="categoria" type="hidden" value="{{categoria}}">
-                    <input id="description" name="description" type="hidden" value="{{description}}">
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Modificar</button>
-                    </div>
-                </div>
-            </form>   
+            <div class="col">
+             <button class="btn btn-danger"  value={{id}} onclick = 'baja(this)'>Dar de baja</button>
+            </div>            
 
             </div>
       </div>
