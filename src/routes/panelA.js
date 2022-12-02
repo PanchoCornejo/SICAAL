@@ -65,8 +65,10 @@ router.post('/rechazar', async(req,res) => {
 router.get('/servicios', isAdmin,async (req, res) => {
 
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
-
-    res.render('admins/servicios', { datos : datos });
+    const valor = await pool.query('SELECT servicio_id, AVG(valoracion),AVG(Voperador),AVG(Vpuntualidad),AVG(Vexperiencia), AVG(Vfallas), AVG(Vestadomaquina) FROM valoraciones WHERE servicio_id IN (SELECT id FROM servicios where estado_publicacion = "aprobado") GROUP BY servicio_id;');
+    console.log("Mostrando los datos de Valor");
+    console.log(valor[0].servicio_id);
+    res.render('admins/servicios', { datos : datos, valor });
     
 });
 
