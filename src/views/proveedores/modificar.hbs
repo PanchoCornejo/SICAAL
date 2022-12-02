@@ -15,7 +15,7 @@
                            <label>Nombre del servicio</label>
                            <div class="input-items default">
                               <i class="lni lni-user"></i>
-                              <input type="text" id="nombre" name="nombre" placeholder="{{DatosP.nombre}}" required/>
+                              <input type="text" id="nombre" name="nombre" value="{{DatosP.nombre}}" placeholder="{{DatosP.nombre}}" required/>
                            </div>
                         </div>
                         <!-- form input -->
@@ -26,7 +26,7 @@
                            <label>Marca de la Maquinaria</label>
                            <div class="input-items default">
                               <i class="lni lni-envelope"></i>
-                              <input type="text" id="marca" name="marca" placeholder="{{DatosP.marca}}" required />
+                              <input type="text" id="marca" name="marca" value="{{DatosP.marca}}" placeholder="{{DatosP.marca}}" required />
                            </div>
                         </div>
                         <!-- form input -->
@@ -36,7 +36,7 @@
                            <label>Modelo</label>
                            <div class="input-items default">
                               <i class="lni lni-bubble"></i>
-                              <input type="text"name="modelo" id="inputAddress2" placeholder="{{DatosP.modelo}}" required />
+                              <input type="text"name="modelo" id="inputAddress2" value="{{DatosP.model}}" placeholder="{{DatosP.modelo}}" required />
                            </div>
                         </div>
                         <!-- form input -->
@@ -47,7 +47,7 @@
                            <label>Año máquina</label>
                            <div class="input-items default">
                               <i class="lni lni-envelope"></i>
-                              <input type="number" id="ano" name="ano" placeholder="{{DatosP.ano}}" required />
+                              <input type="number" id="ano" name="ano" value="{{DatosP.ano}}" placeholder="{{DatosP.ano}}" required />
                            </div>
                         </div>
                         <!-- form input -->
@@ -60,7 +60,7 @@
                            <label>Horometro</label>
                            <div class="input-items default">
                               <i class="lni lni-envelope"></i>
-                              <input type="number" id="horometro" name="horometro" placeholder="{{DatosP.horometro}}'" required/>
+                              <input type="number" id="horometro" name="horometro"  value="{{DatosP.horometro}}" placeholder="{{DatosP.horometro}}'" required/>
                            </div>
                         </div>
                         <!-- form input -->
@@ -290,7 +290,7 @@
                            <label>Categoría</label>
                            <div class="input-items default">
                               <i class="lni lni-envelope"></i>
-                              <input type="text" placeholder="Retroexcavadora" name="{{DatosP.categoria}}" id="inputZip" required />
+                              <input type="text" placeholder="Retroexcavadora" name="{{DatosP.categoria}}" value="{{DatosP.categoria}}" id="inputZip" required />
                            </div>
                         </div>
                         <!-- form input -->
@@ -302,6 +302,7 @@
                            <div class="input-items default">
                               <i class="lni lni-pencil-alt"></i>
                               <textarea
+                                    value="{{DatosP.description}}"
                                     name="description"
                                  placeholder="{{DatosP.description}}"
                                  ></textarea>
