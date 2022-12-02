@@ -17,12 +17,13 @@
             <p class="card-text">Modelo: {{modelo}}</p>
             <p class="card-text">Horometro: {{horometro}}</p>
             <p class="card-text">Operador: {{operador}}</p>
-            <p class="card-text">Región: {{region}}</p>
-            <p class="card-text">Ciudades: {{ciudades}}</p>
             <p class="card-text">Estado: {{estado}}</p>
             <p class="card-text">Categoría: {{categoria}}</p>
             <p class="card-text">Descripción: {{description}}</p>
       </div>
+
+
+
       <div class="card-body">
         <table class="table table-striped">
           <thead>
@@ -89,12 +90,16 @@
           </tbody>
         </table>
       </div>
+
+
+
+      
         
       <div class="card-footer">
         <div class="row">
             
             <div class="col">
-             <button class="btn btn-danger">Dar de baja</button>
+             <button class="btn btn-danger" value={{id}} onclick='baja(this)'>Dar de baja</button>
             </div>
             
 
@@ -120,6 +125,32 @@
 
 
 <script>
+
+    const baja = async(boton) => {
+      const id = boton.value   
+
+      const data = {
+        'id' : id
+      }
+
+      await fetch('./baja',{
+        method : 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Connection': 'keep-alive',
+            'Accept': '*/*',
+        },
+        body :JSON.stringify(data)
+        
+    })
+    .then(resp => resp.json())
+    .then(data => console.log(data))
+
+
+
+    }
+
+
   // Initial Ratings
     const ratings = {
       General4: 4.7,

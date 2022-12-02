@@ -81,9 +81,15 @@ router.get('/servicios', isAdmin,async (req, res) => {
 
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
     const valor = await pool.query('SELECT servicio_id, AVG(valoracion),AVG(Voperador),AVG(Vpuntualidad),AVG(Vexperiencia), AVG(Vfallas), AVG(Vestadomaquina) FROM valoraciones WHERE servicio_id IN (SELECT id FROM servicios where estado_publicacion = "aprobado") GROUP BY servicio_id;');
+    //const valor = await pool.query(`SELECT AVG(valoracion) 'Valoracion', AVG(Voperador) 'Valoracion operador', AVG(Vpuntualidad) 'Puntualidad', AVG(Vexperiencia) 'Experiencia', AVG(Vfallas) 'Valoracion fallas', AVG(Vestadomaquina) 'Valoracion estado maquina' FROM valoraciones WHERE servicio_id = (select id from servicios where estado_publicacion = 'aprobado');`)
     console.log("Mostrando los datos de Valor");
-    console.log(valor[0].servicio_id);
-    res.render('admins/servicios', { datos : datos, valor });
+    //console.log(valor[0].servicio_id);
+    console.log("---taloco---")
+    let prueba = []
+    prueba.push(datos)
+    prueba.push(valor)
+    console.log(prueba)
+    res.render('admins/servicios', { datos : datos, valor : valor });
     
 });
 
@@ -210,5 +216,12 @@ router.post('/Asignar', isAdmin, async (req, res) => {
     req.flash('success', 'Orden Generada Correctamente');
     res.redirect('/panelA/perfilA');
 });
+
+router.post('/baja', async(req,res)=> {
+    const {id} = req.body;
+    await pool.query(`DELETE FROM servicios WHERE id = ${id}`);
+    
+    res.send({ok : 'baja', id : id})
+})
 
 module.exports = router;
