@@ -31,22 +31,6 @@ router.post('/restaurar', passport.authenticate('local.change', {
   failureFlash: true
 }));
 
-
-/*
-router.post('/restaurar', isAdmin ,  async (req, res) => {
-  console.log("hola intentaremos cambiar la contraseña:");
-  const id = req.user.id;
-  const { username, contraseña } = req.body;
-  console.log(contraseña);
-  PASS = await helpers.encryptPassword(contraseña[1]);
-  console.log("nueva contraseña: "+ PASS);
-  await pool.query('UPDATE users set password = ? WHERE username = ?', [PASS, username]);
-  req.flash('Logrado', 'Contrseña Actualizada Correctamente');
-  res.redirect('/panelA/perfilA');
-});
-
-*/
-
 // SIGNUP
 router.get('/signup', isAdmin, (req, res) => {
   res.render('auth/signup');

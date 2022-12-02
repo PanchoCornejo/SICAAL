@@ -1,3 +1,5 @@
+{{>message}}
+
 <!--====== SIGNIN ONE PART START ======-->
 <section class="signin-area signin-one">
   <div class="container">
@@ -8,7 +10,7 @@
 
 
 
-        <form action="/signup" method="POST">
+        <form action="/signup" method="POST" class="row g-3 novalidate was-validated"  novalidate>
 
           <div class="signin-form form-style-two rounded-buttons">
 
@@ -25,8 +27,11 @@
                 <div class="form-input">
 
                   <div class="input-items default">
-                    <input type="type" name="fullname" placeholder="Nombre de Empresa" autofocus>
-                    <i class="lni lni-user"></i>
+                    <input type="type" name="fullname" placeholder="Nombre de Empresa" autofocus required>
+                    <i class="lni lni-user me-4"></i>
+                    <div class="invalid-feedback">
+                        Proporciona el nombre de la Empresa
+                    </div>
                   </div>
                 </div>
                 <!-- form input -->
@@ -35,8 +40,11 @@
                 <div class="form-input">
 
                   <div class="input-items default">
-                    <input type="text" name="username" placeholder="Nombre de Usuario">
-                    <i class="lni lni-key"></i>
+                    <input type="text" name="username" placeholder="Nombre de Usuario" required>
+                    <i class="lni lni-key me-4"></i>
+                    <div class="invalid-feedback">
+                        Proporciona el nombre de usuario "UNICO"
+                    </div>
                   </div>
                 </div>
                 <!-- form input -->
@@ -55,8 +63,11 @@
                 <div class="form-input">
 
                   <div class="input-items default">
-                    <input type="password" name="password" placeholder="Contraseña">
-                    <i class="lni lni-key"></i>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <i class="lni lni-key me-4"></i>
+                    <div class="invalid-feedback">
+                        Proporciona tu Contraseña
+                    </div>
                   </div>
                 </div>
                 <!-- form input -->
