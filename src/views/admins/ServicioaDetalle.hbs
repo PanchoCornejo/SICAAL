@@ -1,0 +1,184 @@
+{{>navigation1}}
+{{>message}} 
+
+<div class="main">
+    {{#if datos}}
+
+    
+    
+    <div class="card mb-3" style="max-width: 40em;">
+        <div class="row g-0">
+            {{#each datos}}
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Nombre: {{nombre }}</h5>
+                    <p class="card-text">Marca: {{marca}}</p>
+                    <p class="card-text">Año: {{ano}}</p>
+                    <p class="card-text">Modelo: {{modelo}}</p>
+                    <p class="card-text">Horometro: {{horometro}}</p>
+                    <p class="card-text">Operador: {{operador}}</p>
+                    <p class="card-text">Estado: {{estado}}</p>
+                    <p class="card-text">Categoría: {{categoria}}</p>
+                    <p class="card-text">Descripción: {{description}}</p>
+                </div>
+            </div>
+            {{/each}}
+            <div class="col-md-4">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th>Categoria</th>
+                            <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="General">
+                            <td>Calificacion General</td>
+                            <td>
+                                <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                                </div>
+                                <span class="number-rating"></span>
+                            </td>
+                            </tr>
+                            <tr class="Operador">
+                            <td>Operador</td>
+                            <td>
+                                <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                                </div>
+                                <span class="number-rating"></span>
+                            </td>
+                            </tr>
+                            <tr class="Puntualidad">
+                            <td>Puntualidad</td>
+                            <td>
+                                <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                                </div>
+                                <span class="number-rating"></span>
+                            </td>
+                            </tr>
+                            <tr class="Experiencia">
+                            <td>Experiencia</td>
+                            <td>
+                                <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                                </div>
+                                <span class="number-rating"></span>
+                            </td>
+                            </tr>
+                            <tr class="Fallas">
+                            <td>Fallas</td>
+                            <td>
+                                <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                                </div>
+                                <span class="number-rating"></span>
+                            </td>
+                            </tr>
+                            <tr class="EstadoMaquina">
+                            <td>Estado Maquina</td>
+                            <td>
+                                <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                                </div>
+                                <span class="number-rating"></span>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#each valor}}
+    <input id="1" name="{{general}}" type="hidden" value="{{general}}">
+    <input id="2" name="{{operador}}" type="hidden" value="{{operador}}">
+    <input id="3" name="{{puntualidad}}" type="hidden" value="{{puntualidad}}">
+    <input id="4" name="{{experiencia}}" type="hidden" value="{{experiencia}}">
+    <input id="5" name="{{fallas}}" type="hidden" value="{{fallas}}">
+    <input id="6" name="{{estadomaquina}}" type="hidden" value="{{estadomaquina}}">
+    {{/each}}
+    
+
+    {{else}}
+    <h1>No hay datos</h1>
+    {{/if}}
+
+
+
+<script>
+    const Gen = document.getElementById('1');
+    const Ope = document.getElementById('2');
+    const Pun = document.getElementById('3');
+    const Exp = document.getElementById('4');
+    const Fal = document.getElementById('5');
+    const Est = document.getElementById('6');
+    console.log("Te muestro valores");
+    console.log(Gen.value);
+    // Initial Ratings
+    const ratings = {
+      General: Gen.value,
+      Operador: Ope.value,
+      Puntualidad: Pun.value,
+      Experiencia: Exp.value,
+      Fallas: Fal.value,
+      EstadoMaquina: Est.value
+    }
+    // Total Stars
+    const starsTotal = 5;
+
+    // Run getRatings when DOM loads
+    document.addEventListener('DOMContentLoaded', getRatings);
+
+    // Form Elements
+    const productSelect = document.getElementById('product-select');
+    const ratingControl = document.getElementById('rating-control');
+
+    // Init product
+    let product;
+
+    // Product select change
+    productSelect.addEventListener('change', (e) => {
+      product = e.target.value;
+      // Enable rating control
+      ratingControl.disabled = false;
+      ratingControl.value = ratings[product];
+    });
+
+    // Rating control change
+    ratingControl.addEventListener('blur', (e) => {
+      const rating = e.target.value;
+
+      // Make sure 5 or under
+      if (rating > 5) {
+        alert('Please rate 1 - 5');
+        return;
+      }
+
+      // Change rating
+      ratings[product] = rating;
+
+      getRatings();
+    });
+
+    // Tomamos los ratings
+    function getRatings() {
+
+      for (let rating in ratings) {
+        // Tomamos el Porcentage (para saber cuanto porcentaje rellenamos las estrellas de un 0% a 100%)
+        const starPercentage = (ratings[rating] / starsTotal) * 100;
+
+        // Round to nearest 10 (lo redondea a estrella entera o x la mitad)
+        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+        // Set width of stars-inner to percentage
+        document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+
+        // Add number rating
+        document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
+      }
+    }
+</script>

@@ -114,7 +114,7 @@ router.get('/misservicios', isProveedor, async (req, res) => {
         const proveedor_id = result[0].id;
         console.log("esta aca?")
         // console.log(id);
-        const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ? AND estado_publicacion = "aprobado"  OR estado_publicacion = "pendiente" OR estado_publicacion = "rechazado"', [proveedor_id]);
+        const datos = await pool.query('SELECT * FROM servicios WHERE servicios.proveedor_id = ? AND (estado_publicacion = "aprobado"  OR estado_publicacion = "pendiente" OR estado_publicacion = "rechazado")', [proveedor_id]);
         // console.log(servicios);
         res.render('proveedores/misservicios', {datos});
     }else{
