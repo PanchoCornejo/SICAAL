@@ -3,9 +3,522 @@
 
 {{!-- {{Dashboard}} --}}
 
-<div class="main">
-    {{!-- {{Division por Regiones}} --}}
-    <div class="row mt-3">
+<div class="main" style='max-width : 50em;'>
+    <div class="tabs">
+   <div class="single-tabs tabs-one mt-2">
+      <ul class="nav nav-justified" id="myTab" role="tablist">
+         <li class="nav-item">
+            <a class="active" id="tab-one-one-tab" data-bs-toggle="tab" href="#tab-one-one" role="tab"
+               aria-controls="tab-one-one" aria-selected="true">Zona Norte</a>
+         </li>
+         <li class="nav-item">
+            <a id="tab-one-two-tab" data-bs-toggle="tab" href="#tab-one-two" role="tab"
+               aria-controls="tab-one-two" aria-selected="false">Zona Centro</a>
+         </li>
+         <li class="nav-item">
+            <a id="tab-one-three-tab" data-bs-toggle="tab" href="#tab-one-three" role="tab"
+               aria-controls="tab-one-three" aria-selected="false">Zona Sur</a>
+         </li>
+         <li class="nav-item">
+            <a id="tab-one-four-tab" data-bs-toggle="tab" href="#tab-one-four" role="tab"
+               aria-controls="tab-one-four" aria-selected="false">Zona Austral</a>
+         </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+         <div class="tab-pane fade show active" id="tab-one-one" role="tabpanel"
+            aria-labelledby="tab-one-one-tab">
+            <div class="tab-text">
+                   <!-- ARICA -->
+
+         {{#if Sarica}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Sarica}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Varica}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Carica}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Region de Arica</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Narica}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Narica}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Parica}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Parica}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Parica}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}
+    <!-- Tarapacá -->
+
+             {{#if Starapaca}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Starapaca}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vtarapaca}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Ctarapaca}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Region de Tarapacá</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Ntarapaca}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Ntarapaca}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Ptarapaca}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Ptarapaca}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Ptarapaca}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}
+      <!-- antofagasta -->
+
+                 {{#if Santofagasta}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Santofagasta}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vantofagasta}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Cantofagasta}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Region de Antofagasta</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nantofagasta}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nantofagasta}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pantofagasta}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pantofagasta}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pantofagasta}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}
+
+    <!-- Atacama -->
+
+    {{#if Satacama}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Satacama}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vatacama}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Catacama}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Region de Atacama</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Natacama}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Natacama}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Patacama}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Patacama}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Patacama}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}
+
+    <!-- coquimbo -->
+
+    {{#if Scoquimbo}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Scoquimbo}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vcoquimbo}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Ccoquimbo}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Region de Coquimbo</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Ncoquimbo}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Ncoquimbo}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pcoquimbo}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pcoquimbo}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pcoquimbo}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}
+
+            </div>
+         </div>
+         <div class="tab-pane fade" id="tab-one-two" role="tabpanel" aria-labelledby="tab-one-two-tab">
+            <div class="tab-text">
+               <!-- valparaiso -->
+    {{#if Svalparaiso}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Svalparaiso}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vvalparaiso}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Cvalparaiso}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Region de Valparaiso</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nvalparaiso}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nvalparaiso}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pvalparaiso}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pvalparaiso}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pvalparaiso}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}   
+
+    <!-- Metropolitana -->
+
+    {{#if Smetropolitana}}
+        <div class="row mt-3">
         <div class="container text-center">
             <div class="card">
                 {{!-- {{al interior de la tarjeta}} --}}
@@ -80,4 +593,738 @@
             </div>
         </div>
     </div>
+    {{else}}
+    {{/if}} 
+            </div>
+         </div>
+         <div class="tab-pane fade" id="tab-one-three" role="tabpanel" aria-labelledby="tab-one-three-tab">
+            <div class="tab-text">
+                <!-- Bernardo -->
+    {{#if Sbernardo}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Sbernardo}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vbernardo}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Cbernardo}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región de OHiggins</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nbernardo}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nbernardo}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pbernardo}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pbernardo}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pbernardo}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}     
+
+    <!-- Maule -->
+    {{#if Smaule}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Smaule}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vmaule}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Cmaule}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región del Maule</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nmaule}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nmaule}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pmaule}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pmaule}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pmaule}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}     
+
+    <!-- Nuble -->
+    {{#if Snuble}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Snuble}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vnuble}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Cnuble}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región de Nuble</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nnuble}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nnuble}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pnuble}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pnuble}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pnuble}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}      
+
+    <!-- Bio Bio -->
+    {{#if Sbiobio}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Sbiobio}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vbiobio}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Cbiobio}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región del Biobío</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nbiobio}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nbiobio}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pbiobio}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pbiobio}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pbiobio}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}     
+
+    <!-- araucania -->
+    {{#if Saraucania}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Saraucania}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Varaucania}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Caraucania}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región de la Arauncanía</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Naraucania}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Naraucania}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Paraucania}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Paraucania}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Paraucania}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}  
+
+    <!-- rios -->
+    {{#if Srios}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Srios}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vrios}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Crios}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región de los Ríos</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nrios}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nrios}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Prios}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Prios}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Prios}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}} 
+
+    <!-- lagos -->
+    {{#if Slagos}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Slagos}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vlagos}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Clagos}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región de los Lagos</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nlagos}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nlagos}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Plagos}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Plagos}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Plagos}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}} 
+            </div>
+         </div>
+         <div class="tab-pane fade" id="tab-one-four" role="tabpanel" aria-labelledby="tab-one-four-tab">
+            <div class="tab-text">
+                   <!-- carlos -->
+    {{#if Scarlos}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Scarlos}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vcarlos}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Ccarlos}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región de Aysén</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Ncarlos}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Ncarlos}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pcarlos}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pcarlos}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pcarlos}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}} 
+
+    <!-- antartica -->
+    {{#if Santartica}}
+        <div class="row mt-3">
+        <div class="container text-center">
+            <div class="card">
+                {{!-- {{al interior de la tarjeta}} --}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            {{#each Santartica}}
+                            <h1 style="text-align:center">{{cantidad}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Servicios Disponibles</h5>
+                        </div>
+                        <div class="row">
+                            <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
+                        </div>
+                        <div class="row">
+                            {{#each Vantartica}}
+                            <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}</h5>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            {{#each Cantartica}}
+                            <h1 style="text-align:center">{{cantidadProveedores}}</h1>
+                            {{/each}}
+                        </div>
+                        <div class="row">
+                            <h5 style="text-align:center">Proveedores</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h1 style="text-align:center">Región Antartica</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h5>Ciudades</h5>
+                            </div>
+                            <div class="col">
+                                <h5>Proveedores</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{#each Nantartica}}
+                                <h6>{{NAME}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Nantartica}}
+                                <h6>{{nro_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-5">
+                                {{#each Pantartica}}
+                                <h6>{{fullname}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pantartica}}
+                                <h6>{{cantidad_de_servicios}}</h6>
+                                {{/each}}
+                            </div>
+                            <div class="col-md-1">
+                                {{#each Pantartica}}
+                                <h6>{{promediofinal}}</h6>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div> 
+                </div>  
+            </div>
+        </div>
+    </div>
+    {{else}}
+    {{/if}} 
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- tabs one -->
+</div>
 </div>

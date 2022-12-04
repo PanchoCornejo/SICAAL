@@ -1,10 +1,10 @@
 {{>navigation1}}
 {{>message}} 
 
-<div class="main">
+<div class="main" style="max-width : 50em;">
     
     {{#if datos}}
-    <h2>Solicitudes Aprobadas</h2>
+    <h2 class="text-center">Solicitudes Aprobadas</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
     {{#each datos}}
    <div class="col">
@@ -28,7 +28,7 @@
                 <form action="/panelA/ServicioaDetalle" method="POST" class="row g-3 novalidate was-validated"  novalidate>
                   <input id="id" name="id" type="hidden" value="{{id}}">
                   <div class="col-md-6">
-                      <button type="submit" class="btn btn-success">Ver Detalles</button>
+                      <button type="submit" class="btn btn-success">Detalles</button>
                   </div>
                 </form>
                 </div>

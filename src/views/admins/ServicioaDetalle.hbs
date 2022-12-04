@@ -100,11 +100,24 @@
                                     </td>
                                     </tr>
                                 </tbody>
-                            </table>                            
+                            </table>   
 
-                            <button value={{id}} onclick="getRegiones(this)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Donde Opera {{id}}
-                            </button>
+                            <div class="row">                         
+
+                            <div class="col">
+                                <button value={{id}} onclick="getRegiones(this)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Ubicaciones
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" onclick="window.location='servicios';">
+                                    Volver
+                                </button>
+                            </div>
+
+
+                            </div>
+                            
 
 
                             <!-- popUP -->
