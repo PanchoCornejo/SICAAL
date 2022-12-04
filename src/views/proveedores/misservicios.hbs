@@ -30,11 +30,11 @@
       <div class="card-footer">
         <div class="row">
             
-            <div class="col-md-6">
+            <div class="col">
              <button class="btn btn-danger"  value={{id}} onclick = 'baja(this)'>Archivar</button>
             </div>          
-
-            <form action="/panelP/misservicios" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+            <div class="col">
+              <form action="/panelP/misservicios" method="POST" class="row g-3 novalidate was-validated"  novalidate>
                 <div class="col">
                     <input id="VALid" name="VALid" type="hidden" value="{{id}}">
                     <input id="nombre" name="nombre" type="hidden" value="{{nombre}}">
@@ -52,7 +52,8 @@
                         <button type="submit" class="btn btn-primary">Modificar</button>
                     </div>
                 </div>
-            </form>   
+            </form>  
+            </div>             
 
             </div>
       </div>

@@ -689,5 +689,13 @@ router.post('/baja',async (req,res)=>{
     res.send({msg : 'me diste de baja', id : id})
 })
 
+router.post('/mod', async (req,res) => {
+
+    const { id } = req.body
+    const data = await pool.query(`select * from servicios where id = ${id}`)
+
+    res.send({response : 'modificacion servicio', id : id, data : data})
+})
+
 
 module.exports = router;
