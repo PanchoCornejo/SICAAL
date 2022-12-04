@@ -100,8 +100,35 @@
                                     </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table>                            
+
+                            <button value={{id}} onclick="getRegiones(this)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Donde Opera {{id}}
+                            </button>
+
+
+                            <!-- popUP -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Donde opera</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="texto">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
+
                         </div>
+
                     
 
             </div>
@@ -201,4 +228,44 @@
         document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
       }
     }
+</script>
+
+<script>
+
+    const getRegiones = async(boton) => {
+        
+        const id = boton.value;
+
+        const data = {
+            'id' : id
+        }
+    
+
+    //console.log("Me apretaste");
+    await fetch('./getregiones',{
+        method : 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Connection': 'keep-alive',
+            'Accept': '*/*',
+        },
+        body :JSON.stringify(data)
+        
+    })
+    .then(resp => resp.json())
+    .then((data)=> {
+
+        let ubicacion = document.getElementById('texto');
+        let total = ''
+      data.datos.map((val,key)=>{      
+        total = total + '<p>' + val.name + '</p>'             
+        //console.log(val, ubicacion)
+      })
+      ubicacion.innerHTML = total
+      
+    })
+
+    }
+
+    
 </script>

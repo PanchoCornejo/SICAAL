@@ -24,15 +24,20 @@
         
       <div class="card-footer">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col">
+                <form action="/panelA/ServicioaDetalle" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+                  <input id="id" name="id" type="hidden" value="{{id}}">
+                  <div class="col-md-6">
+                      <button type="submit" class="btn btn-success">Ver Detalles</button>
+                  </div>
+                </form>
+                </div>
+
+
+            <div class="col">
              <button class="btn btn-danger" value={{id}} onclick='baja(this)'>Dar de baja</button>
             </div>
-            <form action="/panelA/ServicioaDetalle" method="POST" class="row g-3 novalidate was-validated"  novalidate>
-              <input id="id" name="id" type="hidden" value="{{id}}">
-              <div class="col-md-6">
-                  <button type="submit" class="btn btn-success">Ver Detalles</button>
-              </div>
-            </form>
+            
         </div>
       </div>
     </div>

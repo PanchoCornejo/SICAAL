@@ -25,7 +25,7 @@
                 <div class="form-input">
 
                   <div class="input-items default">
-                    <input type="type" name="empresa" placeholder="Nombre de Empresa" autofocus>
+                    <input type="type" name="empresa" placeholder="Nombre de Empresa" autofocus required>
                     <i class="lni lni-user"></i>
                   </div>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="form-input">
 
                   <div class="input-items default">
-                    <input type="text" name="nombre" placeholder="Nombre de Contacto">
+                    <input type="text" name="nombre" placeholder="Nombre de Contacto" required>
                     <i class="lni"></i>
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="form-input">
 
                   <div class="input-items default">
-                    <input type="text" name="numero" placeholder="Numero de Contacto">
+                    <input type="text" name="numero" placeholder="Numero de Contacto" required>
                     <i class="lni"></i>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="form-input">
 
                   <div class="input-items default">
-                    <input type="text" name="ubicacion" placeholder="Ubicacion">
+                    <input type="text" name="ubicacion" placeholder="Ubicacion" required>
                     <i class="lni"></i>
                   </div>
                 </div>
@@ -70,15 +70,20 @@
                     <option value="Particular">Particular</option>
                     <option value="Empresa">Empresa</option>
                     </select>
-                </div>
+                </div>             
               
-              <div class="col-md-6">
-                <div class="form-input rounded-buttons">
-                  <button class="btn primary-btn rounded-full" type="submit">
-                    Solicitar Contactarme!
-                  </button>
-                </div>
-                <!-- form input -->
+
+              <div class="row">
+
+                  <div class="col">
+                    <div class="form-input rounded-buttons">
+                    <button class="btn primary-btn rounded-full" type="submit">
+                      Solicitar Contactarme!
+                    </button>
+                  </div>
+                
+               
+
               </div>
 
 
@@ -93,3 +98,11 @@
   <!-- container -->
 </section>
 <!--====== SIGNIN ONE PART ENDS ======-->
+
+<script>
+
+  const volver = () => {
+    console.log("asd")
+  }
+
+</script>

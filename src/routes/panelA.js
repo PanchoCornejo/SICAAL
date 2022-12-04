@@ -21,6 +21,10 @@ router.get('/nuevosproveedores',isAdmin , async(req, res) => {
     res.render('admins/nuevosproveedores', { prov : prov });
 });
 
+
+
+
+
 router.post('/nuevosproveedores', isAdmin ,async(req,res) => {
     const { VALid } = req.body;
     const Val = { VALid };
@@ -28,6 +32,16 @@ router.post('/nuevosproveedores', isAdmin ,async(req,res) => {
     console.log("Eliminado")
     res.redirect('/panelA/perfilA');
 })
+
+
+router.post('/getregiones', async(req,res)=>{
+    const {id} = req.body
+
+    const datos = await pool.query(`select regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${id}`);
+
+    res.send({ok : id, datos : datos})
+})
+
 
 router.post('/aprobar', async(req,res) => {
     console.log("aca?????aa")
@@ -323,5 +337,7 @@ router.get('/Dashboard', isAdmin, async (req, res) => {
 
     res.render('admins/Dashboard', { arica,tarapaca,antofagasta, atacama,coquimbo,valparaiso,metropolitana,bernardo,maule,ñuble,biobio,araucania,rios,lagos,carlos,antartica,Narica,Ntarapaca,Nantofagasta, Natacama,Ncoquimbo,Nvalparaiso,Nmetropolitana,Nbernardo,Nmaule,Nñuble,Nbiobio,Naraucania,Nrios,Nlagos,Ncarlos,Nantartica,Parica,Ptarapaca,Pantofagasta, Patacama,Pcoquimbo,Pvalparaiso,Pmetropolitana,Pbernardo,Pmaule,Pñuble,Pbiobio,Paraucania,Prios,Plagos,Pcarlos,Pantartica, Sarica,Starapaca,Santofagasta, Satacama,Scoquimbo,Svalparaiso,Smetropolitana,Sbernardo,Smaule,Sñuble,Sbiobio,Saraucania,Srios,Slagos,Scarlos,Santartica,Varica,Vtarapaca,Vantofagasta, Vatacama,Vcoquimbo,Vvalparaiso,Vmetropolitana,Vbernardo,Vmaule,Vñuble,Vbiobio,Varaucania,Vrios,Vlagos,Vcarlos,Vantartica,Carica,Ctarapaca,Cantofagasta, Catacama,Ccoquimbo,Cvalparaiso,Cmetropolitana,Cbernardo,Cmaule,Cñuble,Cbiobio,Caraucania,Crios,Clagos,Ccarlos,Cantartica });
 });
+
+
 
 module.exports = router;
