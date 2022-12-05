@@ -74,70 +74,75 @@
 
 </section>
 
-<div class="card">
-    <div class="row">
-        <div class="col">
-            <h4>Filtros</h4> 
-        </div>
-    </div>
-    <div class="row">
-        <form action="/servicios" method="POST" class="row g-3 novalidate">
-
-            <div class="col-md-3">
-                <label for="region" class="form-label das">Regiones</label>
-                <select onchange="mostrar()" id="region" class="form-select" name="region" aria-label="Default select example">
-                    <option selected>---</option>
-                    {{#each regiones}}
-                    <option id="{{name}}" value="{{name}}">{{name}}</option>
-                    {{/each}}
-                </select>
-            </div>
-
-            <div class="col-md-2">
-                <label for="ciudad" class="form-label das">Ciudades</label>
-                <select class="form-select" name="ciudad" aria-label="Default select example">
-                    <option selected>---</option>
-                    {{#each ciudades}}
-                    <option id="{{id_region}}" value="{{id_city}}">{{name}}</option>
-                    {{/each}}
-                </select>
-            </div>
-
-            <div class="col-md-1">
-                <label for="operador" class="form-label das">Operador?</label>
-                <select class="form-select" name="operador" aria-label="Default select example">
-                    <option selected>---</option>
-                    <option value="Si">Si</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-
-            <div class="col-md-4">
-                <label for="cat" class="form-label das">Categoria</label>
-                <select class="form-select" name="cat" aria-label="Default select example">
-                    <option selected>---</option>
-                    {{#each categoria}}
-                    <option value="{{nombre}}">{{nombre}}</option>
-                    {{/each}}
-                </select>
-            </div>
-
-
-            
-            
-            <input id="VALid" name="VALid" type="hidden" value="{{VAL.id}}">
-
-            <div class="col-12">
-                <button type="submit" class="btn btn-warning">Filtrar</button>
-            </div>
-        </form>
-    </div>
-    
-</div>
-
 <div class="container mt-2 mb-5">
     {{#if datos}}
-        <h2>Servicios</h2>
+        <h2 class="text-center">Servicios</h2>
+        <div class="card mb-3">
+        <div class="row">
+            <div class="col">
+                <h4 class="text-center">Filtros</h4> 
+            </div>
+            </div>
+                <div class="row ms-2 ">
+                <form action="/servicios" method="POST" class="row g-3 novalidate">
+
+                    <div class="col-md-6">
+                        <label for="region" class="form-label das">Regiones</label>
+                        <select onchange="mostrar()" id="region" class="form-select" name="region" aria-label="Default select example">
+                            <option selected>---</option>
+                            {{#each regiones}}
+                            <option id="{{name}}" value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="ciudad" class="form-label das">Ciudades</label>
+                        <select class="form-select" name="ciudad" aria-label="Default select example">
+                            <option selected>---</option>
+                            {{#each ciudades}}
+                            <option id="{{id_region}}" value="{{id_city}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="operador" class="form-label das">Operador?</label>
+                        <select class="form-select" name="operador" aria-label="Default select example">
+                            <option selected>---</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="cat" class="form-label das">Categoria</label>
+                        <select class="form-select" name="cat" aria-label="Default select example">
+                            <option selected>---</option>
+                            {{#each categoria}}
+                            <option value="{{nombre}}">{{nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+
+                    
+                    
+                    <input id="VALid" name="VALid" type="hidden" value="{{VAL.id}}">
+
+                    <div class="row mt-2">
+                        <div class="col">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success mb-2">Filtrar</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+            </div>
+            
+        </div>
          
                
 
