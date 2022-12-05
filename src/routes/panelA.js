@@ -4,6 +4,7 @@ const router = express.Router();
 const pool = require('../database');
 const { isAdmin } = require('../lib/auth');
 
+const path = require('path');
 
 // Donde puede el Administrador: puede revisar las solicitudes de publicacion , las cuales aceptara o rechazara.
 router.get('/solicitudes',isAdmin , async(req, res) => {
@@ -83,10 +84,13 @@ router.post('/ServicioaDetalle', isAdmin,async (req, res) => {
     };
     const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
     console.log(datos);
+    const ruta = path.join(datos[0].foto,'');
+    console.log('la ruta es: ',ruta);
     const valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
     console.log("Valoraciones");
     console.log(valor);
-    res.render('admins/ServicioaDetalle', { datos : datos, valor : valor });  
+    // datos.ruta = ruta;
+    res.render('admins/ServicioaDetalle', { datos : datos, valor : valor, ruta });  
 });
     
  // Donde puede el Administrador: Donde puede visitar la lista de proveedores y ver sus datos. 

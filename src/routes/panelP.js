@@ -334,7 +334,8 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.dominio_de_la_maquina = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.domMaq[0].filename);
+        paths.dominio_de_la_maquina = bddpath; 
 
         
     } else {
@@ -354,7 +355,8 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.revision_tecnica = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.revTec[0].filename);
+        paths.revision_tecnica = bddpath; 
 
     } else {
         paths.revision_tecnica = 'null';   
@@ -375,7 +377,8 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.permiso_de_circulacion = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.perCir[0].filename);
+        paths.permiso_de_circulacion = bddpath; 
 
     } else {
         paths.permiso_de_circulacion = 'null';
@@ -396,7 +399,8 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.seguro = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.seg[0].filename);
+        paths.seguro = bddpath; 
 
         
     } else {
@@ -418,7 +422,8 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.documentacion_operador = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.docOpe[0].filename);
+        paths.documentacion_operador = bddpath; 
 
         
     } else {
@@ -440,12 +445,15 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.foto = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.fot[0].filename);
+        paths.foto = bddpath;
 
         
     } else {
         paths.foto = 'null';
     }
+
+    console.log(paths);
 
     await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
 
@@ -463,10 +471,6 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         });
         await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);
     }
-
-
-
-    
 
 
     req.flash('¡Correcto!', 'Servicio creado correctamente.');
@@ -585,7 +589,7 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
         console.log('Se cambia: ', Object.keys({estado})[0])
         datosModificar.estado = DatosP.estado;
     }
-    const oldPaths = {}
+    const oldPaths = {};
     oldPaths.dominio_de_la_maquina = datosBDD.dominio_de_la_maquina;
     oldPaths.revision_tecnica = datosBDD.revision_tecnica;
     oldPaths.permiso_de_circulacion = datosBDD.permiso_de_circulacion;
@@ -610,11 +614,11 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.dominio_de_la_maquina = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.domMaq[0].filename);
+        paths.dominio_de_la_maquina = bddpath; 
 
         
     } else {
-        
         paths.dominio_de_la_maquina = oldPaths.dominio_de_la_maquina;  
     }
     if (req.files.revTec) {
@@ -631,7 +635,8 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.revision_tecnica = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.revTec[0].filename);
+        paths.revision_tecnica = bddpath; 
 
     } else {
         paths.revision_tecnica = oldPaths.revision_tecnica;   
@@ -652,7 +657,8 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.permiso_de_circulacion = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.perCir[0].filename);
+        paths.permiso_de_circulacion = bddpath; 
 
     } else {
         paths.permiso_de_circulacion = oldPaths.permiso_de_circulacion;
@@ -673,7 +679,8 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.seguro = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.seg[0].filename);
+        paths.seguro = bddpath; 
 
         
     } else {
@@ -695,7 +702,8 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.documentacion_operador = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.docOpe[0].filename);
+        paths.documentacion_operador = bddpath; 
 
         
     } else {
@@ -717,13 +725,15 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
             if (err) throw err
             console.log('Successfully renamed - AKA moved!')
         })
-        paths.foto = newPathN;
+        const bddpath = path.join('/files/' + proveedor_id + '/' + servicio_id +'/' +req.files.fot[0].filename);
+        paths.foto = bddpath;
 
         
     } else {
         paths.foto = oldPaths.foto;
     }
 
+    console.log(paths)
     await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
     
     if (Object.entries(datosModificar).length !== 0) {
