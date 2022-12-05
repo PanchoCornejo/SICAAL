@@ -33,7 +33,7 @@ router.post('/nuevosproveedores', isAdmin ,async(req,res) => {
 router.post('/getregiones', async(req,res)=>{
     const {id} = req.body
 
-    const datos = await pool.query(`select regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${id}`);
+    const datos = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${id}`);
 
     res.send({ok : id, datos : datos})
 })
