@@ -12,11 +12,172 @@ router.get('/solicitud', async (req, res) => {
 
 router.get('/servicios', async (req, res) => {
 
-       
+    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+    const categoria = await pool.query('SELECT nombre FROM categoria');
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
     //const valor = await pool.query('SELECT servicio_id, AVG(valoracion) as General,AVG(Voperador) as Operador,AVG(Vpuntualidad) as Puntualidad,AVG(Vexperiencia) as Experiencia, AVG(Vfallas) as Fallas, AVG(Vestadomaquina) as Estadomaquina FROM valoraciones WHERE servicio_id IN (SELECT id FROM servicios where estado_publicacion = "aprobado") GROUP BY servicio_id;');
     
-    res.render('./servicios', {datos : datos});
+    res.render('./servicios', {datos : datos, regiones, ciudades ,categoria});
+});
+
+router.post('/servicios', async (req, res) => {
+    const { region, ciudad, operador, cat } = req.body;
+    const soli = {
+        region,
+        ciudad,
+        operador,
+        cat
+    };
+    console.log(soli);
+    if(soli.ciudad != "---"){
+        if(soli.operador == "Si"){
+            if(soli.cat != "---"){
+                const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+                const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                const categoria = await pool.query('SELECT nombre FROM categoria');
+                res.render('./servicios', {datos, regiones, ciudades ,categoria});
+            }
+            else{
+                const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+                const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                const categoria = await pool.query('SELECT nombre FROM categoria');
+                res.render('./servicios', {datos, regiones, ciudades ,categoria});
+            }
+        } 
+        else if (soli.operador == "No"){
+            if(soli.cat != "---"){
+                const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+                const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                const categoria = await pool.query('SELECT nombre FROM categoria');
+                res.render('./servicios', {datos, regiones, ciudades ,categoria});
+            }
+            else{
+                const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+                const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                const categoria = await pool.query('SELECT nombre FROM categoria');
+                res.render('./servicios', {datos, regiones, ciudades ,categoria});
+            }
+        }
+        else{
+            if(soli.cat != "---"){
+                const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+                const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                const categoria = await pool.query('SELECT nombre FROM categoria');
+                res.render('./servicios', {datos, regiones, ciudades ,categoria});
+            }
+            else{
+                const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+                const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                const categoria = await pool.query('SELECT nombre FROM categoria');
+                res.render('./servicios', {datos, regiones, ciudades ,categoria});
+            }
+        }
+    }
+    else{
+        if(soli.region != "---"){
+            if(soli.operador == "Si"){
+                if(soli.cat != "---"){
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+                else{
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+            }
+            else if (soli.operador == "No"){
+                if(soli.cat != "---"){
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+                else{
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+            }
+            else{
+                if(soli.cat != "---"){
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+                else{
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+            }
+        }
+        else {
+            if(soli.operador == "Si"){
+                if(soli.cat != "---"){
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado' AND operador= 'Si' AND categoria = ?", [soli.cat]);
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+                else{
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado' AND operador= 'Si'");
+                    console.log(datos)
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+            }
+            else if (soli.operador == "No"){
+                if(soli.cat != "---"){
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado' AND operador= 'No' AND categoria = ?", [soli.cat]);
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+                else{
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado' AND operador= 'No'");
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+            }
+            else{
+                if(soli.cat != "---"){
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado' AND categoria = ?", [soli.cat]);
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+                else{
+                    const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+                    const regiones = await pool.query('SELECT id_region, name FROM regions;');
+                    const ciudades = await pool.query('SELECT id_city, name FROM cities');
+                    const categoria = await pool.query('SELECT nombre FROM categoria');
+                    res.render('./servicios', {datos, regiones, ciudades ,categoria});
+                }
+            }
+        }
+    }
+    
 });
 
 router.post('/detalle', async(req,res)=>{   
@@ -80,3 +241,8 @@ router.get('/pruebas', async (req, res) => {
 
 
 module.exports = router;
+
+
+
+
+
