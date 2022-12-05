@@ -289,8 +289,11 @@
                         <div class="form-input mt-15">
                            <label>Categoría</label>
                            <div class="input-items default">
-                              <i class="lni lni-envelope"></i>
-                              <input type="text" placeholder="Retroexcavadora" name="categoria" id="inputZip" required />
+                              <select id="categoriass" name="categoria" class="form-select" required>
+                                 {{#each categorias}}
+                                <option value="{{nombre}}">{{nombre}}</option>
+                                {{/each}}
+                                </select>
                            </div>
                         </div>
                         <!-- form input -->

@@ -1,20 +1,88 @@
 {{>navigation1}}
 {{>message}} 
 
-
-<div class="main">
-    <div class="container my-5 bg-danger" style="width: 70rem">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-4">
-                        <img style="height: 10em;" src="https://cdn-icons-png.flaticon.com/512/993/993891.png" class="img-fluid rounded-start" alt="...">
-                    </div>
-                <div class="col-md-6">
-                    <h2>Bienvenido Administrador: {{nombree.fullname}}</h2>
-                </div>
+<div class="main" style="max-width : 50em;">
+    <!--====== FEATURE ONE PART START ======-->
+<section class="features-area features-one mt-3 border">
+   <div class="container">
+      <div class="row justify-content-center " style='background-color : #893333'>
+         <div class="col-lg-6 ">
+            <div class="section-title text-center">
+               <h3 class="" style="color : white">Panel de Administrador</h3>
+               <h5 class="" style="color : white">Bienvenido: {{nombree.fullname}}</h5>
             </div>
-        </div> 
-    </div>
+            <!-- row -->
+         </div>
+      </div>
+      <!-- row -->
+      <div class="row justify-content-center ">
+
+         <div class="col-lg-4 col-md-7 col-sm-9 ">
+            <div class="features-style-one text-center border">
+               <div class="features-icon">
+                  <i class="cantser">{{servicios}}</i>
+               </div>
+               <div class="features-content ">
+                  <h4 class="features-title ">Servicios Disponibles</h4>
+                  
+                  <div class="features-btn rounded-buttons">
+                     <a
+                        class="btn primary-btn-outline rounded-full"
+                        onclick="window.location='servicios';"
+                        >
+                     Ver Servicios
+                     </a>
+                  </div>
+               </div>
+            </div>
+            <!-- single features -->
+         </div>
+         <div class="col-lg-4 col-md-7 col-sm-9">
+            <div class="features-style-one text-center border">
+               <div class="features-icon">
+                  <i class="cantser">{{proveedores}}</i>
+               </div>
+               <div class="features-content">
+                  <h4 class="features-title">Proveedores</h4>
+                  
+                  <div class="features-btn rounded-buttons">
+                     <a
+                        class="btn primary-btn-outline rounded-full"
+                        onclick="window.location='proveedores';"
+                        >
+                     Ver proveedores
+                     </a>
+                  </div>
+               </div>
+            </div>
+            <!-- single features -->
+         </div>
+         <div class="col-lg-4 col-md-7 col-sm-9">
+            <div class="features-style-one text-center border">
+               <div class="features-icon">
+                  <i class="cantser">{{ordenes}}</i>
+               </div>
+               <div class="features-content">
+                  <h4 class="features-title">Trabajos realizados</h4>
+                 
+                  <div class="features-btn rounded-buttons">
+                     <a
+                        class="btn primary-btn-outline rounded-full"
+                        onclick="window.location='gestionarorden';"
+                        >
+                     Ver Trabajos
+                     </a>
+                  </div>
+               </div>
+            </div>
+            <!-- single features -->
+         </div>
+      </div>
+      <!-- row -->
+   </div>
+   <!-- container -->
+</section>
+<!--====== FEATURE ONE PART ENDS ======-->
     
 
     
