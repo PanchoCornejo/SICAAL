@@ -5,94 +5,154 @@
     {{#if datos}}
 
     
+    {{#each datos}}
     
-    <div class="card mb-3" style="max-width: 40em;">
-        <div class="row g-0">
-            {{#each datos}}
+    <div class="card mt-5 mb-5" style="max-width: 40em;">
+
+        <div class="row g-0">    
             <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Nombre: {{nombre }}</h5>
-                    <p class="card-text">Marca: {{marca}}</p>
-                    <p class="card-text">Año: {{ano}}</p>
-                    <p class="card-text">Modelo: {{modelo}}</p>
-                    <p class="card-text">Horometro: {{horometro}}</p>
-                    <p class="card-text">Operador: {{operador}}</p>
-                    <p class="card-text">Estado: {{estado}}</p>
-                    <p class="card-text">Categoría: {{categoria}}</p>
-                    <p class="card-text">Descripción: {{description}}</p>
+            <div class="card-body">
+
+                <div class="card" style="">
+                <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+                    <div class="card-header">
+                        Nombre: {{nombre }}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Marca: {{marca}}</li>
+                        <li class="list-group-item">Año: {{ano}}</li>
+                        <li class="list-group-item">Modelo: {{modelo}}</li>
+                        <li class="list-group-item">Horometro: {{horometro}}</li>
+                        <li class="list-group-item">Operador: {{operador}}</li>
+                        <li class="list-group-item">Estado: {{estado}}</li>
+                        <li class="list-group-item">Categoría: {{categoria}}</li>
+                        <li class="list-group-item">Descripción: {{description}}</li>
+                        
+                    </ul>
                 </div>
             </div>
-            {{/each}}
-            <div class="col-md-4">
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                            <th>Categoria</th>
-                            <th>Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="General">
-                            <td>Calificacion General</td>
-                            <td>
-                                <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                                </div>
-                                <span class="number-rating"></span>
-                            </td>
-                            </tr>
-                            <tr class="Operador">
-                            <td>Operador</td>
-                            <td>
-                                <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                                </div>
-                                <span class="number-rating"></span>
-                            </td>
-                            </tr>
-                            <tr class="Puntualidad">
-                            <td>Puntualidad</td>
-                            <td>
-                                <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                                </div>
-                                <span class="number-rating"></span>
-                            </td>
-                            </tr>
-                            <tr class="Experiencia">
-                            <td>Experiencia</td>
-                            <td>
-                                <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                                </div>
-                                <span class="number-rating"></span>
-                            </td>
-                            </tr>
-                            <tr class="Fallas">
-                            <td>Fallas</td>
-                            <td>
-                                <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                                </div>
-                                <span class="number-rating"></span>
-                            </td>
-                            </tr>
-                            <tr class="EstadoMaquina">
-                            <td>Estado Maquina</td>
-                            <td>
-                                <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                                </div>
-                                <span class="number-rating"></span>
-                            </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
+            <div class="col-md-4">  
+                
+            
+            
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th>Categoria</th>
+                                    <th>Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="General">
+                                    <td>Calificacion General</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Operador">
+                                    <td>Operador</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Puntualidad">
+                                    <td>Puntualidad</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Experiencia">
+                                    <td>Experiencia</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Fallas">
+                                    <td>Fallas</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="EstadoMaquina">
+                                    <td>Estado Maquina</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>   
+
+                            <div class="row">                         
+
+                            <div class="col">
+                                <button value={{id}} onclick="getRegiones(this)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Ubicaciones
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" onclick="window.location='servicios';">
+                                    Volver
+                                </button>
+                            </div>
+
+
+                            </div>
+                            
+
+
+                            <!-- popUP -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Donde opera</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="texto">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
+
+                        </div>
+
+                    
+
+            </div>
+            
         </div>
     </div>
+
+    {{/each}}
+    
+    
+    
     {{#each valor}}
     <input id="1" name="{{general}}" type="hidden" value="{{general}}">
     <input id="2" name="{{operador}}" type="hidden" value="{{operador}}">
@@ -181,4 +241,44 @@
         document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
       }
     }
+</script>
+
+<script>
+
+    const getRegiones = async(boton) => {
+        
+        const id = boton.value;
+
+        const data = {
+            'id' : id
+        }
+    
+
+    //console.log("Me apretaste");
+    await fetch('./getregiones',{
+        method : 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Connection': 'keep-alive',
+            'Accept': '*/*',
+        },
+        body :JSON.stringify(data)
+        
+    })
+    .then(resp => resp.json())
+    .then((data)=> {
+
+        let ubicacion = document.getElementById('texto');
+        let total = ''
+      data.datos.map((val,key)=>{      
+        total = total + '<p>' + val.name + '</p>'             
+        //console.log(val, ubicacion)
+      })
+      ubicacion.innerHTML = total
+      
+    })
+
+    }
+
+    
 </script>

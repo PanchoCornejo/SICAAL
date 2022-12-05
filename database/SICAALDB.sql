@@ -595,3 +595,65 @@ ALTER TABLE Sproveedor
 
 ALTER TABLE Sproveedor
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
+
+
+CREATE TABLE categoria (
+  id INT(11) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp
+);
+
+ALTER TABLE categoria
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE categoria
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
+
+INSERT INTO `categoria`
+  (`nombre`)
+VALUES
+	("Cargadoras compactas"),
+	("Cargadores forestales de pluma recta"),
+	("Compactadores"),
+	("Dragalinas"),
+	("Dúmperes articulados"),
+	("Dúmperes rígidos"),
+	("Excavadoras"),
+	("Excavadoras de ataque frontal eléctricas con cable"),
+	("Excavadoras de minería hidráulicas"),
+	("Excavadoras de ruedas"),
+	("Extendedoras de aglomerado de asfalto"),
+	("Hojas de empuje"),
+	("Manipuladoras de materiales"),
+	("Manipuladoras telescópicas"),
+	("Motoniveladoras"),
+	("Máquinas forestales"),
+	("Mototraíllas"),
+	("Palas de cadenas"),
+	("Palas de cadenas compactas y cargadoras compactas todo terreno"),
+	("Palas de ruedas"),
+	("Perfiladoras de pavimentos en frío"),
+	("Perforadoras"),
+	("Recicladoras de pavimentos"),
+	("Recogedoras transportadoras de troncos"),
+	("Retropalas"),
+	("Taladoras"),
+	("Taladoras apiladoras"),
+	("Tiendetubos"),
+	("Trabajos subterráneos: tajos largos"),
+	("Trabajos subterráneos: roca dura");
+
+
+
+
+CREATE TABLE subategoria (
+  id INT(11) NOT NULL,
+  nombre VARCHAR(50) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp
+);
+
+ALTER TABLE subcategoria
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE subcategoria
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 

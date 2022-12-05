@@ -1,0 +1,482 @@
+<section class="navbar-area navbar-one">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg">
+               <a class="navbar-brand" href="javascript:void(0)">
+               <img height="100px" src="https://sicaal.cl/assets/logo.webp" alt="Logo" />
+               </a>
+               <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarOne"
+                  aria-controls="navbarOne"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                  >
+               <span class="toggler-icon"></span>
+               <span class="toggler-icon"></span>
+               <span class="toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse sub-menu-bar" id="navbarOne">
+                  <ul class="navbar-nav m-auto">
+
+                  <li class="nav-item">
+                        <a href="/">Inicio</a>
+                     </li>
+                     
+                     <li class="nav-item">
+                        <a href="/servicios">Servicios</a>
+                     </li>
+                     
+                     <li class="nav-item">
+                        <a href="/solicitud">Quieres ser nuestro Proveedor</a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="navbar-btn ">
+                  <ul>
+                     {{#if user}}
+                     <li>
+                        <a class="btn primary-btn-outline" href="/profile"
+                           >Perfil</a
+                           >
+                     </li>
+                     <li>
+                        <a class="btn primary-btn" href="/logout"
+                           >Cerrar sesión</a
+                           >
+                     </li>
+                     {{else}}
+                     <li>
+                        <a class="btn primary-btn" href="/signin"
+                           >Inicia sesión</a
+                           >
+                     </li>
+                     <li>
+                        <a class="btn primary-btn" href="/registroclientes"
+                           >Registrate como Cliente</a
+                           >
+                     </li>
+                                         
+                     {{/if}}
+                  </ul>
+               </div>
+            </nav>
+          
+         </div>
+      </div>
+    
+   </div>
+
+</section>
+<div class="container">
+
+
+{{#if user}}
+
+{{#if datos}}
+     {{#each datos}}
+    
+    <div class="card mt-5 mb-5" >
+
+        <div class="row g-0">    
+            <div class="col-md-8">
+            <div class="card-body">
+
+                <div class="card" style="">
+                <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+                    <div class="card-header">
+                        Nombre: {{nombre }}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Marca: {{marca}}</li>
+                        <li class="list-group-item">Año: {{ano}}</li>
+                        <li class="list-group-item">Modelo: {{modelo}}</li>
+                        <li class="list-group-item">Horometro: {{horometro}}</li>
+                        <li class="list-group-item">Operador: {{operador}}</li>
+                        <li class="list-group-item">Estado: {{estado}}</li>
+                        <li class="list-group-item">Categoría: {{categoria}}</li>
+                        <li class="list-group-item">Descripción: {{description}}</li>
+                        
+                    </ul>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-4">  
+                
+            
+            
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th>Categoria</th>
+                                    <th>Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="General">
+                                    <td>Calificacion General</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Operador">
+                                    <td>Operador</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Puntualidad">
+                                    <td>Puntualidad</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Experiencia">
+                                    <td>Experiencia</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Fallas">
+                                    <td>Fallas</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="EstadoMaquina">
+                                    <td>Estado Maquina</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="row">
+                                
+                                    <div class="col">                                    
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Solicitar
+                                    </button>
+                                    </div>                                
+                                    <div class="col">
+                                    <button type="button" class="btn btn-secondary" onclick="window.location='servicios';">Volver</button>
+                                    </div>
+
+                                        <!-- Este es el modal (popUp) -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Solicitud</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Se podria hacer quizas una solicitud de servicio, para luego en el panel del admin
+                                                ver quien quiere un servicio y generar dicha solicitud
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary">Enviar formulario</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                
+                                
+                            </div>
+
+                            
+                            
+                            
+                            </div>        
+
+                        </div>
+                    
+
+            </div>
+            
+        </div>
+    </div>
+
+    {{/each}}
+
+    {{#each valor}}
+    <input id="1" name="{{general}}" type="hidden" value="{{general}}">
+    <input id="2" name="{{operador}}" type="hidden" value="{{operador}}">
+    <input id="3" name="{{puntualidad}}" type="hidden" value="{{puntualidad}}">
+    <input id="4" name="{{experiencia}}" type="hidden" value="{{experiencia}}">
+    <input id="5" name="{{fallas}}" type="hidden" value="{{fallas}}">
+    <input id="6" name="{{estadomaquina}}" type="hidden" value="{{estadomaquina}}">
+    {{/each}}
+
+
+{{else}}
+    <h1>No Datos</h1>
+{{/if}}
+
+{{else}}
+
+{{#if datos}}
+     {{#each datos}}
+    
+    <div class="card mt-5 mb-5" >
+
+        <div class="row g-0">    
+            <div class="col-md-8">
+            <div class="card-body">
+
+                <div class="card" style="">
+                <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+                    <div class="card-header">
+                        Nombre: {{nombre }}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Marca: {{marca}}</li>
+                        <li class="list-group-item">Año: {{ano}}</li>
+                        <li class="list-group-item">Modelo: {{modelo}}</li>
+                        <li class="list-group-item">Horometro: {{horometro}}</li>
+                        <li class="list-group-item">Operador: {{operador}}</li>
+                        <li class="list-group-item">Estado: {{estado}}</li>
+                        <li class="list-group-item">Categoría: {{categoria}}</li>
+                        <li class="list-group-item">Descripción: {{description}}</li>
+                        
+                    </ul>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-4">  
+                
+            
+            
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th>Categoria</th>
+                                    <th>Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="General">
+                                    <td>Calificacion General</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Operador">
+                                    <td>Operador</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Puntualidad">
+                                    <td>Puntualidad</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Experiencia">
+                                    <td>Experiencia</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="Fallas">
+                                    <td>Fallas</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                    <tr class="EstadoMaquina">
+                                    <td>Estado Maquina</td>
+                                    <td>
+                                        <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                        </div>
+                                        <span class="number-rating"></span>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="row">
+                                
+                                                                  
+                                    <div class="col">
+                                    <button type="button" class="btn btn-secondary" onclick="window.location='servicios';">Volver</button>
+                                    <div class="alert alert-danger mt-2" role="alert">
+                                    Inicie Sesión o Registrese para solicitar un servicio
+                                    </div>
+
+                                    </div>
+
+                                        <!-- Este es el modal (popUp) -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel2">Solicitud</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary">Enviar formulario</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                
+                                
+                            </div>
+
+                            
+                            
+                            
+                            </div>        
+
+                        </div>
+                    
+
+            </div>
+            
+        </div>
+    </div>
+
+    {{/each}}
+
+    {{#each valor}}
+    <input id="1" name="{{general}}" type="hidden" value="{{general}}">
+    <input id="2" name="{{operador}}" type="hidden" value="{{operador}}">
+    <input id="3" name="{{puntualidad}}" type="hidden" value="{{puntualidad}}">
+    <input id="4" name="{{experiencia}}" type="hidden" value="{{experiencia}}">
+    <input id="5" name="{{fallas}}" type="hidden" value="{{fallas}}">
+    <input id="6" name="{{estadomaquina}}" type="hidden" value="{{estadomaquina}}">
+    {{/each}}
+
+
+{{else}}
+    <h1>No Datos</h1>
+{{/if}}
+
+{{/if}}
+
+
+</div>
+
+
+<script>
+    const Gen = document.getElementById('1');
+    const Ope = document.getElementById('2');
+    const Pun = document.getElementById('3');
+    const Exp = document.getElementById('4');
+    const Fal = document.getElementById('5');
+    const Est = document.getElementById('6');
+    console.log("Te muestro valores");
+    console.log(Gen.value);
+    // Initial Ratings
+    const ratings = {
+      General: Gen.value,
+      Operador: Ope.value,
+      Puntualidad: Pun.value,
+      Experiencia: Exp.value,
+      Fallas: Fal.value,
+      EstadoMaquina: Est.value
+    }
+    // Total Stars
+    const starsTotal = 5;
+
+    // Run getRatings when DOM loads
+    document.addEventListener('DOMContentLoaded', getRatings);
+
+    // Form Elements
+    const productSelect = document.getElementById('product-select');
+    const ratingControl = document.getElementById('rating-control');
+
+    // Init product
+    let product;
+
+    // Product select change
+    productSelect.addEventListener('change', (e) => {
+      product = e.target.value;
+      // Enable rating control
+      ratingControl.disabled = false;
+      ratingControl.value = ratings[product];
+    });
+
+    // Rating control change
+    ratingControl.addEventListener('blur', (e) => {
+      const rating = e.target.value;
+
+      // Make sure 5 or under
+      if (rating > 5) {
+        alert('Please rate 1 - 5');
+        return;
+      }
+
+      // Change rating
+      ratings[product] = rating;
+
+      getRatings();
+    });
+
+    // Tomamos los ratings
+    function getRatings() {
+
+      for (let rating in ratings) {
+        // Tomamos el Porcentage (para saber cuanto porcentaje rellenamos las estrellas de un 0% a 100%)
+        const starPercentage = (ratings[rating] / starsTotal) * 100;
+
+        // Round to nearest 10 (lo redondea a estrella entera o x la mitad)
+        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+        // Set width of stars-inner to percentage
+        document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
+
+        // Add number rating
+        document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
+      }
+    }
+</script>

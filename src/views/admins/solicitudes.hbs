@@ -1,26 +1,29 @@
 {{>navigation1}}
 {{>message}} 
 
-<div class="main">
+
+<div class="main" style="max-width: 50em;">
     
     {{#if datos}}
-    <h2>Solicitudes</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <h2 class="text-center">Solicitudes</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
     {{#each datos}}
    <div class="col">
     <div class="card h-100">
-      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
+      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
       <div class="card-body">
-        <h5 class="card-title">Nombre: {{nombre }}</h5>
-            
-            <p class="card-text">Marca: {{marca}}</p>
-            <p class="card-text">Año: {{ano}}</p>
-            <p class="card-text">Modelo: {{modelo}}</p>
-            <p class="card-text">Horometro: {{horometro}}</p>
-            <p class="card-text">Operador: {{operador}}</p>
-            <p class="card-text">Estado: {{estado}}</p>
-            <p class="card-text">Categoría: {{categoria}}</p>
-            <p class="card-text">Descripción: {{description}}</p>
+        <h5 class="card-title text-center">Nombre: {{nombre }}</h5>
+        
+         <ul class="list-group list-group-flush">
+            <li class="list-group-item">Marca: {{marca}}</li>
+            <li class="list-group-item">Año: {{ano}}</li>
+            <li class="list-group-item">Modelo: {{modelo}}</li>
+            <li class="list-group-item">Horometro: {{horometro}}</li>
+            <li class="list-group-item">Operador: {{operador}}</li>
+            <li class="list-group-item">Estado: {{estado}}</li>
+            <li class="list-group-item">Categoría: {{categoria}}</li>
+            <li class="list-group-item">Descripción: {{description}}</li>
+        </ul>           
       </div>
       <div class="card-footer">
         <div class="row">
@@ -69,7 +72,10 @@ const aceptar = async(boton) => {
         
     })
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then((data)=> {
+      console.log(data)
+      window.location.reload();
+    })
 }
 
 const rechazar = async(boton) => {
@@ -93,7 +99,10 @@ const rechazar = async(boton) => {
         
     })
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then((data)=> {
+      console.log(data)
+      window.location.reload();
+    })
 }
 
 </script>

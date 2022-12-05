@@ -1,11 +1,12 @@
 {{>navigation1}}
 {{>message}} 
 
-<div class="main">
+<div class="main" style="max-width: 50em;">
+    
 
 {{#if datos}}
     
-    <h2>Gestionar Ordenes</h2>
+    <h2 class="text-center">Gestionar Ordenes</h2>
 
     <table class="table table-bordered text-center">
         <thead>
@@ -14,6 +15,7 @@
             <th scope="col">Cliente</th>            
             <th scope="col">Proveedor</th>
             <th scope="col">Descripción</th>
+            <th scope="col">Fecha de inicio</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +26,7 @@
                     <td>{{fullname}}</td>                   
                     <td>{{razon_social}}</td>
                     <td>{{description}}</td>
+                    <td>{{date}}</td>
                 </tr>       
             {{/each}}     
             

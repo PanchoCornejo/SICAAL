@@ -11,32 +11,26 @@
    <div class="col">
     <div class="card h-100">
       {{#if foto}}
-        <img src={{foto}} class="card-img-top" alt="..." style="width: 300px; height: 300px;">
-      {{else}}
-        <img src='https://images.vexels.com/media/users/3/141641/isolated/preview/be2272518dde9b2679d862528e90f001-maquinaria-de-excavacion-excavadora.png' class="card-img-top" alt="..." style="width: 300px; height: 300px;">
+        
+        <img src='https://images.vexels.com/media/users/3/141641/isolated/preview/be2272518dde9b2679d862528e90f001-maquinaria-de-excavacion-excavadora.png' class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+      
+        
       {{/if}}
       
       <div class="card-body">
-        <h6 class="card-title" >Estado publicación: <h6 id = "estado_publicacion" value = {{estado_publicacion}}>{{estado_publicacion }}</h6></h6>
         <h5 class="card-title">Nombre: {{nombre }}</h5>
-        <p>Foto: {{foto}}</p>
             <p class="card-text">Marca: {{marca}}</p>
             <p class="card-text">Año: {{ano}}</p>
             <p class="card-text">Modelo: {{modelo}}</p>
             <p class="card-text">Horometro: {{horometro}}</p>
-            <p class="card-text">Operador: {{operador}}</p>
-            <p class="card-text">Región: {{region}}</p>
-            <p class="card-text">Ciudades: {{ciudades}}</p>
+            <p class="card-text">Operador: {{operador}}</p>           
             <p class="card-text">Estado: {{estado}}</p>
             <p class="card-text">Categoría: {{categoria}}</p>
             <p class="card-text">Descripción: {{description}}</p>
       </div>
       <div class="card-footer">
-        <div class="row">
-            
-            <div class="col">
-             <button class="btn btn-danger"  value={{id}} onclick = 'baja(this)'>Dar de baja</button>
-            </div>            
+        <div class="row">           
+                     <h6 class="card-title" >Estado publicación: {{estado_publicacion }}</h6>
 
             </div>
       </div>
@@ -50,46 +44,3 @@
     {{/if}}
 
 </div>
-
-<script>
-
-        window.onload = function pintar() {
-            const h6 = document.getElementById('estado_publicacion')
-
-            if(h6.innerText == 'aprobado'){
-              h6.style.color = 'green';
-            }
-            else if (h6.innerText == 'rechazado'){
-              h6.style.color = 'red';
-            }
-            else{
-              h6.style.color = '#999999';
-            }
-            
-
-            //console.log(h6);
-        }
-
-        const baja = async (boton) => {
-          
-          const id = boton.value  
-          
-          const data = {
-            'id' : id
-          }
-
-          await fetch('./baja',{
-          method : 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'Connection': 'keep-alive',
-              'Accept': '*/*',
-          },
-          body :JSON.stringify(data)
-          
-          })
-          .then(resp => resp.json())
-          .then(data => console.log(data))
-        }
-
-</script>

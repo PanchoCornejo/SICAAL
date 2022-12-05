@@ -2,10 +2,10 @@
 {{>message}} 
 
 
-<div class="main">
+<div class="main" style="max-width: 50em;">
     
     {{#if prov}}
-    <h2>Solicitudes</h2>
+    <h2 class="text-center">Solicitudes</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
     {{#each prov}}
    <div class="col">
@@ -37,7 +37,7 @@
     {{/each}}
     </div>
     {{else}}
-    <h1>No hay nuevos Interesados</h1>
+    <h1 class="text-center">No hay nuevos Interesados</h1>
     {{/if}}
 
 </div>

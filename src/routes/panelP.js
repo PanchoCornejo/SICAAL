@@ -8,6 +8,7 @@ const uploadFile = require('../lib/multer')
 
 const path = require('path');
 const fs = require('fs');
+const { Console } = require('console');
 
 
 // Donde puede el Proveedor: publicar una solicitud de su servicio.
@@ -51,7 +52,7 @@ router.get('/misserviciosA', isProveedor, async (req, res) => {
     
 });
 
-router.post('/misservicios', uploadFile(), async function(req, res, next){
+router.post('/misservicios', async function(req, res, next){
     // console.log(req.user.proveedor_id);
     console.log("Post de misServicios para ir a Modificar")
 
@@ -59,7 +60,7 @@ router.post('/misservicios', uploadFile(), async function(req, res, next){
     const user_id = req.user.id;
     console.log("La cosa es:"+result[0].id);
     const proveedor_id = result[0].id;
-    // console.log(req.body);
+    console.log(req.body);
     const { VALid, nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
     console.log("Regiones en las que Opera");
     console.log(region);
@@ -82,7 +83,7 @@ router.post('/misservicios', uploadFile(), async function(req, res, next){
         categoria,
         description
     };
-    console.log(DatosP)
+    // console.log(DatosP)
 
     const regiones = await pool.query('SELECT id_region, name FROM regions;');
     const arica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="1"');
@@ -127,12 +128,12 @@ router.get('/misservicios', isProveedor, async (req, res) => {
 router.get('/perfilP',isProveedor, async (req, res) => {
 
     console.log("-------------------")
-    console.log("Te dare los datos: " + req.user.id)
+    // console.log("Te dare los datos: " + req.user.id)
     const id = req.user.id;
-    console.log("la id es: " +id)
+    // console.log("la id es: " +id)
     const datos = await pool.query('SELECT * FROM proveedor WHERE user_id = ?', [id]);
-    console.log("Datos de la Consulta SQL");
-    console.log(datos);
+    // console.log("Datos de la Consulta SQL");
+    // console.log(datos);
     res.render('proveedores/perfilP', {datos: datos[0]});
 });
 
@@ -446,21 +447,24 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
 
     await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
 
+    if (ciudades) {
+        var id_ciudad = ciudades.map(function (x) { 
+            return parseInt(x, 10); 
+        });
+        const mergedArray = [];
 
-    var id_ciudad = ciudades.map(function (x) { 
-        return parseInt(x, 10); 
-    });
+        id_ciudad.forEach((element,index )=> {
+            let tempArray = [];
+            tempArray.push(servicio_id);
+            tempArray.push(element);
+            mergedArray.push(tempArray);
+        });
+        await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);
+    }
 
-    const mergedArray = [];
 
-    id_ciudad.forEach((element,index )=> {
-        let tempArray = [];
-        tempArray.push(servicio_id);
-        tempArray.push(element);
-        mergedArray.push(tempArray);
-    });
 
-    await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);
+    
 
 
     req.flash('¡Correcto!', 'Servicio creado correctamente.');
@@ -472,23 +476,21 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
 // Post de un Servicio Modificado!!!
 
 router.post('/modificar', uploadFile(), async function(req, res, next){
-    // console.log(req.user.proveedor_id);
-    console.log("Estamos Modificando la un Servicio en la Base de Datos")
 
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
     const user_id = req.user.id;
-    console.log("La cosa es:"+result[0].id);
+
     const proveedor_id = result[0].id;
-    // console.log(req.body);
-    const { VALid, nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-    console.log("Regiones en las que Opera");
-    console.log(region);
-    console.log("Ciudades que trabajamos");
-    console.log(ciudades);
+    const { VALid, nombre, marca,  modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
+    const ano = parseInt(req.body.ano);
+    const servicio_id =  VALid;
+    console.log("Estamos Modificandoel servicio: ",servicio_id)
+    const datosOriginales = await pool.query('SELECT * FROM servicios WHERE id = ?',[servicio_id]);
+
     
     //Por defecto viene en pendiente, para que no se publique de una
     const estado_publicacion = 'pendiente';
-    let idd = { VALid }
+
     let DatosP = {
         user_id,
         proveedor_id,
@@ -510,9 +512,84 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
         foto:''
 
     };
-    console.log(DatosP);
-    const uploadQuery = await pool.query('UPDATE INTO servicios set ? Where id=?', [DatosP, idd.VALid]);
 
+    // const uploadQuery = await pool.query('UPDATE INTO servicios set ? Where id=?', [DatosP, idd.VALid]);
+    const datosBDD = datosOriginales[0];
+
+    // Se comparan los datos para ver si se modifica
+
+    const datosModificar = {}
+
+    if (DatosP.nombre === datosBDD.nombre) {
+        console.log('Se mantiene: ', Object.keys({nombre})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({nombre})[0])
+        datosModificar.nombre = DatosP.nombre;
+    }
+    if (DatosP.marca === datosBDD.marca) {
+        console.log('Se mantiene: ', Object.keys({marca})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({marca})[0])
+        datosModificar.marca = DatosP.marca;
+    }
+    if (DatosP.ano === datosBDD.ano) {
+        console.log('Se mantiene: ', Object.keys({ano})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({ano})[0])
+        datosModificar.ano = DatosP.ano;
+    }
+    if (DatosP.modelo === datosBDD.modelo) {
+        console.log('Se mantiene: ', Object.keys({modelo})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({modelo})[0])
+        datosModificar.modelo = DatosP.modelo;
+    }
+    if (DatosP.horometro === datosBDD.horometro) {
+        console.log('Se mantiene: ', Object.keys({horometro})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({horometro})[0])
+        datosModificar.horometro = DatosP.horometro;
+    }
+    if (DatosP.operador === datosBDD.operador) {
+        console.log('Se mantiene: ', Object.keys({operador})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({operador})[0])
+        datosModificar.operador = DatosP.operador;
+    }
+    if (DatosP.categoria === datosBDD.categoria) {
+        console.log('Se mantiene: ', Object.keys({categoria})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({categoria})[0])
+        datosModificar.categoria = DatosP.categoria;
+    }
+    if (DatosP.description === datosBDD.description) {
+        console.log('Se mantiene: ', Object.keys({description})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({description})[0])
+        datosModificar.description = DatosP.description;
+    }
+    if (DatosP.estado === datosBDD.estado) {
+        console.log('Se mantiene: ', Object.keys({estado})[0])
+        
+    } else {
+        console.log('Se cambia: ', Object.keys({estado})[0])
+        datosModificar.estado = DatosP.estado;
+    }
+    const oldPaths = {}
+    oldPaths.dominio_de_la_maquina = datosBDD.dominio_de_la_maquina;
+    oldPaths.revision_tecnica = datosBDD.revision_tecnica;
+    oldPaths.permiso_de_circulacion = datosBDD.permiso_de_circulacion;
+    oldPaths.seguro = datosBDD.seguro;
+    oldPaths.documentacion_operador = datosBDD.documentacion_operador;
+    oldPaths.foto = datosBDD.foto;
 
     const paths = {};
 
@@ -535,7 +612,8 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
 
         
     } else {
-        paths.dominio_de_la_maquina = 'null';  
+        
+        paths.dominio_de_la_maquina = oldPaths.dominio_de_la_maquina;  
     }
     if (req.files.revTec) {
         const oldPath = req.files.revTec[0].path;
@@ -554,7 +632,7 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
         paths.revision_tecnica = newPathN;
 
     } else {
-        paths.revision_tecnica = 'null';   
+        paths.revision_tecnica = oldPaths.revision_tecnica;   
     }
 
     if (req.files.perCir) {
@@ -575,7 +653,7 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
         paths.permiso_de_circulacion = newPathN;
 
     } else {
-        paths.permiso_de_circulacion = 'null';
+        paths.permiso_de_circulacion = oldPaths.permiso_de_circulacion;
     }
 
     if (req.files.seg) {
@@ -597,7 +675,7 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
 
         
     } else {
-        paths.seguro = 'null';
+        paths.seguro = oldPaths.seguro;
     }
 
     if (req.files.docOpe) {
@@ -619,7 +697,7 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
 
         
     } else {
-        paths.documentacion_operador = 'null';
+        paths.documentacion_operador = oldPaths.documentacion_operador;
     }
 
     if (req.files.fot) {
@@ -641,30 +719,41 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
 
         
     } else {
-        paths.foto = 'null';
+        paths.foto = oldPaths.foto;
     }
 
     await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
+    
+    if (Object.entries(datosModificar).length !== 0) {
+        await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[datosModificar,servicio_id]);
+    }
+    
 
+    await pool.query('DELETE FROM CServicio WHERE id_servicio = ?', [servicio_id]);
 
-    var id_ciudad = ciudades.map(function (x) { 
-        return parseInt(x, 10); 
-    });
-
-    const mergedArray = [];
-
-    id_ciudad.forEach((element,index )=> {
-        let tempArray = [];
-        tempArray.push(idd.VALid);
-        tempArray.push(element);
-        mergedArray.push(tempArray);
-    });
-
-    await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);
+    
+    if (ciudades) {
+        var id_ciudad = ciudades.map(function (x) { 
+            return parseInt(x, 10); 
+        });
+    
+        const mergedArray = [];
+    
+        id_ciudad.forEach((element,index )=> {
+            let tempArray = [];
+            tempArray.push(servicio_id);
+            tempArray.push(element);
+            mergedArray.push(tempArray);
+        });
+        await pool.query('DELETE FROM CServicio WHERE id_servicio = ?', [servicio_id]);
+        await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);       
+    } else {
+        console.log('¡No hay ciudades seleccionadas!')
+    }
 
 
     req.flash('¡Correcto!', 'Servicio Modificado correctamente.');
-    res.redirect('/panelP/perfilP');
+    res.redirect('/panelP/misservicios');
 });
 
 
@@ -687,6 +776,14 @@ router.post('/baja',async (req,res)=>{
 
 
     res.send({msg : 'me diste de baja', id : id})
+})
+
+router.post('/mod', async (req,res) => {
+
+    const { id } = req.body
+    const data = await pool.query(`select * from servicios where id = ${id}`)
+
+    res.send({response : 'modificacion servicio', id : id, data : data})
 })
 
 
