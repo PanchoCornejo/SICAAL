@@ -453,24 +453,41 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         paths.foto = 'null';
     }
 
-    console.log(paths);
+    console.log(ciudades);
 
     await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[paths,servicio_id]);
 
-    if (ciudades) {
-        var id_ciudad = ciudades.map(function (x) { 
-            return parseInt(x, 10); 
-        });
-        const mergedArray = [];
+    
 
-        id_ciudad.forEach((element,index )=> {
+    if (ciudades) {
+        const mergedArray = [];
+        await pool.query('DELETE FROM CServicio WHERE id_servicio = ?', [servicio_id]);
+        if (Array.isArray(ciudades)) {
+            var id_ciudad = ciudades.map(function (x) { 
+                return parseInt(x, 10); 
+            });
+            id_ciudad.forEach((element,index )=> {
+                let tempArray = [];
+                tempArray.push(servicio_id);
+                tempArray.push(element);
+                mergedArray.push(tempArray);
+            });
+            console.log('ss')
+            await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]); 
+        } else {
+
             let tempArray = [];
             tempArray.push(servicio_id);
-            tempArray.push(element);
+            tempArray.push(ciudades);
             mergedArray.push(tempArray);
-        });
-        await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);
+            console.log(mergedArray)
+            await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]); 
+        }
+     
+    } else {
+        console.log('¡No hay ciudades seleccionadas!')
     }
+
 
 
     req.flash('¡Correcto!', 'Servicio creado correctamente.');
@@ -740,25 +757,35 @@ router.post('/modificar', uploadFile(), async function(req, res, next){
         await pool.query('UPDATE servicios SET ? WHERE servicios.id = ?',[datosModificar,servicio_id]);
     }
     
-
+    
     await pool.query('DELETE FROM CServicio WHERE id_servicio = ?', [servicio_id]);
 
     
     if (ciudades) {
-        var id_ciudad = ciudades.map(function (x) { 
-            return parseInt(x, 10); 
-        });
-    
         const mergedArray = [];
-    
-        id_ciudad.forEach((element,index )=> {
+        await pool.query('DELETE FROM CServicio WHERE id_servicio = ?', [servicio_id]);
+        if (Array.isArray(ciudades)) {
+            var id_ciudad = ciudades.map(function (x) { 
+                return parseInt(x, 10); 
+            });
+            id_ciudad.forEach((element,index )=> {
+                let tempArray = [];
+                tempArray.push(servicio_id);
+                tempArray.push(element);
+                mergedArray.push(tempArray);
+            });
+            console.log('ss')
+            await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]); 
+        } else {
+
             let tempArray = [];
             tempArray.push(servicio_id);
-            tempArray.push(element);
+            tempArray.push(ciudades);
             mergedArray.push(tempArray);
-        });
-        await pool.query('DELETE FROM CServicio WHERE id_servicio = ?', [servicio_id]);
-        await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]);       
+            console.log(mergedArray)
+            await pool.query('INSERT INTO CServicio (id_servicio, id_ciudad) VALUES ?',[mergedArray]); 
+        }
+     
     } else {
         console.log('¡No hay ciudades seleccionadas!')
     }
