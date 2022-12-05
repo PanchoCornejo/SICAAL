@@ -1,0 +1,116 @@
+<div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="row">
+                <div class="col">
+                    <h4>Filtros</h4> 
+                </div>
+            </div>
+            <div class="row">
+                <form action="/Cliente/Evaluar" method="POST" class="row g-3 novalidate">
+
+                    <div class="col-md-4">
+                        <label for="region" class="form-label das">Regiones</label>
+                        <select onchange="mostrar()" id="region" class="form-select" name="region" aria-label="Default select example">
+                            {{#each regiones}}
+                            <option id="{{name}}" value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="ciudad" class="form-label das">Ciudades</label>
+                        <select class="form-select" name="ciudad" aria-label="Default select example">
+                            {{#each ciudades}}
+                            <option id="{{id_region}}" value="{{id_city}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="ciudad" class="form-label das">Tiene Operador?</label>
+                        <select class="form-select" name="ciudad" aria-label="Default select example">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+
+                    
+                    
+                    <input id="VALid" name="VALid" type="hidden" value="{{VAL.id}}">
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-warning">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+        
+    </div>
+    {{#if datos}}
+    <h2>Solicitudes Aprobadas</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    {{#each datos}}
+   <div class="col">
+    <div class="card h-100">
+      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
+      <div class="card-body">
+        <h5 class="card-title">Nombre: {{nombre }}</h5>
+            <p class="card-text">Marca: {{marca}}</p>
+            <p class="card-text">Año: {{ano}}</p>
+            <p class="card-text">Modelo: {{modelo}}</p>
+            <p class="card-text">Horometro: {{horometro}}</p>
+            <p class="card-text">Operador: {{operador}}</p>
+            <p class="card-text">Estado: {{estado}}</p>
+            <p class="card-text">Categoría: {{categoria}}</p>
+            <p class="card-text">Descripción: {{description}}</p>
+      </div>
+        
+      <div class="card-footer">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success">Ver Detalles</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+    {{/each}}
+    </div>
+    {{else}}
+    <h1>No hay servicios aprobados por algun administrador</h1>
+    {{/if}}
+    {{#each valor}}
+    <h1>{{servicio_id}}</h1>
+    {{/each}}
+
+
+</div>
+
+
+<script>
+    async function mostrar() {
+        console.log("Cambio ahora")
+        var eleccion = document.getElementById("region")
+        console.log(eleccion.value)
+        const data = {
+        'region' : eleccion.value
+        }
+        await fetch('./servicios2',{
+        method : 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Connection': 'keep-alive',
+            'Accept': '*/*',
+        },
+        body :JSON.stringify(data)
+        
+    })
+    }
+</script>

@@ -59,7 +59,6 @@ router.post('/rechazar', async(req,res) => {
 router.get('/servicios', isAdmin,async (req, res) => {
 
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
-    const valor = await pool.query('SELECT servicio_id, AVG(valoracion) as General,AVG(Voperador) as Operador,AVG(Vpuntualidad) as Puntualidad,AVG(Vexperiencia) as Experiencia, AVG(Vfallas) as Fallas, AVG(Vestadomaquina) as Estadomaquina FROM valoraciones WHERE servicio_id IN (SELECT id FROM servicios where estado_publicacion = "aprobado") GROUP BY servicio_id;');
     console.log(datos);
     res.render('admins/servicios', { datos : datos });
     

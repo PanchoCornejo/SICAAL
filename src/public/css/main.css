@@ -111,6 +111,15 @@ body {
   width: 99%;
 }  
 
+.input-container {
+  display: inline;
+  margin: 10px;
+}
+
+option {
+  margin: 0.5em;
+}
+
 
 
 
