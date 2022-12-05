@@ -36,7 +36,7 @@
                            <label>Modelo</label>
                            <div class="input-items default">
                               <i class="lni lni-bubble"></i>
-                              <input type="text"name="modelo" id="inputAddress2" value="{{DatosP.model}}" placeholder="{{DatosP.modelo}}" required />
+                              <input type="text"name="modelo" id="inputAddress2" value="{{DatosP.modelo}}" placeholder="{{DatosP.modelo}}" required />
                            </div>
                         </div>
                         <!-- form input -->
@@ -57,7 +57,7 @@
 
                      <div class="col-md-6">
                         <div class="form-input mt-15">
-                           <label>Horometro</label>
+                           <label>Horómetro</label>
                            <div class="input-items default">
                               <i class="lni lni-envelope"></i>
                               <input type="number" id="horometro" name="horometro"  value="{{DatosP.horometro}}" placeholder="{{DatosP.horometro}}'" required/>
@@ -83,7 +83,7 @@
                      <div class="col-md-12">
                         <div class="form-input mt-15">
                            <fieldset class="form-select">      
-                              <legend>Región</legend> 
+                              <legend>Región(es)</legend> 
                               {{#each regiones}}
                               <input type="checkbox" class="form-check-input" name="region" id="{{name}}" onclick="mostrar()" value="{{name}}">  {{name}}<br>
                               {{/each}}      
@@ -290,7 +290,7 @@
                            <label>Categoría</label>
                            <div class="input-items default">
                               <i class="lni lni-envelope"></i>
-                              <input type="text" placeholder="Retroexcavadora" name="{{DatosP.categoria}}" value="{{DatosP.categoria}}" id="inputZip" required />
+                              <input type="text" placeholder={{DatosP.categoria}} name="categoria" value="{{DatosP.categoria}}" id="inputZip" required />
                            </div>
                         </div>
                         <!-- form input -->
@@ -305,7 +305,7 @@
                                     value="{{DatosP.description}}"
                                     name="description"
                                  placeholder="{{DatosP.description}}"
-                                 ></textarea>
+                                 >{{DatosP.description}}</textarea>
                            </div>
                         </div>                         
                         <!-- form input -->
@@ -388,7 +388,7 @@
                                  class="btn primary-btn rounded-full"
                                  type="submit"
                                  >
-                              Publicar Solicitud
+                              Enviar Solicitud
                               </button>
                            </div>
                         </div>
