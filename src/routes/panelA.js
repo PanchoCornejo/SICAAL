@@ -101,7 +101,14 @@ router.post('/ServicioaDetalle', isAdmin,async (req, res) => {
  router.get('/perfilA', isAdmin, async (req, res) => {
     const idd = req.user.id;
     const nombree = await pool.query('SELECT fullname FROM users WHERE id = ?', [idd]);
-    res.render('admins/perfilA', {nombree: nombree[0]} );
+    let servicios = await pool.query(`select count(*) as cantidad from servicios where estado_publicacion = 'aprobado'`);
+    let proveedores = await pool.query(`select count(*) as cantidad from proveedor;`);
+    let ordenes = await pool.query(`select count(*) as cantidad from orden`);
+    servicios = servicios[0].cantidad
+    proveedores = proveedores[0].cantidad
+    ordenes = ordenes[0].cantidad
+    
+    res.render('admins/perfilA', {nombree: nombree[0], servicios, proveedores,ordenes });
 });
 
  // Donde puede el Administrador: puede editar su perfil. 
