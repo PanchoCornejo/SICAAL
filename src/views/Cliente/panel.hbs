@@ -1,7 +1,7 @@
 {{>navigation3}}
 {{>message}} 
 
-<div class="main">
+<div class="main" style="max-width : 50em">
     <h1>Mi Perfil</h1>
     {{#if datos}}
             <!--====== Start Profile One ======-->
@@ -29,18 +29,29 @@
                             <div class="card-content text-center rounded-buttons">
                                 {{#each datos}}
                                 <h3 class="card-title">Nombre: {{fullname}}</h3>
-                                 <p class="text">Tipo de usuario: {{rol}}</p>   
+                                    
                                 {{/each}}
 
+                                {{#if info}}
+                                    {{#each info}}
+                                        <p class="text">Correo: {{correo}}</p>
+                                        <p class="text">Telefono: {{telefono}}</p>
+                                    <a
+                                        href="/Cliente/misordenes"
+                                        class="btn primary-btn rounded-full"
+                                        data-toggle="modal"
+                                        data-target="#contact-modal"
+                                        >
+                                        Ver Ordenes
+                                    </a>
+                                    {{/each}}
+                                {{else}}
+                                    <p class="text">No tenemos datos registrados</p>
+                                    <button class="btn btn-primary" onclick="window.location.href='/Cliente/CrearDatos'">Añadir datos</button>
+                                {{/if}}
+
                                                             
-                                <a
-                                href="/Cliente/misordenes"
-                                class="btn primary-btn rounded-full"
-                                data-toggle="modal"
-                                data-target="#contact-modal"
-                                >
-                                Ver Ordenes
-                                </a>
+                                
                             </div>
                             <!-- card-content -->
 

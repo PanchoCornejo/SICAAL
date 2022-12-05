@@ -194,12 +194,12 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Se podria hacer quizas una solicitud de servicio, para luego en el panel del admin
-                                                ver quien quiere un servicio y generar dicha solicitud
+                                                Enviar Solicitud
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="button" class="btn btn-primary">Enviar formulario</button>
+                                                <button type="button" class="btn btn-primary" value="{{userid}}" onclick="enviarsoli(this)">Enviar formulario</button>
+                                                
                                             </div>
                                             </div>
                                         </div>
@@ -376,6 +376,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                                 <button type="button" class="btn btn-primary">Enviar formulario</button>
+                                                
                                             </div>
                                             </div>
                                         </div>
@@ -491,5 +492,42 @@
         // Add number rating
         document.querySelector(`.${rating} .number-rating`).innerHTML = ratings[rating];
       }
+    }
+</script>
+
+
+<script>
+    const enviarsoli = async(boton) => {
+        const usuario = boton.value;    
+        console.log("------asdasdsa-----")    
+        let ide = usuario.split('/')
+        console.log()
+        
+        
+        const data = {
+            'id' : ide[0],
+            'ser' : ide[1]
+        }
+        
+
+        //console.log("Me apretaste");
+        await fetch('./enviarsoli',{
+            method : 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Connection': 'keep-alive',
+                'Accept': '*/*',
+            },
+            body :JSON.stringify(data)
+            
+        })
+        .then(resp => resp.json())
+        .then((data)=> {
+         console.log(data)
+        })
+
+
+    //console.log("Me apretaste");
+   
     }
 </script>

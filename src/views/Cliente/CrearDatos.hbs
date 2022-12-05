@@ -1,0 +1,61 @@
+{{>navigation3}}
+{{>message}} 
+
+<div class="main mt-2" style="max-width : 50em;">
+    <section class="signin-area signin-one">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-lg-5">
+                <h1 class="text-center">Ingresar Datos</h1>
+            <form action="CrearDatos" method="POST" >
+               <div class="signin-form form-style-two rounded-buttons">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-input">
+                           <label>Ingresa un correo de contacto</label>
+                           <div class="input-items default">
+                              <input type="email" id="correo" name="correo"  placeholder="Correo@correo.cl" required/>
+                              <i class="lni lni-envelope"></i>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-input">
+                           <label>
+                           Ingresa un telefono de contacto
+                           </label>
+                           <div class="input-items default">
+                              <input type="text" id="fono" name="fono" placeholder="+569 12345678" required/>
+                              <i class="lni lni-user"></i>
+                           </div>
+                        </div>
+                        <!-- form input -->
+                     </div>
+                     
+                     <div class="col-md-6">
+                        <div class="form-input rounded-buttons">
+                           <button
+                              class="btn btn-success rounded-full"
+                              type="submit"
+                              >
+                           Enviar
+                           </button>
+                        </div>
+                        <!-- form input -->
+                     </div>
+                     
+                    
+                  </div>
+               </div>
+               <!-- signin form -->
+            </form>
+         </div>
+      </div>
+      <!-- row -->
+   </div>
+   <!-- container -->
+</section>
+</div>
+
+

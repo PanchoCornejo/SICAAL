@@ -657,3 +657,25 @@ ALTER TABLE subcategoria
 
 ALTER TABLE subcategoria
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
+
+CREATE TABLE Clientes (
+	id INT(11) NOT NULL,
+	telefono VARCHAR(25) NOT NULL,
+	correo VARCHAR(25) NOT NULL,
+	PRIMARY KEY (ID)
+);  
+
+		
+CREATE TABLE Soliservicio (
+  id INT(11) NOT NULL,
+  user_request INT(11) NOT NULL,
+  servicio INT(11) NOT NULL
+);
+
+ALTER TABLE Soliservicio
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE Soliservicio
+  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
+
+DESCRIBE Soliservicio;

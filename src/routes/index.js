@@ -137,19 +137,23 @@ router.post('/servicios', async (req, res) => {
 
 router.post('/detalle', async(req,res)=>{   
     
+    
+    const username = req.user.id;
+
+    
+
+    //console.log("------- Detalles ---------", username)
     const {id} = req.body
     const IDD = {
         id
     };
 
-    //console.log("------- Detalles ---------", username)
     
-    const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
+    
+    let datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
     const valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
-    const regiones = await pool.query('SELECT regions.name FROM CServicio, cities, servicios, regions WHERE CServicio.id_ciudad = cities.id_city AND CServicio.id_servicio = servicios.id AND cities.id_region = regions.id_region AND servicios.id = ? GROUP BY regions.name', [IDD.id]);
     console.log(datos,valor)
-    console.log(regiones)
-    res.render('./serviciodetalle', {datos, valor, regiones})
+    res.render('./serviciodetalle', {datos, valor})
 })
 
 
@@ -194,6 +198,13 @@ router.get('/pruebas', async (req, res) => {
     res.render('./pruebas', { datos : datos , regiones :regiones , ciudades, arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
 });
 
+
+router.post('/enviarsoli', async(req,res)=> {
+    const {id,ser} = req.body;
+    
+    const asd = await pool.query(`insert into Soliservicio (user_request,servicio) values (${id},${ser});`)
+    res.send({response : 'ok'})
+})
 
 
 

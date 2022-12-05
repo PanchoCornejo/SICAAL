@@ -9,8 +9,10 @@ const { isClient } = require('../lib/auth');
 router.get('/Panel',isClient , async(req, res) => {
     const id = req.user.id;
     const datos = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+    const info = await pool.query(`select * from Clientes where id = ${id}`)
+    console.log(info)
     
-    res.render('Cliente/panel', {datos});
+    res.render('Cliente/panel', {datos, info});
 });
 
 // Donde puede el cliente mira sus Ordenes y elige dar una valoracion
@@ -81,6 +83,21 @@ router.post('/Evaluar', isClient, async (req, res) => {
         res.redirect('/Cliente/Panel');
     } 
     
+});
+
+router.get('/CrearDatos', (req, res) => {
+    res.render('Cliente/CrearDatos');
+});
+
+router.post('/CrearDatos', async (req, res) => {
+    
+    const id = req.user.id; 
+    const { fono , correo } = req.body
+    //const aers = `INSERT INTO Clientes values(${id},'${fono}','${correo}')`
+    await pool.query(`INSERT INTO Clientes values(${id},'${fono}','${correo}')`);
+    req.flash('Correcto!', 'Datos Creados Correctamente');
+    res.redirect('/Cliente/panel');
+    //res.send({fono : fono, correo : correo, aers : aers})
 });
 
 
