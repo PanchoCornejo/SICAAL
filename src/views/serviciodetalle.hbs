@@ -106,7 +106,7 @@
             </div>
             <div class="col-md-4">  
                 
-            
+                {{/each}}
             
                         <div class="card-body">
                             <table class="table table-striped">
@@ -209,6 +209,20 @@
                                 
                             </div>
 
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="card-header">
+                                        Estamos presente las siguientes regiones:
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        {{#each regiones}}
+                                        <li class="list-group-item">{{name}}</li>
+                                        {{/each}}
+                                    </ul>   
+                                </div>
+                                
+                            </div>
+
                             
                             
                             
@@ -222,7 +236,6 @@
         </div>
     </div>
 
-    {{/each}}
 
     {{#each valor}}
     <input id="1" name="{{general}}" type="hidden" value="{{general}}">
