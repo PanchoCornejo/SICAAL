@@ -31,8 +31,11 @@ router.get('/publicar',isProveedor , async(req, res) => {
     const lagos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="14"');
     const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
     const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
+
+    const categorias = await pool.query('SELECT id, nombre FROM categoria');
+
     
-    res.render('proveedores/publicar', {regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
+    res.render('proveedores/publicar', {categorias ,regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
@@ -103,7 +106,9 @@ router.post('/misservicios', async function(req, res, next){
     const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
     const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
 
-    res.render('proveedores/modificar', {DatosP , regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
+    const categorias = await pool.query('SELECT id, nombre FROM categoria');
+
+    res.render('proveedores/modificar', {categorias, DatosP , regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (Archivado) y las puede reactivar (a pendiente) o modificar.
@@ -282,10 +287,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
     const proveedor_id = result[0].id;
     // console.log(req.body);
     const { nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-    console.log("Regiones en las que Opera");
-    console.log(region);
-    console.log("Ciudades que trabajamos");
-    console.log(ciudades);
+    console.log(req.body)
 
     //Por defecto viene en pendiente, para que no se publique de una
     const estado_publicacion = 'pendiente';

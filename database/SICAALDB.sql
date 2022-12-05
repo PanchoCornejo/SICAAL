@@ -646,7 +646,7 @@ VALUES
 
 
 
-CREATE TABLE subategoria (
+CREATE TABLE subcategoria (
   id INT(11) NOT NULL,
   nombre VARCHAR(50) NOT NULL,
   created_at timestamp NOT NULL DEFAULT current_timestamp
