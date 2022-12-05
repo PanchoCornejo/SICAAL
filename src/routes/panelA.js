@@ -165,9 +165,9 @@ router.get('/Orden', isAdmin, async (req, res) => {
 
 
 router.get('/gestionarorden', async(req,res)=>{
-    const datos = await pool.query("select DISTINCT users.fullname,orden.servicio_id,orden.description,proveedor.razon_social from users,orden,servicios,proveedor where orden.user_id = users.id and orden.servicio_id = servicios.id and servicios.proveedor_id = proveedor.id;")
+    let datos = await pool.query(`select DISTINCT users.fullname,orden.servicio_id,orden.description,DATE_FORMAT(orden.created_at, "%d %M %Y") as date,proveedor.razon_social from users,orden,servicios,proveedor where orden.user_id = users.id and orden.servicio_id = servicios.id and servicios.proveedor_id = proveedor.id;`)
     
-    console.log("--- Gestionar orden", datos)
+    console.log("--- Gestionar orden", datos[0])
 
     res.render('admins/gestionar', {datos});
 })

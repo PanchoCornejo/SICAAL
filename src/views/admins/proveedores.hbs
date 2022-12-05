@@ -1,6 +1,8 @@
 {{>navigation1}}
 {{>message}}
 
+
+
 <div class="main" style="max-width: 50em;">
     {{#if datos}}
     <h1 class="text-center">Lista proveedores</h1>
@@ -8,17 +10,17 @@
     {{#each datos}}    
     
     <div class="card" >
-  <img src="https://cdn-icons-png.flaticon.com/512/993/993891.png" class="mt-2 card-img-top rounded mx-auto d-block" alt="..." style="width : 300px">
-  <div class="card-body">
-    <h5 class="card-title text-center">Razón Social : {{razon_social}}</h5>
-    <p class="card-text">{{description}}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Rut: {{rut}}</li>
-    <li class="list-group-item">Ubicación: {{ubicacion}}</li>
-    <li class="list-group-item">Fono:{{fono}}</li>
-  </ul>
- 
+      <img src="https://cdn-icons-png.flaticon.com/512/993/993891.png" class="mt-2 card-img-top rounded mx-auto d-block" alt="..." style="width : 300px">
+      <div class="card-body">
+        <h5 class="card-title text-center">Razón Social : {{razon_social}}</h5>
+        <p class="text-center">Descripción: {{description}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Rut: {{rut}}</li>
+        <li class="list-group-item">Ubicación: {{ubicacion}}</li>
+        <li class="list-group-item">Fono:{{fono}}</li>
+      </ul>
+    
 </div>
 
     {{/each}}
