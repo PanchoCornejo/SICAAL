@@ -22,6 +22,7 @@ router.get('/servicios', async (req, res) => {
 });
 
 router.post('/servicios', async (req, res) => {
+    console.log("POST de SERVICIOS GENERALES")
     const {
         region,
         ciudad,
@@ -58,6 +59,8 @@ router.post('/servicios', async (req, res) => {
         const aux4 = sql.concat(' AND servicios.categoria = ?');
         sql = aux4;
     }
+    const aux5 = sql.concat('  GROUP BY servicios.id');
+    sql = aux5;
     console.log(sql)
 
 
