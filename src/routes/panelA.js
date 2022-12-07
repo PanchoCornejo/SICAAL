@@ -82,7 +82,9 @@ router.get('/servicios', isAdmin,async (req, res) => {
     const regiones = await pool.query('SELECT id_region, name FROM regions;');
     const ciudades = await pool.query('SELECT id_city, name FROM cities');
     const categoria = await pool.query('SELECT nombre FROM categoria');
+    // const datos = await pool.query("SELECT * FROM servicios, users where servicios.estado_publicacion = 'aprobado' and servicios.user_id = users.id");
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'aprobado'");
+    console.log(datos);
     res.render('admins/servicios', { datos : datos, regiones, ciudades, categoria });
     
 });
@@ -212,7 +214,7 @@ router.post('/ServicioaDetalle', isAdmin,async (req, res) => {
     const IDD = {
         id
     };
-    let datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
+    let datos = await pool.query(`select * from servicios where id = ${id}`);
     console.log(datos);
     const ruta = path.join(datos[0].foto,'');
     console.log('la ruta es: ',ruta);
@@ -418,7 +420,7 @@ router.get('/Dashboard', isAdmin, async (req, res) => {
     const lagos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="14"');
     const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
     const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
-    //Ciudad y Numero de servicios en aquilla ciudad
+    //Ciudad y Numero de servicios en aquella ciudad
     const Narica = await pool.query('SELECT cities.NAME, cities.id_city, Count(*) AS nro_servicios FROM   CServicio, cities, servicios WHERE  CServicio.id_ciudad = cities.id_city AND CServicio.id_servicio = servicios.id AND cities.id_region = 1 GROUP  BY cities.NAME, cities.id_city');
     const Ntarapaca = await pool.query('SELECT cities.NAME, cities.id_city, Count(*) AS nro_servicios FROM   CServicio, cities, servicios WHERE  CServicio.id_ciudad = cities.id_city AND CServicio.id_servicio = servicios.id AND cities.id_region = 2 GROUP  BY cities.NAME, cities.id_city');
     const Nantofagasta = await pool.query('SELECT cities.NAME, cities.id_city, Count(*) AS nro_servicios FROM   CServicio, cities, servicios WHERE  CServicio.id_ciudad = cities.id_city AND CServicio.id_servicio = servicios.id AND cities.id_region = 3 GROUP  BY cities.NAME, cities.id_city');

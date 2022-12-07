@@ -175,9 +175,7 @@ router.post('/detalle', async(req,res)=>{
         valor = [{}]
         valor[0].userid = username + '/'+ id
         console.log(valor)
-
     }
-
 
     res.render('./serviciodetalle', {datos, valor, regiones})
 })
@@ -222,7 +220,7 @@ router.get('/pruebas', async (req, res) => {
     const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
     const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
     res.render('./pruebas', { datos : datos , regiones :regiones , ciudades, arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
-});
+})
 
 
 router.post('/enviarsoli', async(req,res)=> {
@@ -236,8 +234,3 @@ router.post('/enviarsoli', async(req,res)=> {
 
 
 module.exports = router;
-
-
-
-
-

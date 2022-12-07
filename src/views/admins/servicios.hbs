@@ -73,11 +73,12 @@
     {{#each datos}}
    <div class="col">
     <div class="card h-100">
-      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+      <img src="{{foto}}" class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
       <div class="card-body">
         <h5 class="card-title text-center">Nombre: {{nombre }}</h5>
 
             <ul class="list-group list-group-flush">
+              <li class="list-group-item">Proveedor: {{fullname}}</li>
               <li class="list-group-item">Marca: {{marca}}</li>
               <li class="list-group-item">Año: {{ano}}</li>
               <li class="list-group-item">Modelo: {{modelo}}</li>
@@ -86,6 +87,7 @@
               <li class="list-group-item">Estado: {{estado}}</li>
               <li class="list-group-item">Categoría: {{categoria}}</li>
               <li class="list-group-item">Descripción: {{description}}</li>
+              
             </ul> 
 
       </div>

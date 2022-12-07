@@ -1,8 +1,14 @@
 {{>navigation1}}
 {{>message}}
 
+<style>
+.tbodyDiv{
+max-height: clamp(10em,10vh,250px);
+overflow: auto;
+}
 
-{{!-- {{Dashboard}} --}}
+</style>
+
 
 <div class="main">
     <div class="tabs">
@@ -33,243 +39,375 @@
                         <!-- ARICA -->
 
                         {{#if Sarica}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Sarica}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Varica}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Carica}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container border">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Arica y Parinacota</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Sarica}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Region de Arica</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Narica}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Narica}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Parica}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Parica}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Parica}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Varica}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Carica}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Narica}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Parica}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
                         <!-- Tarapacá -->
 
                         {{#if Starapaca}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Starapaca}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vtarapaca}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Ctarapaca}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container border">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Tarapacá</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Starapaca}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Region de Tarapacá</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Ntarapaca}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Ntarapaca}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Ptarapaca}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Ptarapaca}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Ptarapaca}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vtarapaca}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Ctarapaca}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Ntarapaca}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Ptarapaca}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
                         <!-- antofagasta -->
 
                         {{#if Santofagasta}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
+                        <div class="container border">
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Santofagasta}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vantofagasta}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Cantofagasta}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Antofagasta</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Santofagasta}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Region de Antofagasta</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nantofagasta}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nantofagasta}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Pantofagasta}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pantofagasta}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pantofagasta}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vantofagasta}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Cantofagasta}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nantofagasta}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pantofagasta}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
@@ -277,81 +415,125 @@
                         <!-- Atacama -->
 
                         {{#if Satacama}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
+                        <div class="container border">
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Satacama}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vatacama}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Catacama}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Atacama</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Satacama}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Region de Atacama</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Natacama}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Natacama}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Patacama}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Patacama}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Patacama}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vatacama}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Catacama}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Natacama}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Patacama}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
@@ -359,12 +541,11 @@
                         <!-- coquimbo -->
 
                         {{#if Scoquimbo}}
-
-
-                        <div>
+                        <div class="container border">
 
                             <!-- PRIMERA PARTE -->
-
+                            
+                                <p class="h1 text-center">Región de Coquimbo</p>
                             <div class="row justify-content-center ">
 
                                 <div class="col-lg-4 col-md-7 col-sm-9 ">
@@ -382,7 +563,7 @@
                                     </div>
                                     <!-- single features -->
                                 </div>
-                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
                                     <div class="features-style-one text-center border">
                                         <div class="features-icon">
                                             {{#each Vcoquimbo}}
@@ -413,10 +594,10 @@
                                 </div>
                             </div>
 
-                            <div class="container text-center mt-5">
+                            <div class="container text-center mt-5 ">
                                 <div class="row">
                                     <div class="col">
-                                        <div class="col">
+                                        <div class="col tbodyDiv">
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -439,7 +620,7 @@
                                     <div class="col">
                                         <div class="row">
                                             <div class="col">
-                                                <div class="col">
+                                                <div class="col tbodyDiv">
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr>
@@ -481,7 +662,6 @@
 
                         </div>
 
-
                         {{else}}
                         {{/if}}
 
@@ -491,49 +671,63 @@
                     <div class="tab-text">
                         <!-- valparaiso -->
                         {{#if Svalparaiso}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    <div class="row">
-                                        <h1 style="text-align:center">Region Metropolitana</h1>
-                                    </div>
-                                    <div class="card">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="row">
-                                                    {{#each Smetropolitana}}
-                                                    <h1 style="text-align:center">{{cantidad}}</h1>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="row">
-                                                    <h5 style="text-align:center">Servicios Disponibles</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="row">
-                                                    <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                                </div>
-                                                <div class="row">
-                                                    {{#each Vmetropolitana}}
-                                                    <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                    </h5>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="row">
-                                                    {{#each Cmetropolitana}}
-                                                    <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="row">
-                                                    <h5 style="text-align:center">Proveedores</h5>
-                                                </div>
-                                            </div>
+                         <div class="container border">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Valparaíso</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Svalparaiso}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vvalparaiso}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Cvalparaiso}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                            </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
                                             <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -542,7 +736,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{#each Nmetropolitana}}
+                                                    {{#each Nvalparaiso}}
                                                     <tr>
                                                         <th scope="row">{{NAME}}</th>
                                                         <td>{{nro_servicios}}</td>
@@ -551,33 +745,51 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="col-md-6">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Proveedores</th>
-                                                        <th scope="col">C.Servicios</th>
-                                                        <th scope="col">Valoracion</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {{#each Pmetropolitana}}
-                                                    <tr>
-                                                        <th scope="row">{{fullname}}</th>
-                                                        <td>{{cantidad_de_servicios}}</td>
-                                                        <td>{{promediofinal}}</td>
-                                                    </tr>
-                                                    {{/each}}
-                                                </tbody>
-                                            </table>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pvalparaiso}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
 
-
-
                                 </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
                             </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
@@ -585,10 +797,12 @@
                         <!-- Metropolitana -->
 
                         {{#if Smetropolitana}}
-                        <div>
+
+                         <div class="container ">
 
                             <!-- PRIMERA PARTE -->
-
+                            
+                                <p class="h1 text-center">Región Metropolitana</p>
                             <div class="row justify-content-center ">
 
                                 <div class="col-lg-4 col-md-7 col-sm-9 ">
@@ -606,7 +820,7 @@
                                     </div>
                                     <!-- single features -->
                                 </div>
-                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
                                     <div class="features-style-one text-center border">
                                         <div class="features-icon">
                                             {{#each Vmetropolitana}}
@@ -637,12 +851,11 @@
                                 </div>
                             </div>
 
-                            <div class="container text-center mt-5">
-                                <div class="row ">
-                                    <div class="col table-wrapper-scroll-y my-custom-scrollbar2">
-                                        <div class="col">
-                        <!-- row table-wrapper-scroll-y my-custom-scrollbar2 ms-3 me-1-->
-                                            <table class="table table-bordered ">
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Ciudad</th>
@@ -664,7 +877,7 @@
                                     <div class="col">
                                         <div class="row">
                                             <div class="col">
-                                                <div class="col">
+                                                <div class="col tbodyDiv">
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr>
@@ -691,10 +904,21 @@
 
                                 </div>
 
+
+
+
+
                                 <!-- FIN SEGUNDA PARTE-->
 
+
+
+
+
                             </div>
+
+
                         </div>
+
                         {{else}}
                         {{/if}}
                     </div>
@@ -703,567 +927,875 @@
                     <div class="tab-text">
                         <!-- Bernardo -->
                         {{#if Sbernardo}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Sbernardo}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vbernardo}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Cbernardo}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región del Libertador General Bernardo OHiggins</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Sbernardo}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región de OHiggins</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nbernardo}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nbernardo}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Pbernardo}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pbernardo}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pbernardo}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vbernardo}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Cbernardo}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nbernardo}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pbernardo}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
 
                         <!-- Maule -->
                         {{#if Smaule}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Smaule}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vmaule}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Cmaule}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región del Maule</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Smaule}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región del Maule</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nmaule}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nmaule}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Pmaule}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pmaule}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pmaule}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vmaule}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Cmaule}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nmaule}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pmaule}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
 
                         <!-- Nuble -->
                         {{#if Snuble}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Snuble}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vnuble}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Cnuble}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Ñuble</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Snuble}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región de Nuble</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nnuble}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nnuble}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Pnuble}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pnuble}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pnuble}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vnuble}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Cnuble}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nnuble}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pnuble}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
 
                         <!-- Bio Bio -->
                         {{#if Sbiobio}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Sbiobio}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vbiobio}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Cbiobio}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región del Biobío</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Sbiobio}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región del Biobío</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nbiobio}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nbiobio}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Pbiobio}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pbiobio}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pbiobio}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vbiobio}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Cbiobio}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nbiobio}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pbiobio}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
 
                         <!-- araucania -->
                         {{#if Saraucania}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Saraucania}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Varaucania}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Caraucania}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de la Araucanía</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Saraucania}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región de la Arauncanía</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Naraucania}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Naraucania}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Paraucania}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Paraucania}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Paraucania}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Varaucania}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Caraucania}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Naraucania}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Paraucania}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
 
                         <!-- rios -->
                         {{#if Srios}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Srios}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vrios}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Crios}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de los Ríos</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Srios}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región de los Ríos</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nrios}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nrios}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Prios}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Prios}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Prios}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vrios}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Crios}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nrios}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Prios}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
 
                         <!-- lagos -->
                         {{#if Slagos}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Slagos}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vlagos}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Clagos}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de los Lagos</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Slagos}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región de los Lagos</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nlagos}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nlagos}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Plagos}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Plagos}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Plagos}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vlagos}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Clagos}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nlagos}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Plagos}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
@@ -1273,162 +1805,241 @@
                     <div class="tab-text">
                         <!-- carlos -->
                         {{#if Scarlos}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Scarlos}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vcarlos}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Ccarlos}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Aysén</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Scarlos}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región de Aysén</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Ncarlos}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Ncarlos}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Pcarlos}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pcarlos}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pcarlos}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vcarlos}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Ccarlos}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Ncarlos}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pcarlos}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+
+
+
+
+                            </div>
+
+
                         </div>
                         {{else}}
                         {{/if}}
 
                         <!-- antartica -->
                         {{#if Santartica}}
-                        <div class="row mt-3">
-                            <div class="container text-center">
-                                <div class="card">
-                                    {{!-- {{al interior de la tarjeta}} --}}
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="row">
-                                                {{#each Santartica}}
-                                                <h1 style="text-align:center">{{cantidad}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Servicios Disponibles</h5>
-                                            </div>
-                                            <div class="row">
-                                                <i style="text-align:center" class="fa-sharp fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="row">
-                                                {{#each Vantartica}}
-                                                <h5 style="text-align:center">Valoracion de la Region:{{valoRegion}}
-                                                </h5>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                {{#each Cantartica}}
-                                                <h1 style="text-align:center">{{cantidadProveedores}}</h1>
-                                                {{/each}}
-                                            </div>
-                                            <div class="row">
-                                                <h5 style="text-align:center">Proveedores</h5>
-                                            </div>
+                        <div class="container ">
+
+                            <!-- PRIMERA PARTE -->
+                            
+                                <p class="h1 text-center">Región de Magallanes y de la Antártica Chilena</p>
+                            <div class="row justify-content-center ">
+
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Santartica}}
+                                            <i class="cantser">{{cantidad}}</i>
+                                            {{/each}}
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <h1 style="text-align:center">Región Antartica</h1>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <h5>Ciudades</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h5>Proveedores</h5>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{#each Nantartica}}
-                                                    <h6>{{NAME}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Nantartica}}
-                                                    <h6>{{nro_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-5">
-                                                    {{#each Pantartica}}
-                                                    <h6>{{fullname}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pantartica}}
-                                                    <h6>{{cantidad_de_servicios}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="col-md-1">
-                                                    {{#each Pantartica}}
-                                                    <h6>{{promediofinal}}</h6>
-                                                    {{/each}}
-                                                </div>
-                                            </div>
+                                        <div class="features-content ">
+                                            <h4 class="features-title ">Servicio(s) Disponible(s)</h4>
+
+
                                         </div>
                                     </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9 ">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Vantartica}}
+                                            <i class="fa-sharp fa-solid fa-star">{{valoRegion}}</i>
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Valoración de la Región</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
+                                </div>
+                                <div class="col-lg-4 col-md-7 col-sm-9">
+                                    <div class="features-style-one text-center border">
+                                        <div class="features-icon">
+                                            {{#each Cantartica}}
+                                            <i class="cantser">{{cantidadProveedores}}</i>
+
+                                            {{/each}}
+                                        </div>
+                                        <div class="features-content">
+                                            <h4 class="features-title">Cantidad de Proveedor(es)</h4>
+
+                                        </div>
+                                    </div>
+                                    <!-- single features -->
                                 </div>
                             </div>
+
+                            <div class="container text-center mt-5 ">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="col tbodyDiv">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Ciudad</th>
+                                                        <th scope="col">C.Servicios</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each Nantartica}}
+                                                    <tr>
+                                                        <th scope="row">{{NAME}}</th>
+                                                        <td>{{nro_servicios}}</td>
+                                                    </tr>
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- SEGUNDA TABLA ABAJO, PRIMERA ARRIBA-->
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="col tbodyDiv">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Proveedores</th>
+                                                                <th scope="col">C.Servicios</th>
+                                                                <th scope="col">Valoracion</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each Pantartica}}
+                                                            <tr>
+                                                                <th scope="row">{{fullname}}</th>
+                                                                <td>{{cantidad_de_servicios}}</td>
+                                                                <td>{{promediofinal}}</td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- FIN SEGUNDA PARTE-->
+
+                            </div>
+
                         </div>
                         {{else}}
                         {{/if}}

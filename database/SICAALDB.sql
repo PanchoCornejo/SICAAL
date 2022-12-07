@@ -18,10 +18,7 @@ ALTER TABLE users
 ALTER TABLE users
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
 
-DESCRIBE users;
 
-INSERT INTO users (id, username, password, fullname, rol) 
-  VALUES (1, 'kiwix', 'kiwix', 'Pancho Cornejo', 'Admin');
 
 SELECT * FROM users;
 
@@ -52,7 +49,7 @@ ALTER TABLE proveedor
 CREATE TABLE rol (
   id INT(11) NOT NULL,
   user_id INT(11),
-  nombre VARCHAR(25) NOT NULL,
+  nombre VARCHAR(50) NOT NULL,
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_userR FOREIGN KEY(user_id) REFERENCES users(id)
 );
@@ -116,16 +113,6 @@ ALTER TABLE valoraciones
 ALTER TABLE valoraciones
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
 
-
-
-DESCRIBE proveedor;
-DESCRIBE rol;
-DESCRIBE valoraciones;
-DESCRIBE servicios;
-
--- Proveedor de prueba
--- insert INTO proveedor (user_id, fono, razon_social, rut, giro, direccion, ubicacion, anos_servicio, proyectos_ejecutados, description) VALUES (4,'+5693333', 'RAZONSOCIAL', 111111111, 'GIRO', 'DIRECCION', 'UBICACION?', 11, 400, 'DKSLFJKDSJFKLDSJFKLSDJFKDSJKL' );
- 
 
 
 --Base de Datos para las regiones y comunas de Chile, y tambien puede ser de otros paises.
@@ -547,16 +534,9 @@ CREATE TABLE `CServicio` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_servicio` int(10) unsigned NOT NULL,
   `id_ciudad` int(10) unsigned NOT NULL,
-  `id_region` int(10) unsigned NOT NULL,
-  `id_country` int(10) unsigned NOT NULL,
-  `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_CServicio_servicio` (`id_servicio`),
   KEY `FK_CServicio_ciudad` (`id_ciudad`),
-  KEY `FK_CServicio_region` (`id_region`),
-  KEY `FK_CServicio_countries` (`id_country`),
-  CONSTRAINT `FK_CServicio_countries` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id_country`),
-  CONSTRAINT `FK_CServicio_region` FOREIGN KEY (`id_region`) REFERENCES `regions` (`id_region`),
   CONSTRAINT `FK_CServicio_ciudad` FOREIGN KEY (`id_ciudad`) REFERENCES `cities` (`id_city`)
 );
 
@@ -645,23 +625,10 @@ VALUES
 
 
 
-
-CREATE TABLE subcategoria (
-  id INT(11) NOT NULL,
-  nombre VARCHAR(100) NOT NULL,
-  created_at timestamp NOT NULL DEFAULT current_timestamp
-);
-
-ALTER TABLE subcategoria
-  ADD PRIMARY KEY (id);
-
-ALTER TABLE subcategoria
-  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2; 
-
 CREATE TABLE Clientes (
 	id INT(11) NOT NULL,
 	telefono VARCHAR(25) NOT NULL,
-	correo VARCHAR(50) NOT NULL,
+	correo VARCHAR(100) NOT NULL,
 	PRIMARY KEY (ID)
 );  
 
@@ -678,5 +645,3 @@ ALTER TABLE Soliservicio
 
 ALTER TABLE Soliservicio
   MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 2;
-
-DESCRIBE Soliservicio;

@@ -224,15 +224,17 @@ router.post('/CrearDatos', async (req, res) => {
 
 router.post('/publicar', uploadFile(), async function(req, res, next){
     // console.log(req.user.proveedor_id);
-    console.log("----aca-----")
 
     let result = await pool.query('SELECT proveedor.id from proveedor, users WHERE users.id = ? AND proveedor.user_id = users.id;', [req.user.id]);
     const user_id = req.user.id;
-    console.log("La cosa es:"+result[0].id);
+    
+    if (!Object.values(result[0]).includes('id')) {
+        res.redirect('/panelP/perfilP');
+    }
     const proveedor_id = result[0].id;
-    // console.log(req.body);
+
     const { nombre, marca, ano, modelo, horometro, operador, region, ciudades, estado, categoria, description} = req.body;
-    console.log(req.body)
+
 
     //Por defecto viene en pendiente, para que no se publique de una
     const estado_publicacion = 'pendiente';
@@ -257,7 +259,7 @@ router.post('/publicar', uploadFile(), async function(req, res, next){
         foto:''
 
     };
-    console.log(DatosP);
+    // console.log(DatosP);
     const uploadQuery = await pool.query('INSERT INTO servicios set ?', [DatosP]);
 
     const servicio_id = uploadQuery.insertId;
