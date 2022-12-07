@@ -14,7 +14,8 @@
             <div class="card-body">
 
                 <div class="card" style="">
-                <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+                {{!-- <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;"> --}}
+                <img src="{{foto}}" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
                     <div class="card-header">
                         Nombre: {{nombre }}
                     </div>
@@ -103,19 +104,67 @@
                             </table>   
 
                             <div class="row">                         
-
-                            <div class="col">
-                                <button value={{id}} onclick="getRegiones(this)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Ubicaciones
-                                </button>
+                                <div class="col">
+                                    <button value={{id}} onclick="getRegiones(this)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Ubicaciones
+                                    </button>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary" onclick="window.location='servicios';">
+                                        Volver
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-primary" onclick="window.location='servicios';">
-                                    Volver
-                                </button>
-                            </div>
 
-
+                            <div class="row">
+                                <div class="card mt-3">
+                                    <h6 class="mt-1 centered">Descarga de Archivos</h6>
+                                    <div class="row mt-1">
+                                        {{#if dominio_de_la_maquina}}
+                                        
+                                        <div class="col-md-6">
+                                            <a href="..{{dominio_de_la_maquina}}" target="_blank"><button type="button" class="btn btn-success">Descargar Dominio Máquina</button></a>
+                                        </div>
+                                        
+                                        {{/if}}
+                                        {{#if revision_tecnica}}
+                                        
+                                        <div class="col-md-6">
+                                            <a href="..{{revision_tecnica}}" target="_blank"><button type="button" class="btn btn-success">Descargar Revisión Técnica</button></a>
+                                        </div>
+                                        
+                                        {{/if}}
+                                    </div>
+                                    <div class="row mt-1">
+                                        {{#if permiso_de_circulacion}}
+                                        
+                                        <div class="col-md-6">
+                                            <a href="..{{permiso_de_circulacion}}" target="_blank"><button type="button" class="btn btn-success">Descargar Permiso Circulación</button></a>
+                                        </div>
+                                        
+                                        {{/if}}
+                                        {{#if seguro}}
+                                        
+                                        <div class="col-md-6">
+                                            <a id="seg" href="..{{seguro}}" target="_blank"><button type="button" class="btn btn-success">Descargar Seguro</button></a>
+                                        </div>
+                                        
+                                        {{/if}}
+                                    </div>
+                                    <div class="row mt-1 mb-2">
+                                        {{#if documentacion_operador}}
+                                        
+                                        <div class="col-md-6">
+                                            <a id="docOpe" href="..{{documentacion_operador}}" target="_blank"><button type="button" class="btn btn-success">Descargar Documentación Operador</button></a>
+                                        </div>
+                                        
+                                        {{/if}}
+                                        {{!-- <div class="col-md-6">
+                                            <a href="..{{foto}}" target="_blank"><button type="button" class="btn btn-success">Descargar Foto</button></a>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                                
                             </div>
                             
 

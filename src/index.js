@@ -58,7 +58,7 @@ app.use('/Cliente', require('./routes/Clientes'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use("/files",express.static("storage"));
 // Starting
 app.listen(app.get('port'),'0.0.0.0', () => {
   console.log('Server is in port', app.get('port'));

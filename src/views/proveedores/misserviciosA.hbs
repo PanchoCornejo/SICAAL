@@ -12,8 +12,9 @@
     <div class="card h-100">
       {{#if foto}}
         
-        <img src='https://images.vexels.com/media/users/3/141641/isolated/preview/be2272518dde9b2679d862528e90f001-maquinaria-de-excavacion-excavadora.png' class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
-      
+        {{!-- <img src='https://images.vexels.com/media/users/3/141641/isolated/preview/be2272518dde9b2679d862528e90f001-maquinaria-de-excavacion-excavadora.png' class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;"> --}}
+        <img src='{{foto}}' class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+
         
       {{/if}}
       
@@ -29,10 +30,39 @@
             <p class="card-text">Descripción: {{description}}</p>
       </div>
       <div class="card-footer">
-        <div class="row">           
-                     <h6 class="card-title" >Estado publicación: {{estado_publicacion }}</h6>
-
-            </div>
+        <div class="row">
+          <div class="col">
+            <form action="/panelP/misserviciosA" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+              <input id="VALid" name="VALid" type="hidden" value="{{id}}">
+              <div class="col-12">
+                <button type="submit" class="btn btn-success">Activar</button>
+              </div>
+            </form>
+            
+          </div>          
+          <div class="col">
+            <form action="/panelP/misservicios" method="POST" class="row g-3 novalidate was-validated"  novalidate>
+              <div class="col">
+                <input id="VALid" name="VALid" type="hidden" value="{{id}}">
+                <input id="nombre" name="nombre" type="hidden" value="{{nombre}}">
+                <input id="marca" name="marca" type="hidden" value="{{marca}}">
+                <input id="modelo" name="modelo" type="hidden" value="{{modelo}}">
+                <input id="ano" name="ano" type="hidden" value="{{ano}}">
+                <input id="horometro" name="horometro" type="hidden" value="{{horometro}}">
+                <input id="operador" name="operador" type="hidden" value="{{operador}}">
+                <input id="region" name="region" type="hidden" value="{{region}}">
+                <input id="ciudades" name="ciudades" type="hidden" value="{{ciudades}}">
+                <input id="estado" name="estado" type="hidden" value="{{estado}}">
+                <input id="categoria" name="categoria" type="hidden" value="{{categoria}}">
+                <input id="description" name="description" type="hidden" value="{{description}}">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-warning">Modificar</button>
+                </div>
+              </div>
+            </form>  
+          </div> 
+        </div>
+          
       </div>
     </div>
   </div>

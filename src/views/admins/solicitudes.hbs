@@ -2,29 +2,98 @@
 {{>message}} 
 
 
-<div class="main" style="max-width: 50em;">
+<div class="main" style="max-width: 55em;">
     
     {{#if datos}}
     <h2 class="text-center">Solicitudes</h2>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="row">
     {{#each datos}}
-   <div class="col">
-    <div class="card h-100">
-      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
-      <div class="card-body">
-        <h5 class="card-title text-center">Nombre: {{nombre }}</h5>
-        
-         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Marca: {{marca}}</li>
-            <li class="list-group-item">Año: {{ano}}</li>
-            <li class="list-group-item">Modelo: {{modelo}}</li>
-            <li class="list-group-item">Horometro: {{horometro}}</li>
-            <li class="list-group-item">Operador: {{operador}}</li>
-            <li class="list-group-item">Estado: {{estado}}</li>
-            <li class="list-group-item">Categoría: {{categoria}}</li>
-            <li class="list-group-item">Descripción: {{description}}</li>
-        </ul>           
+    <div class="card h-100 mb-5">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="row">
+            <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+          </div>
+          <div class="row">
+            <div class="card mt-3 ms-2">
+                <h6 class="mt-1 centered">Descarga de Archivos</h6>
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <a href="..{{dominio_de_la_maquina}}" target="_blank"><button type="button" class="btn btn-success">Dominio Máquina</button></a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="..{{revision_tecnica}}" target="_blank"><button type="button" class="btn btn-success">Revisión Técnica</button></a>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-6">
+                        <a href="..{{permiso_de_circulacion}}" target="_blank"><button type="button" class="btn btn-success">Permiso Circulación</button></a>
+                    </div>
+                    <div class="col-md-6">
+                        <a id="docOpe" href="..{{documentacion_operador}}" target="_blank"><button type="button" class="btn btn-success">Documentación Operador</button></a>
+                    </div>
+                </div>
+                <div class="row mt-1 mb-2">
+                    <div class="col-md-12 text-center" >
+                        <a id="seg" href="..{{seguro}}" target="_blank"><button type="button" class="btn btn-success">Seguro</button></a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title text-center">Nombre: {{nombre }}</h5>
+            
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Marca: {{marca}}</li>
+                <li class="list-group-item">Año: {{ano}}</li>
+                <li class="list-group-item">Modelo: {{modelo}}</li>
+                <li class="list-group-item">Horometro: {{horometro}}</li>
+                <li class="list-group-item">Operador: {{operador}}</li>
+                <li class="list-group-item">Estado: {{estado}}</li>
+                <li class="list-group-item">Categoría: {{categoria}}</li>
+                <li class="list-group-item">Descripción: {{description}}</li>
+            </ul>           
+          </div>
+        </div>
       </div>
+      <div class="row">
+        <div class="card-body">
+            <div class="card-header">
+                Regiones en la que operan:
+                <button value={{id}} onclick="getRegiones(this)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{id}}">
+                  Ver Regiones
+              </button>
+
+              <div class="modal fade" id="exampleModal{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Regiones</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="{{id}}">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <ul class="list-group list-group-flush">
+                {{#each regiones}}
+                <li class="list-group-item">{{name}}</li>
+                {{/each}}
+            </ul>   
+        </div>
+      </div>
+      
+      
       <div class="card-footer">
         <div class="row">
             <div class="col">
@@ -39,7 +108,7 @@
             </div>
       </div>
     </div>
-  </div>
+
   
     {{/each}}
     </div>
@@ -111,4 +180,47 @@ const rechazar = async(boton) => {
     })
 }
 
+</script>
+
+<script>
+  const getRegiones = async(boton) => {
+        
+        const id = boton.value;
+
+        const data = {
+            'id' : id
+        }
+    
+
+    //console.log("Me apretaste");
+    await fetch('./getregionesdeetalle',{
+        method : 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Connection': 'keep-alive',
+            'Accept': '*/*',
+        },
+        body :JSON.stringify(data)
+        
+    })
+    .then(resp => resp.json())
+    .then((data)=> {
+
+        let ubicacion = document.getElementById(id);
+        let total = ''
+        data.datos.map((val)=>{
+            total = total + '<p>' + val.name + '</p>' 
+        })
+        ubicacion.innerHTML = total
+
+        //let total = ''
+        //data.datos.map((val,key)=>{      
+        //total = total + '<p>' + val.name + '</p>'             
+        //console.log(val, ubicacion)
+      //})
+      //ubicacion.innerHTML = total
+      
+    })
+
+    }
 </script>

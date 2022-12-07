@@ -6,7 +6,7 @@ USE sicaal_db;
 -- all pasword wil be encrypted using SHA1
 CREATE TABLE users (
   id INT(11) NOT NULL,
-  username VARCHAR(16) NOT NULL,
+  username VARCHAR(16) UNIQUE NOT NULL,
   password VARCHAR(60) NOT NULL,
   fullname VARCHAR(100) NOT NULL,
   rol VARCHAR(20) DEFAULT 'Cliente' NOT NULL
@@ -582,10 +582,10 @@ ALTER TABLE Orden
 
 CREATE TABLE Sproveedor (
   id INT(11) NOT NULL,
-  empresanombre VARCHAR(50) NOT NULL,
-  contactonombre VARCHAR(50) NOT NULL,
+  empresanombre VARCHAR(100) NOT NULL,
+  contactonombre VARCHAR(100) NOT NULL,
   numero VARCHAR(50) NOT NULL,
-  ubicacion VARCHAR(50) NOT NULL,
+  ubicacion VARCHAR(100) NOT NULL,
   tipo VARCHAR(50) NOT NULL,
   created_at timestamp NOT NULL DEFAULT current_timestamp
 );
@@ -648,7 +648,7 @@ VALUES
 
 CREATE TABLE subcategoria (
   id INT(11) NOT NULL,
-  nombre VARCHAR(50) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
   created_at timestamp NOT NULL DEFAULT current_timestamp
 );
 
@@ -661,9 +661,10 @@ ALTER TABLE subcategoria
 CREATE TABLE Clientes (
 	id INT(11) NOT NULL,
 	telefono VARCHAR(25) NOT NULL,
-	correo VARCHAR(25) NOT NULL,
+	correo VARCHAR(50) NOT NULL,
 	PRIMARY KEY (ID)
 );  
+
 
 		
 CREATE TABLE Soliservicio (

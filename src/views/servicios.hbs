@@ -74,7 +74,8 @@
 
 </section>
 
-<div class="container mt-2 mb-5">       
+<div class="container mt-2 mb-5">
+    {{#if datos}}        
         <div class="card mb-3">
         <div class="row">
             <div class="col">
@@ -141,14 +142,14 @@
             
         </div>
          
-        {{#if datos}}       
+               
         <h2 class="text-center">Servicios</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
         {{#each datos}}
 
              <div class="col">
                 <div class="card h-100">
-                    <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
+                    <img src="{{foto}}" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
                         <div class="card-body">
                             <h5 class="card-title">Nombre: {{nombre }}</h5>
                                 <p class="card-text">Marca: {{marca}}</p>
@@ -186,13 +187,7 @@
 
 
     {{else}}
-        <div class="container"></div>
-        <div class="col-md-4 mx-auto">
-            <div class="card card-body text-center">
-                <p>No tenemos los servicios que buscas</p>
-                <i class="fa-solid fa-ghost fa-4x"></i>
-            </div>
-        </div>
+        <h1>No hay Servicios disponibles </h1>
 
 
     {{/if}}

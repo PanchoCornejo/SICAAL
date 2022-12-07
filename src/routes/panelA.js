@@ -10,8 +10,9 @@ const path = require('path');
 router.get('/solicitudes',isAdmin , async(req, res) => {
 
     const datos = await pool.query("SELECT * FROM servicios where estado_publicacion = 'pendiente'");
-
-    res.render('admins/solicitudes', { datos : datos });
+    
+    
+    res.render('admins/solicitudes', { datos : datos});
 });
 
 // Donde El Administrador puede ver los nuevos Proveedores pidiendo contactarse
@@ -36,7 +37,17 @@ router.post('/getregiones', async(req,res)=>{
 
     const datos = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${id}`);
 
+
     res.send({ok : id, datos : datos})
+})
+
+router.post('/getregionesdeetalle', async(req,res)=>{
+    const {id} = req.body
+
+    const datos = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${id}`);
+
+    res.send({ok : id, datos : datos})
+
 })
 
 
@@ -92,6 +103,7 @@ router.post('/servicios',isAdmin, async (req, res) => {
         operador,
         cat
     };
+
 
     console.log(soli);
 
@@ -200,14 +212,50 @@ router.post('/ServicioaDetalle', isAdmin,async (req, res) => {
     const IDD = {
         id
     };
-    const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
+    let datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
     console.log(datos);
     const ruta = path.join(datos[0].foto,'');
     console.log('la ruta es: ',ruta);
     const valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
     console.log("Valoraciones");
     console.log(valor);
-    // datos.ruta = ruta;
+    const domMaq_ = datos[0].dominio_de_la_maquina;
+    const revTec_ = datos[0].revision_tecnica;
+    const perCir_ = datos[0].permiso_de_circulacion;
+    const seg_ = datos[0].seguro;
+    const docOpe_ = datos[0].documentacion_operador;
+
+
+    if (domMaq_ === 'null') {
+         datos[0].dominio_de_la_maquina = [];
+    }
+    if (revTec_ === 'null') {
+         datos[0].revision_tecnica = [];
+    }
+
+    if (perCir_ === 'null') {
+         datos[0].permiso_de_circulacion = [];
+    }
+
+    if (seg_ === 'null') {
+         datos[0].seguro = [];
+    }
+
+    if (docOpe_ === 'null') {
+         datos[0].documentacion_operador = [];
+    }
+
+
+    
+    console.log("---------------------")
+
+     console.log(datos)
+    
+    console.log("---------------------")
+    //res.render('admins/ServicioaDetalle', { datos : datos, valor : valor, ruta, domMaq, revTec, perCir, seg, docOpe });  
+
+
+    // datos.ruta = ruta
     res.render('admins/ServicioaDetalle', { datos : datos, valor : valor, ruta });  
 });
     
@@ -293,6 +341,7 @@ router.get('/Orden', isAdmin, async (req, res) => {
 
 
 router.get('/gestionarorden', async(req,res)=>{
+    await pool.query(`SET lc_time_names = 'es_MX';`)
     let datos = await pool.query(`select DISTINCT users.fullname,orden.servicio_id,orden.description,DATE_FORMAT(orden.created_at, "%d %M %Y") as date,proveedor.razon_social from users,orden,servicios,proveedor where orden.user_id = users.id and orden.servicio_id = servicios.id and servicios.proveedor_id = proveedor.id;`)
     
     console.log("--- Gestionar orden", datos[0])

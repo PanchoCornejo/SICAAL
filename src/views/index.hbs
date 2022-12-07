@@ -34,7 +34,7 @@
                      </li>
                      
                      <li class="nav-item">
-                        <a href="/solicitud">Quieres ser nuestro Proveedor</a>
+                        <a href="/solicitud">¿Quieres ser nuestro Proveedor?</a>
                      </li>
                   </ul>
                </div>
@@ -59,7 +59,7 @@
                      </li>
                      <li>
                         <a class="btn primary-btn" href="/registroclientes"
-                           >Registrate como Cliente</a
+                           >Regístrate como Cliente</a
                            >
                      </li>
                                          
@@ -105,18 +105,15 @@
                      <div class="card-content text-center rounded-buttons">
                         <h3 class="card-title">SICAAL</h3>
                         <p class="text">
-                           Lorem ipsum dolor sit amet, sed magna etiam adipiscing
-                           elit. Mauris id elit tempor, dolor sed curabitur id justo
-                           congue, facilisis sem justo. Integer ut facilisis turpis.
-                           Praesent amet ullamcorper ante nec ipsum dolor.
+                           Somos una empresa joven dedicada a brindar soluciones integrales a través de sus multiservicios del giro de construcción. Contamos con profesionales y maestros capacitados para brindar servicios y soluciones de primera calidad.
                         </p>
                         <a
-                           href="javascript:void(0)"
+                           href="/servicios"
                            class="btn primary-btn rounded-full"
                            data-toggle="modal"
                            data-target="#contact-modal"
                            >
-                        Get In Touch
+                        Ver nuestros Servicios
                         </a>
                      </div>
                      
@@ -145,23 +142,34 @@
             <div class="single-blog blog-style-one">
                <div class="blog-image">
                   <a href="javascript:void(0)"
-                     ><img src="https://sicaal.cl/assets/maquina.webp" alt="Blog"
+                     ><img src="https://viajantes.cl/wp-content/uploads/Region-Ohiggins-800x450.jpg" alt="Blog"
                      /></a>
-                  <a href="javascript:void(0)" class="category">Technology</a>
+                  <a href="javascript:void(0)" class="category">O'Higgins</a>
                </div>
                <div class="blog-content">
                   <h5 class="blog-title">
                      <a href="javascript:void(0)">
-                     Budget-Friendly Design Ideas to Transform Your Office
+                     Región de O'Higgins
                      </a>
                   </h5>
-                  <span><i class="lni lni-calendar"></i> Mar 23, 2022</span>
-                  <span><i class="lni lni-comments-alt"></i> 24 Comment</span>
+                  {{#each Cbernardo}}
+                  <span><i class="lni lni-handshake"></i>Proveedores: {{cantidadProveedores}}</span>
+                  {{/each}}
+                  {{#each Sbernardo}}
+                  <span><i class="lni lni-delivery"></i> Servicios: {{cantidad}}</span>
+                  {{/each}}
                   <p class="text">
-                     Create a workspace your team will love with these money-saving
-                     interior Ui/Ux design tips Learn how People.
+                     Encuentra una distina variedad de servicios en la región de O'higgins.
                   </p>
-                  <a class="more" href="javascript:void(0)">READ MORE</a>
+                  <form action="/servicios" method="POST" class="row g-3 novalidate">
+                     <input id="region" name="region" type="hidden" value="Región del Libertador General Bernardo O'Higgins">
+                     <input id="ciudad" name="ciudad" type="hidden" value="---">
+                     <input id="operador" name="operador" type="hidden" value="---">
+                     <input id="cat" name="cat" type="hidden" value="---">
+                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">                                 
+                                 <button type="submit" class="btn primary-btn rounded-full mt-3">Buscar</button> 
+                     </div>
+                  </form>
                </div>
             </div>
             <!-- single blog -->
@@ -170,23 +178,34 @@
             <div class="single-blog blog-style-one">
                <div class="blog-image">
                   <a href="javascript:void(0)"
-                     ><img src="https://sicaal.cl/assets/maquina.webp" alt="Blog"
+                     ><img src="http://www.diarioestrategia.cl/images/showid/2641078" alt="Blog"
                      /></a>
-                  <a href="javascript:void(0)" class="category">Lifestyle</a>
+                  <a href="javascript:void(0)" class="category">Metropolitana</a>
                </div>
                <div class="blog-content">
                   <h5 class="blog-title">
                      <a href="javascript:void(0)">
-                     Budget-Friendly Design Ideas to Transform Your Office
+                     Servicios en la Gran Capital
                      </a>
                   </h5>
-                  <span><i class="lni lni-calendar"></i> Mar 23, 2022</span>
-                  <span><i class="lni lni-comments-alt"></i> 24 Comment</span>
+                  {{#each Cmetropolitana}}
+                  <span><i class="lni lni-handshake"></i>Proveedores: {{cantidadProveedores}}</span>
+                  {{/each}}
+                  {{#each Smetropolitana}}
+                  <span><i class="lni lni-delivery"></i> Servicios: {{cantidad}}</span>
+                  {{/each}}
                   <p class="text">
-                     Create a workspace your team will love with these money-saving
-                     interior Ui/Ux design tips Learn how People.
+                     Busca servicios en la región Metropolitana.
                   </p>
-                  <a class="more" href="javascript:void(0)">READ MORE</a>
+                  <form action="/servicios" method="POST" class="row g-3 novalidate">
+                     <input id="region" name="region" type="hidden" value="Región Metropolitana de Santiago">
+                     <input id="ciudad" name="ciudad" type="hidden" value="---">
+                     <input id="operador" name="operador" type="hidden" value="---">
+                     <input id="cat" name="cat" type="hidden" value="---">
+                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">                                 
+                                 <button type="submit" class="btn primary-btn rounded-full mt-3">Buscar</button> 
+                     </div>
+                  </form>
                </div>
             </div>
             <!-- single blog -->
@@ -195,23 +214,34 @@
             <div class="single-blog blog-style-one">
                <div class="blog-image">
                   <a href="javascript:void(0)"
-                     ><img src="https://sicaal.cl/assets/maquina.webp" alt="Blog"
+                     ><img src="https://www.detectahotel.com/rimg/dimg/7d/78/194f6db6-city-4795-1689f44ade6.jpg?width=1366&height=768&xhint=1716&yhint=886&crop=true" alt="Blog"
                      /></a>
-                  <a href="javascript:void(0)" class="category">Science</a>
+                  <a href="javascript:void(0)" class="category">Valparaíso</a>
                </div>
                <div class="blog-content">
                   <h5 class="blog-title">
                      <a href="javascript:void(0)">
-                     Budget-Friendly Design Ideas to Transform Your Office
+                     Región de Valparaiso
                      </a>
                   </h5>
-                  <span><i class="lni lni-calendar"></i> Mar 23, 2022</span>
-                  <span><i class="lni lni-comments-alt"></i> 24 Comment</span>
+                  {{#each Cvalparaiso}}
+                  <span><i class="lni lni-handshake"></i>Proveedores: {{cantidadProveedores}}</span>
+                  {{/each}}
+                  {{#each Svalparaiso}}
+                  <span><i class="lni lni-delivery"></i> Servicios: {{cantidad}}</span>
+                  {{/each}}
                   <p class="text">
-                     Create a workspace your team will love with these money-saving
-                     interior Ui/Ux design tips Learn how People.
+                     Investiga la variedad de servicios dentro de la región de Valparaíso.
                   </p>
-                  <a class="more" href="javascript:void(0)">READ MORE</a>
+                  <form action="/servicios" method="POST" class="row g-3 novalidate">
+                     <input id="region" name="region" type="hidden" value="Región de Valparaíso">
+                     <input id="ciudad" name="ciudad" type="hidden" value="---">
+                     <input id="operador" name="operador" type="hidden" value="---">
+                     <input id="cat" name="cat" type="hidden" value="---">
+                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">                                 
+                                 <button type="submit" class="btn primary-btn rounded-full mt-3">Buscar</button> 
+                     </div>
+                  </form>
                </div>
             </div>
             <!-- single blog -->
@@ -223,47 +253,6 @@
 </section>
 <!--====== BLOG PART ENDS ======-->
 
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">Encuentranos en la Region de : <span class="text-muted">O'higgins.</span></h2>
-        <p class="lead">mas de 10 proveedores en el sector disponibles para sus necesidades.</p>
-        </div>
-        <div class="col-md-5">
-        <img src="https://www.profesorenlinea.cl/imagenChilegeogra/VIRImagen/VRMapaAdminis.jpg" width="500" height="500" alt="Region de O'higgins">
-
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-        </div>
-        <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
-        </div>
-    </div>
 
     <div class="row">
                 <div class="box">
@@ -319,14 +308,9 @@
         <p class="col-md-4 mb-0 text-muted">Copyright &copy; 2022 SICAAL</p>
 
         <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <svg class="bi me-2" width="4" height="3"><img src="https://sicaal.cl/assets/logo.webp" alt="Logo SICAAL"></svg>
         </a>
 
-        <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Preguntas Frecuentes</a></li>
-        </ul>
     </footer>
     </div>
 </main>

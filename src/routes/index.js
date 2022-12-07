@@ -3,7 +3,13 @@ const router = express.Router();
 const pool = require('../database');
 
 router.get('/', async (req, res) => {
-    res.render('index');
+    const Svalparaiso = await pool.query('SELECT regions.id_region, regions.NAME, Count(*) AS cantidad FROM regions,(SELECT servicios.id, cities.id_region AS reg_id FROM servicios, CServicio, cities WHERE servicios.id = CServicio.id_servicio AND cities.id_city = CServicio.id_ciudad AND servicios.id IN (SELECT id FROM servicios WHERE estado_publicacion = "aprobado") GROUP BY servicios.id, cities.id_region) AS regionServ WHERE regionServ.reg_id = regions.id_region AND regions.id_region = 6 GROUP BY regions.id_region');
+    const Smetropolitana = await pool.query('SELECT regions.id_region, regions.NAME, Count(*) AS cantidad FROM regions,(SELECT servicios.id, cities.id_region AS reg_id FROM servicios, CServicio, cities WHERE servicios.id = CServicio.id_servicio AND cities.id_city = CServicio.id_ciudad AND servicios.id IN (SELECT id FROM servicios WHERE estado_publicacion = "aprobado") GROUP BY servicios.id, cities.id_region) AS regionServ WHERE regionServ.reg_id = regions.id_region AND regions.id_region = 7 GROUP BY regions.id_region');
+    const Sbernardo = await pool.query('SELECT regions.id_region, regions.NAME, Count(*) AS cantidad FROM regions,(SELECT servicios.id, cities.id_region AS reg_id FROM servicios, CServicio, cities WHERE servicios.id = CServicio.id_servicio AND cities.id_city = CServicio.id_ciudad AND servicios.id IN (SELECT id FROM servicios WHERE estado_publicacion = "aprobado") GROUP BY servicios.id, cities.id_region) AS regionServ WHERE regionServ.reg_id = regions.id_region AND regions.id_region = 8 GROUP BY regions.id_region');
+    const Cvalparaiso = await pool.query('SELECT regId AS regionId, Count(*) AS cantidadProveedores FROM(SELECT proveedor.id, cities.id_region AS regId FROM proveedor, servicios, cities, CServicio WHERE proveedor.id = servicios.proveedor_id AND servicios.id = CServicio.id_servicio AND cities.id_city = CServicio.id_ciudad GROUP BY proveedor.id, cities.id_region) AS provReg WHERE regId = "6" GROUP BY regId');
+    const Cmetropolitana = await pool.query('SELECT regId AS regionId, Count(*) AS cantidadProveedores FROM(SELECT proveedor.id, cities.id_region AS regId FROM proveedor, servicios, cities, CServicio WHERE proveedor.id = servicios.proveedor_id AND servicios.id = CServicio.id_servicio AND cities.id_city = CServicio.id_ciudad GROUP BY proveedor.id, cities.id_region) AS provReg WHERE regId = "7" GROUP BY regId');
+    const Cbernardo = await pool.query('SELECT regId AS regionId, Count(*) AS cantidadProveedores FROM(SELECT proveedor.id, cities.id_region AS regId FROM proveedor, servicios, cities, CServicio WHERE proveedor.id = servicios.proveedor_id AND servicios.id = CServicio.id_servicio AND cities.id_city = CServicio.id_ciudad GROUP BY proveedor.id, cities.id_region) AS provReg WHERE regId = "8" GROUP BY regId');
+    res.render('index', { Cbernardo, Cmetropolitana, Cvalparaiso, Sbernardo ,Smetropolitana,Svalparaiso});
 });
 
 router.get('/solicitud', async (req, res) => {
@@ -61,7 +67,7 @@ router.post('/servicios', async (req, res) => {
     }
     const aux5 = sql.concat('  GROUP BY servicios.id');
     sql = aux5;
-    console.log(sql)
+    // console.log(sql)
 
 
     const regiones = await pool.query('SELECT id_region, name FROM regions;');
@@ -139,13 +145,20 @@ router.post('/servicios', async (req, res) => {
 });
 
 router.post('/detalle', async(req,res)=>{   
-    
-    
-    const username = req.user.id;
 
+    function isEmpty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+    
+    //Si no existe el user muere la wea :O 
+    //const username = req.user.id;
+    if(req.user){
+        username = req.user.id;
+    }else{
+        username = ''
+    }
     
 
-    //console.log("------- Detalles ---------", username)
     const {id} = req.body
     const IDD = {
         id
@@ -153,10 +166,20 @@ router.post('/detalle', async(req,res)=>{
 
     
     
-    let datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
-    const valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
-    console.log(datos,valor)
-    res.render('./serviciodetalle', {datos, valor})
+    const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
+    let valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
+    const regiones = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${id}`)
+    
+    if (isEmpty(valor) ){
+        //console.log("esta vacio")
+        valor = [{}]
+        valor[0].userid = username + '/'+ id
+        console.log(valor)
+
+    }
+
+
+    res.render('./serviciodetalle', {datos, valor, regiones})
 })
 
 
@@ -204,7 +227,8 @@ router.get('/pruebas', async (req, res) => {
 
 router.post('/enviarsoli', async(req,res)=> {
     const {id,ser} = req.body;
-    
+    console.log("----")
+    console.log(id,ser)
     const asd = await pool.query(`insert into Soliservicio (user_request,servicio) values (${id},${ser});`)
     res.send({response : 'ok'})
 })
