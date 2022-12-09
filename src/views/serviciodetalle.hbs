@@ -86,7 +86,7 @@
                 <div class="card-body">
 
                     <div class="card" style="">
-                    <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
+                    <img src="{{foto}}" class="rounded mx-auto d-block" alt="..." style="width: 300px; height: 300px;">
                         <div class="card-header">
                             Nombre: {{nombre }}
                         </div>
@@ -512,39 +512,50 @@
 
 <script>
     const enviarsoli = async(boton) => {
-        const usuario = boton.value;    
+        
+        
+        location.reload()        
+
+        
+   
+    }
+</script>
+
+<script>
+    const enviarsoli = async(boton) => {
+        //const usuario = boton.value;    
           
-        let ide = usuario.split('/')
-        console.log()
+        //let ide = usuario.split('/')
+        //console.log()
         
         
-        const data = {
-            'id' : ide[0],
-            'ser' : ide[1]
-        }
+        //const data = {
+        //    'id' : ide[0],
+        //    'ser' : ide[1]
+        //}
 
-        console.log("------asdasdsa-----")  
-        console.log(data)
+        //console.log("------asdasdsa-----")  
+        //console.log(data)
 
+        location.reload()        
 
         
 
         //console.log("Me apretaste");
-        await fetch('./enviarsoli',{
-            method : 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Connection': 'keep-alive',
-                'Accept': '*/*',
-            },
-            body :JSON.stringify(data)
+        //await fetch('./enviarsoli',{
+        //    method : 'POST',
+        //    headers: {
+        //        'Content-Type': 'application/json',
+        //        'Connection': 'keep-alive',
+        //        'Accept': '*/*',
+        //    },
+        //    body :JSON.stringify(data)
             
-        })
-        .then(resp => resp.json())
-        .then((data)=> {
-         console.log(data)
-        })
-
+        //})
+        //.then(resp => resp.json())
+        //.then((data)=> {
+        // console.log(data)
+        //})
 
     //console.log("Me apretaste");
    
