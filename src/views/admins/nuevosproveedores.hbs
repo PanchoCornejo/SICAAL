@@ -5,18 +5,18 @@
 <div class="main" style="max-width: 50em;">
     
     {{#if prov}}
-    <h2 class="text-center">Solicitudes</h2>
+    <h2 class="text-center">Solicitudes para ser proveedor</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
     {{#each prov}}
    <div class="col">
     <div class="card h-100">
-      <img src="https://img.freepik.com/vector-gratis/vehiculo-excavadora-trabajando_1308-41657.jpg?w=2000" class="card-img-top" alt="..." style="width: 300px; height: 300px;">
+      <img src="/img/perfil.png" class="card-img-top" alt="..." style="width: 300px; height: 300px; margin-left:55px ;margin-top:20px;margin-bottom:10px;">
       <div class="card-body">
         <h5 class="card-title">Empresa: {{empresanombre }}</h5>
             
             <p class="card-text">Nombre de Contacto: {{contactonombre}}</p>
-            <p class="card-text">Nummero de Contacto: {{numero}}</p>
-            <p class="card-text">Ubicacion: {{ubicacion}}</p>
+            <p class="card-text">Número de Contacto: {{numero}}</p>
+            <p class="card-text">Ubicación: {{ubicacion}}</p>
             <p class="card-text">Tipo: {{tipo}}</p>
       </div>
       <div class="card-footer">
@@ -40,7 +40,7 @@
     <div class="container"></div>
         <div class="col-md-4 mx-auto">
             <div class="card card-body text-center">
-                <p>No hay nuevos interesados</p>
+                <p>No hay nuevos interesados.</p>
                 <i class="fa-solid fa-user fa-4x"></i>
             </div>
         </div>

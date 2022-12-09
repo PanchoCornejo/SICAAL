@@ -13,7 +13,7 @@
             <form action="/panelA/servicios" method="POST" class="row g-3 novalidate">
 
                 <div class="col-md-6">
-                    <label for="region" class="form-label das">Regiones</label>
+                    <label for="region" class="form-label das">Región</label>
                     <select onchange="mostrar()" id="region" class="form-select" name="region" aria-label="Default select example">
                         <option selected>---</option>
                         {{#each regiones}}
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="ciudad" class="form-label das">Ciudades</label>
+                    <label for="ciudad" class="form-label das">Ciudad</label>
                     <select class="form-select" name="ciudad" aria-label="Default select example">
                         <option selected>---</option>
                         {{#each ciudades}}
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="operador" class="form-label das">Operador?</label>
+                    <label for="operador" class="form-label das">¿Incluye operador?</label>
                     <select class="form-select" name="operador" aria-label="Default select example">
                         <option selected>---</option>
                         <option value="Si">Si</option>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="cat" class="form-label das">Categoria</label>
+                    <label for="cat" class="form-label das">Categoría</label>
                     <select class="form-select" name="cat" aria-label="Default select example">
                         <option selected>---</option>
                         {{#each categoria}}
@@ -50,7 +50,7 @@
                         {{/each}}
                     </select>
                 </div>
-
+                <label for="cat" class="form-label das">*Debe seleccionar región o ciudad, se prioriza ciudad.</label>
 
                 
                 
@@ -82,7 +82,7 @@
               <li class="list-group-item">Marca: {{marca}}</li>
               <li class="list-group-item">Año: {{ano}}</li>
               <li class="list-group-item">Modelo: {{modelo}}</li>
-              <li class="list-group-item">Horometro: {{horometro}}</li>
+              <li class="list-group-item">Horómetro: {{horometro}}</li>
               <li class="list-group-item">Operador: {{operador}}</li>
               <li class="list-group-item">Estado: {{estado}}</li>
               <li class="list-group-item">Categoría: {{categoria}}</li>
@@ -123,7 +123,7 @@
     <div class="container"></div>
     <div class="col-md-4 mx-auto">
         <div class="card card-body text-center">
-            <p>No tenemos los servicios que buscas</p>
+            <p>No hay servicios con los criterios seleccionados.</p>
             <i class="fa-solid fa-ghost fa-4x"></i>
         </div>
     </div>
