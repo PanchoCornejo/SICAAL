@@ -165,25 +165,43 @@ router.post('/detalle', async(req,res)=>{
     }
     
 
-    const {id} = req.body
+    const {id,id2} = req.body
     const IDD = {
-        id
+        id,
+        id2
     };
 
-    
-    
-    const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${id}`);
-    let valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
-    const regiones = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${id}`)
-    
-    if (isEmpty(valor) ){
-        //console.log("esta vacio")
-        valor = [{}]
-        valor[0].userid = username + '/'+ id
-        console.log(valor)
-    }
+    if(IDD.id){
+        console.log("Filtrando")
+        console.log(IDD.id)
+        const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${IDD.id}`);
+        console.log("Preguntado")
+        let valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
+        const regiones = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${IDD.id}`)
+        if (isEmpty(valor) ){
+            //console.log("esta vacio")
+            valor = [{}]
+            valor[0].userid = username + '/'+ id
+            console.log(valor)
+        }
 
     res.render('./serviciodetalle', {datos, valor, regiones})
+    }else{
+        console.log("Sin Filtrar")
+        console.log(IDD.id2)
+        const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${IDD.id2}`);
+        console.log("Preguntado")
+        let valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id2]);
+        const regiones = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${IDD.id2}`)
+        if (isEmpty(valor) ){
+            //console.log("esta vacio")
+            valor = [{}]
+            valor[0].userid = username + '/'+ id
+            console.log(valor)
+        }
+
+        res.render('./serviciodetalle', {datos, valor, regiones})
+        }
 })
 
 
