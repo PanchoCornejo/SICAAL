@@ -18,6 +18,7 @@ router.post('/registroclientes', passport.authenticate('local.signup', {
   failureFlash: true
 }));
 
+
 // Donde puede el Administrador: recuperar contrseñas para los proveedores 
 router.get('/restaurar', isAdmin, async(req, res) => {
   const cuentas = await pool.query('SELECT username FROM users');
@@ -30,6 +31,8 @@ router.post('/restaurar', passport.authenticate('local.change', {
   failureRedirect: '/restaurar',
   failureFlash: true
 }));
+
+
 
 // SIGNUP
 router.get('/signup', isAdmin, (req, res) => {

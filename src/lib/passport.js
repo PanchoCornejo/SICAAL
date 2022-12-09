@@ -39,11 +39,21 @@ passport.use('local.signup', new LocalStrategy({
     password,
     rol
   };
-  newUser.password = await helpers.encryptPassword(password);
-  // Saving in the Database
-  const result = await pool.query('INSERT INTO users SET ? ', newUser);
-  newUser.id = result.insertId;
-  return done(null, newUser);
+  if(newUser.rol){
+    newUser.password = await helpers.encryptPassword(password);
+    const result = await pool.query('INSERT INTO users SET ? ', newUser);
+    // Saving in the Database
+    newUser.id = result.insertId;
+    return done(null, newUser);
+  }
+  else{
+    newUser.password = await helpers.encryptPassword(password);
+    newUser.rol = "Cliente";
+    result = await pool.query('INSERT INTO users SET ? ', newUser);
+    // Saving in the Database
+    newUser.id = result.insertId;
+    return done(null, newUser);
+  }
 }));
 
 passport.use('local.change', new LocalStrategy({
