@@ -5,7 +5,7 @@ const helpers = require('../lib/helpers');
 
 const pool = require('../database');
 const passport = require('passport');
-const { isLoggedIn, isNotLoggedin , isAdmin , isProveedor } = require('../lib/auth');
+const { isLoggedIn, isNotLoggedin , isAdmin , isProveedor , usernameExists} = require('../lib/auth');
 
 // RegistroClientes
 router.get('/registroclientes', (req, res) => {
@@ -39,7 +39,17 @@ router.get('/signup', isAdmin, (req, res) => {
   res.render('auth/signup');
 });
 
-router.post('/signup', passport.authenticate('local.signup', {
+router.post('/signup', async(req,res) =>{
+  // console.log('--------',req.body,'---------------')
+  const matches = await pool.query('SELECT username FROM users WHERE username = ?',[req.body.username]);
+  // usernameExists(req.body.username, usernames);
+  console.log(matches);
+  if (matches  && matches.length > 0) {
+    console.log('existe usernameem');
+    const alerta = "!Nombre de usuario ya existe!"
+    res.render('/signup',{alerta})
+  }
+} ,passport.authenticate('local.signup', {
   successRedirect: '/panelA/CrearDatos',
   failureRedirect: '/signup',
   failureFlash: true

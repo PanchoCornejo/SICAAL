@@ -229,8 +229,7 @@ router.post('/ServicioaDetalle', isAdmin,async (req, res) => {
     else{
         datos = await pool.query(`select * from servicios where servicios.id = ?`,[IDD.id2]);
     }
-
-
+    console.log("estamos buscando: " , IDD.id)
     console.log(datos);
     const ruta = path.join(datos[0].foto,'');
     console.log('la ruta es: ',ruta);
