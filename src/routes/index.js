@@ -37,12 +37,18 @@ router.post('/servicios', async (req, res) => {
     } = req.body;
     let sql = "SELECT * FROM cities, servicios, CServicio, regions WHERE(servicios.id = CServicio.id_servicio) AND (cities.id_city = CServicio.id_ciudad) AND (regions.id_region = cities.id_region) AND (servicios.estado_publicacion = 'aprobado') "
 
-    const soli = {
+    let soli = {
         region,
         ciudad,
         operador,
         cat
     };
+
+    if (soli.region !== "---" && soli.ciudad !== "---") {
+        soli.region = "---"
+        
+        
+    }
 
     console.log(soli);
 

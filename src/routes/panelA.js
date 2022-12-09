@@ -97,14 +97,19 @@ router.post('/servicios',isAdmin, async (req, res) => {
         operador,
         cat
     } = req.body;
-    let sql = "SELECT * FROM cities, servicios, CServicio, regions WHERE(servicios.id = CServicio.id_servicio) AND (cities.id_city = CServicio.id_ciudad) AND (regions.id_region = cities.id_region) AND (servicios.estado_publicacion = 'aprobado') "
+    let sql = "SELECT * FROM servicios,cities, CServicio, regions WHERE(servicios.id = CServicio.id_servicio) AND (cities.id_city = CServicio.id_ciudad) AND (regions.id_region = cities.id_region) AND (servicios.estado_publicacion = 'aprobado') "
 
-    const soli = {
+    let soli = {
         region,
         ciudad,
         operador,
         cat
     };
+
+    if (soli.region !== "---" && soli.ciudad !== "---") {
+        soli.region = "---"
+        
+    }
 
 
     console.log(soli);
@@ -194,7 +199,7 @@ router.post('/servicios',isAdmin, async (req, res) => {
 
         }
     }
-    // console.log(datos);
+    console.log(datos);
     // console.log(regiones);
     // console.log(ciudades);
     // console.log(categoria);
@@ -209,12 +214,16 @@ router.post('/servicios',isAdmin, async (req, res) => {
 
 // Donde puede el Administrador: ver el servicio a detalle con sus valoraciones 
 router.post('/ServicioaDetalle', isAdmin,async (req, res) => {
+
+    
     const { id } = req.body;
+    console.log(req.body)
     console.log(id);
     const IDD = {
         id
     };
-    let datos = await pool.query(`select * from servicios where id = ${id}`);
+    console.log("estamos buscando: " , IDD.id)
+    let datos = await pool.query(`select * from servicios where servicios.id = ?`,[IDD.id]);
     console.log(datos);
     const ruta = path.join(datos[0].foto,'');
     console.log('la ruta es: ',ruta);

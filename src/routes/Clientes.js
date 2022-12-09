@@ -20,7 +20,7 @@ router.get('/misordenes', isClient , async(req, res) => {
     const id = req.user.id;
     console.log('Estamos por aqui!!!')
     const datos = await pool.query('SELECT * FROM orden WHERE user_id = ?', [id]);
-    const servi = await pool.query('SELECT orden.id, servicios.nombre , servicios.description FROM servicios, users , orden WHERE orden.user_id = users.id AND servicios.id = orden.servicio_id AND users.id = ?', [id]);
+    const servi = await pool.query('SELECT orden.id, servicios.nombre , servicios.description, servicios.foto FROM servicios, users , orden WHERE orden.user_id = users.id AND servicios.id = orden.servicio_id AND users.id = ?', [id]);
     console.log(servi)
     res.render('Cliente/misordenes', {servi});
 });
