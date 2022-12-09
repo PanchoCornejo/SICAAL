@@ -13,29 +13,34 @@ const { Console } = require('console');
 
 // Donde puede el Proveedor: publicar una solicitud de su servicio.
 router.get('/publicar',isProveedor , async(req, res) => {
-
-    const regiones = await pool.query('SELECT id_region, name FROM regions;');
-    const arica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="1"');
-    const tarapaca = await pool.query('SELECT id_city, name FROM cities WHERE id_region="2"');
-    const antofagasta = await pool.query('SELECT id_city, name FROM cities WHERE id_region="3"');
-    const atacama = await pool.query('SELECT id_city, name FROM cities WHERE id_region="4"');
-    const coquimbo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="5"');
-    const valparaiso = await pool.query('SELECT id_city, name FROM cities WHERE id_region="6"');
-    const metropolitana = await pool.query('SELECT id_city, name FROM cities WHERE id_region="7"');
-    const bernardo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="8"');
-    const maule = await pool.query('SELECT id_city, name FROM cities WHERE id_region="9"');
-    const ñuble = await pool.query('SELECT id_city, name FROM cities WHERE id_region="10"');
-    const biobio = await pool.query('SELECT id_city, name FROM cities WHERE id_region="11"');
-    const araucania = await pool.query('SELECT id_city, name FROM cities WHERE id_region="12"');
-    const rios = await pool.query('SELECT id_city, name FROM cities WHERE id_region="13"');
-    const lagos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="14"');
-    const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
-    const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
-
-    const categorias = await pool.query('SELECT id, nombre FROM categoria');
-
-    
-    res.render('proveedores/publicar', {categorias ,regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
+    const id = req.user.id;
+    const midata = await pool.query('SELECT proveedor.direccion from proveedor, users where proveedor.user_id = users.id AND users.id = ?', [id]);
+    if(midata[0] == null){
+        console.log("No hay datos");
+        res.redirect('/panelP/perfilP')
+    }
+    else{
+        console.log("Hay datos");
+        const regiones = await pool.query('SELECT id_region, name FROM regions;');
+        const arica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="1"');
+        const tarapaca = await pool.query('SELECT id_city, name FROM cities WHERE id_region="2"');
+        const antofagasta = await pool.query('SELECT id_city, name FROM cities WHERE id_region="3"');
+        const atacama = await pool.query('SELECT id_city, name FROM cities WHERE id_region="4"');
+        const coquimbo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="5"');
+        const valparaiso = await pool.query('SELECT id_city, name FROM cities WHERE id_region="6"');
+        const metropolitana = await pool.query('SELECT id_city, name FROM cities WHERE id_region="7"');
+        const bernardo = await pool.query('SELECT id_city, name FROM cities WHERE id_region="8"');
+        const maule = await pool.query('SELECT id_city, name FROM cities WHERE id_region="9"');
+        const ñuble = await pool.query('SELECT id_city, name FROM cities WHERE id_region="10"');
+        const biobio = await pool.query('SELECT id_city, name FROM cities WHERE id_region="11"');
+        const araucania = await pool.query('SELECT id_city, name FROM cities WHERE id_region="12"');
+        const rios = await pool.query('SELECT id_city, name FROM cities WHERE id_region="13"');
+        const lagos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="14"');
+        const carlos = await pool.query('SELECT id_city, name FROM cities WHERE id_region="15"');
+        const antartica = await pool.query('SELECT id_city, name FROM cities WHERE id_region="16"');
+        const categorias = await pool.query('SELECT id, nombre FROM categoria');
+        res.render('proveedores/publicar', {categorias ,regiones,arica, tarapaca, antofagasta, atacama, coquimbo, valparaiso, metropolitana, bernardo, maule, ñuble,biobio, araucania,rios,lagos,carlos,antartica});
+    }
 });
 
 // Donde puede el Proveedor: revisa sus publicaciones (activas) y eliminarlas.
