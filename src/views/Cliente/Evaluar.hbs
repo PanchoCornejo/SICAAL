@@ -5,11 +5,11 @@
     <div class="container my-5">
         <div class="card text-center">
             <div class="card-body">
-                <a>Evalue su servicio</a>
+                <a>Evalúe el servicio</a>
                 <form action="/Cliente/Evaluar" method="POST" class="row g-3 novalidate was-validated"  novalidate>
 
                     <div class="col-md-4">
-                        <label for="valoracion" class="form-label das">Valoracion General</label>
+                        <label for="valoracion" class="form-label das">Valoración General</label>
                         <select class="form-select" name="valoracion" aria-label="Default select example" required>
                             <option value="5">5 Estrellas</option>
                             <option value="4">4 Estrellas</option>
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="valoracionoper" class="form-label das">Valore su Operador (si aplica)</label>
+                        <label for="valoracionoper" class="form-label das">Valore el Operador (si aplica)</label>
                         <select class="form-select" name="valoracionoper" aria-label="Default select example" required>
                             <option value="0">No Aplica</option>
                             <option value="5">5 Estrellas</option>
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="valoracionexp" class="form-label das">Valoracion de experiencia</label>
+                        <label for="valoracionexp" class="form-label das">Valorión de experiencia</label>
                         <select class="form-select" name="valoracionexp" aria-label="Default select example" required>
                             <option value="5">5 Estrellas</option>
                             <option value="4">4 Estrellas</option>
@@ -66,13 +66,13 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="valoracionfallas" class="form-label das">Se encontraron fallas?</label>
+                        <label for="valoracionfallas" class="form-label das">¿Se encontraron fallas? Detalle en el cuadro de texto</label>
                         <select class="form-select" name="valoracionfallas" aria-label="Default select example" required>
-                            <option value="5">Para nada</option>
-                            <option value="4">Algo minimo, pero no mucho problema</option>
-                            <option value="3">Se pudo continuar</option>
-                            <option value="2">Se retrazo mucho</option>
-                            <option value="1">Totalmente</option>
+                            <option value="5">No hubieron fallas</option>
+                            <option value="4">Hubieron pocas fallas</option>
+                            <option value="3">Fallas moderadas</option>
+                            <option value="2">Fallas importantes</option>
+                            <option value="1">Fallas que no permiteron continuar</option>
                         </select>
                         <div class="invalid-feedback">
                             Danos una valoracion...
@@ -80,11 +80,11 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="valoracionestado" class="form-label das">Puntue el estado de la Maquinaria</label>
+                        <label for="valoracionestado" class="form-label das">Puntúe el estado de la Maquinaria</label>
                         <select class="form-select" name="valoracionestado" aria-label="Default select example" required>
-                            <option value="5">Exelente estado</option>
+                            <option value="5">Excelente estado</option>
                             <option value="4">Buen Estado</option>
-                            <option value="3">ni bien ni mal</option>
+                            <option value="3">Moderado</option>
                             <option value="2">Mal Estado</option>
                             <option value="1">Deplorable</option>
                         </select>
@@ -101,7 +101,7 @@
                     <input id="VALid" name="VALid" type="hidden" value="{{VAL.id}}">
 
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Enviar Evaluacion</button>
+                        <button type="submit" class="btn btn-primary">Enviar Evaluación</button>
                     </div>
                 </form>
             </div>

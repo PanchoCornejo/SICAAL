@@ -5,7 +5,7 @@ const helpers = require('../lib/helpers');
 
 const pool = require('../database');
 const passport = require('passport');
-const { isLoggedIn, isNotLoggedin , isAdmin , isProveedor , usernameExists} = require('../lib/auth');
+const { isLoggedIn, isNotLoggedin, isAdmin, isProveedor} = require('../lib/auth');
 
 // RegistroClientes
 router.get('/registroclientes', (req, res) => {
@@ -20,10 +20,10 @@ router.post('/registroclientes', passport.authenticate('local.signup', {
 
 
 // Donde puede el Administrador: recuperar contrseñas para los proveedores 
-router.get('/restaurar', isAdmin, async(req, res) => {
+router.get('/restaurar', isAdmin, async (req, res) => {
   const cuentas = await pool.query('SELECT username FROM users');
   console.log(cuentas[2].username);
-  res.render('admins/restaurar', { cuentas : cuentas });
+  res.render('admins/restaurar', { cuentas: cuentas });
 });
 
 router.post('/restaurar', passport.authenticate('local.change', {
@@ -39,17 +39,7 @@ router.get('/signup', isAdmin, (req, res) => {
   res.render('auth/signup');
 });
 
-router.post('/signup', async(req,res) =>{
-  // console.log('--------',req.body,'---------------')
-  const matches = await pool.query('SELECT username FROM users WHERE username = ?',[req.body.username]);
-  // usernameExists(req.body.username, usernames);
-  console.log(matches);
-  if (matches  && matches.length > 0) {
-    console.log('existe usernameem');
-    const message = "!Nombre de usuario ya existe!"
-    res.render('auth/signup',{message})
-  }
-} ,passport.authenticate('local.signup', {
+router.post('/signup', passport.authenticate('local.signup', {
   successRedirect: '/panelA/CrearDatos',
   failureRedirect: '/signup',
   failureFlash: true
@@ -68,20 +58,20 @@ router.post('/signin', (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/logout', function(req, res, next) {
-  req.logout(function(err) {
-    if (err) { 
-      return next(err); 
-      }
+router.get('/logout', function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
     res.redirect('/');
   });
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
-  if (req.user.rol == 'Admin'){
+  if (req.user.rol == 'Admin') {
     res.redirect('panelA/perfilA');
   }
-  else if (req.user.rol == 'Proveedor'){
+  else if (req.user.rol == 'Proveedor') {
     res.redirect('panelP/perfilP');
   }
   res.redirect('Cliente/Panel');
