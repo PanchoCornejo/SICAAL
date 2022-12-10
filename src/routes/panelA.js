@@ -527,5 +527,15 @@ router.get('/Dashboard', isAdmin, async (req, res) => {
 });
 
 
+router.get('/Soliservicio', async (req,res)=>{
+
+    const datos = await pool.query(`select distinct users.username,servicios.nombre,servicios.id
+    from users,servicios,soliservicio
+    where soliservicio.user_request = users.id
+    and soliservicio.servicio = servicios.id;`)
+
+    res.render('admins/Soliservicio',{datos})
+})
+
 
 module.exports = router;

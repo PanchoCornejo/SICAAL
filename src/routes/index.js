@@ -160,8 +160,10 @@ router.post('/detalle', async(req,res)=>{
     //const username = req.user.id;
     if(req.user){
         username = req.user.id;
+        console.log("Existe el usuario genteee!!!")
     }else{
         username = ''
+        console.log("No existe el usuario genteee!!!")
     }
     
 
@@ -177,15 +179,21 @@ router.post('/detalle', async(req,res)=>{
         const datos = await pool.query(`select servicios.* from servicios where servicios.id = ${IDD.id}`);
         console.log("Preguntado")
         let valor = await pool.query('SELECT servicio_id, Round(Avg(valoracion), 1) AS general, Round(Avg(Voperador), 1) AS operador, Round(Avg(Vpuntualidad), 1) AS puntualidad, Round(Avg(Vexperiencia), 1) AS experiencia, Round(Avg(Vfallas), 1) AS fallas, Round(Avg(Vestadomaquina), 1) AS estadomaquina FROM valoraciones WHERE servicio_id IN(SELECT id FROM servicios WHERE estado_publicacion = "aprobado") AND servicio_id = ? GROUP BY servicio_id', [IDD.id]);
+        console.log("------- valor -----")
+        console.log(valor)
         const regiones = await pool.query(`select DISTINCT regions.name from cities,CServicio,regions where regions.id_region = cities.id_region and cities.id_city = CServicio.id_ciudad and CServicio.id_servicio = ${IDD.id}`)
         if (isEmpty(valor) ){
             //console.log("esta vacio")
             valor = [{}]
-            valor[0].userid = username + '/'+ id
+            valor[0].userid = username + '/'+ IDD.id
+            console.log("------- valor -----")
             console.log(valor)
+            console.log("------- valor -----")
+        }else{
+            valor[0].userid = username + '/'+ IDD.id
         }
 
-    res.render('./serviciodetalle', {datos, valor, regiones})
+        res.render('./serviciodetalle', {datos, valor, regiones})
     }else{
         console.log("Sin Filtrar")
         console.log(IDD.id2)
@@ -196,8 +204,12 @@ router.post('/detalle', async(req,res)=>{
         if (isEmpty(valor) ){
             //console.log("esta vacio")
             valor = [{}]
-            valor[0].userid = username + '/'+ id
+            valor[0].userid = username + '/'+ IDD.id2
+            console.log("------- valor -----")
             console.log(valor)
+            console.log("------- valor -----")
+        }else{
+            valor[0].userid = username + '/'+ IDD.id2
         }
 
         res.render('./serviciodetalle', {datos, valor, regiones})
@@ -252,7 +264,7 @@ router.post('/enviarsoli', async(req,res)=> {
     console.log("----")
     console.log(id,ser)
     const asd = await pool.query(`insert into Soliservicio (user_request,servicio) values (${id},${ser});`)
-    res.send({response : 'ok'})
+    res.send({response : 'ok', data : asd})
 })
 
 

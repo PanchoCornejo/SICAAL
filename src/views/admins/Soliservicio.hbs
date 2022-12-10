@@ -1,0 +1,46 @@
+{{>navigation1}}
+{{>message}} 
+
+
+<div class="main mt-3">
+    
+    {{#if datos}}
+    <h2 class="text-center">Solicitud de servicios de clientes</h2>
+
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+            <th scope="col">Id servicio</th>
+            <th scope="col">Nombre del servicio</th>
+            <th scope="col">Cliente</th>           
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each datos}}
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <td>{{nombre}}</td>                   
+                    <td>{{username}}</td>
+
+                </tr>       
+            {{/each}}     
+            
+        </tbody>
+    </table>
+
+
+
+    
+    {{else}}
+    <div class="container"></div>
+    <div class="col-md-4 mx-auto">
+        <div class="card card-body text-center">
+            <p>No hay solicitudes de servicios pendientes</p>
+            <i class="fa-solid fa-inbox fa-4x"></i>
+        </div>
+    </div>
+    {{/if}}
+
+</div>

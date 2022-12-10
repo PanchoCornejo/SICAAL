@@ -46,8 +46,8 @@ router.post('/signup', async(req,res) =>{
   console.log(matches);
   if (matches  && matches.length > 0) {
     console.log('existe usernameem');
-    const alerta = "!Nombre de usuario ya existe!"
-    res.render('/signup',{alerta})
+    const message = "!Nombre de usuario ya existe!"
+    res.render('auth/signup',{message})
   }
 } ,passport.authenticate('local.signup', {
   successRedirect: '/panelA/CrearDatos',
