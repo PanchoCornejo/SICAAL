@@ -40,14 +40,17 @@ Dicho comando, instalará las dependecias necesarias para su correcto funcionami
 
 10.- Listo! Nuestra APP esta listo para ser usada
 
-### Te Invitamos a ver los videos tutoriales de como utilizar la APP WEB con los distintos perfiles de:
+### A continuación, se adjuntan los links a los videos tutoriales para cada uno de los usuarios finales:
 
 #### Administrador:
 
-
 #### Proveedores:
 
-
 #### Clientes:
+
+
+### Diseño y Despliegue para Ingeniería-Mantenimiento
+
+
 
 
