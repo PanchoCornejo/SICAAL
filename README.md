@@ -45,11 +45,11 @@ Dicho comando, instalará las dependecias necesarias para su correcto funcionami
 ### A continuación, se adjuntan los links a los videos tutoriales para cada uno de los usuarios finales:
 
 #### Administrador:
-
+https://youtu.be/-47gTcU6DIQ 
 #### Proveedores:
-
+https://youtu.be/omE2LflfED8
 #### Clientes:
-
+https://youtu.be/EKxp_Zb4wBQ
 
 
 
