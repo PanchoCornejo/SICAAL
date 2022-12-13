@@ -2,11 +2,17 @@
 
 ### Como usar la APP web de Sicaal:
 
-1.-Como primer paso sera tener instalado en nuestros dispositivos Noje js ademas de MySQL.
+1.-Como primer paso, se deberá instalar Node JS, junto con MySQL.
 
-2.-inicializar el proyecto instalando las siguientes dependencias que se requeriran: bcryptjs, body-parser, connect-flash, dotted-map, exphbs, express, express-handlebars, express-mysql-session, express-session, express-validator, morgan, multer, mysql, passport, passport-local, timeago.js, , nodemon.
+2.-Clonar el repositorio GitHub.
 
-```npm i bcryptjs body-parser connect-flash dotted-map exphbs express express-handlebars express-mysql-session express-session express-validator morgan multer mysql passport passport-local timeago.js nodemon ```
+```git clone https://github.com/PanchoCornejo/SICAAL.git  ```
+
+Una vez clonado, ingresar a la carpeta SICAAL e ingresar el siguiente comando
+
+```npm i  ```
+
+Dicho comando, instalará las dependecias necesarias para su correcto funcionamiento.
 
 3.-Crear base de datos, para esto entratas en la Carpeta database->sicaal_db.sql la cual se copiara el codigo en Mysql y pegara para crear manualmente la base de datos.
 
